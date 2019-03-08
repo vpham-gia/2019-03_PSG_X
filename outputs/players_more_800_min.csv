@@ -1,0 +1,244 @@
+player_id,game_time_in_sec,name,position,team_name
+100954,84068.0,François Moubandje,Defender,Toulouse
+100955,58526.0,Vincent Rüfli,Defender,Dijon
+101494,69795.0,Ole Selnaes,Midfielder,Saint-Étienne
+101779,66146.0,Somália,Midfielder,Toulouse
+102739,103023.0,Christophe Kerbrat,Defender,Guingamp
+102747,84404.0,Djibril Sidibe,Defender,Monaco
+102766,55313.0,Koffi Djidji,Defender,Nantes
+102826,61469.0,Benjamin Mendy,Defender,Monaco
+103124,75647.0,Emiliano Sala,Forward,Nantes
+103155,86674.0,Adama Soumaoro,Defender,Lille
+105706,89615.0,Steeve Yago,Defender,Toulouse
+106263,62333.0,Yunis Abdelhamid,Defender,Dijon
+106821,74275.0,Pedro Mendes,Defender,Rennes
+108143,57490.0,Mariusz Stepinski,Forward,Nantes
+108168,86037.0,Alassane Pléa,Forward,Nice
+108988,97198.0,Simon Falette,Defender,Metz
+109404,94301.0,Hiroki Sakai,Defender,Marseille
+10955,49555.0,Souleymane Camara,Forward,Montpellier
+109653,59531.0,Rony Lopes,Midfielder,Lille
+109653,59531.0,Rony Lopes,Midfielder,Monaco
+111265,68222.0,Júlio Tavares,Forward,Dijon
+111291,97236.0,Marçal,Defender,Guingamp
+111931,85394.0,Ricardo Pereira,Defender,Nice
+112580,64449.0,Pierrick Capelle,Midfielder,Angers
+114546,91418.0,Christopher Jullien,Defender,Toulouse
+11527,77665.0,Thiago Motta,Midfielder,Paris SG
+115851,106079.0,Yoan Cardinale,Goalkeeper,Nice
+115858,57797.0,Rachid Ghezzal,Midfielder,Lyon
+116406,75178.0,Marquinhos,Defender,Paris SG
+116536,108544.0,Lucas Lima,Defender,Nantes
+116643,91602.0,Fabinho,Midfielder,Monaco
+116736,62754.0,Doria,Defender,Marseille
+119679,89848.0,Fouad Chafik,Defender,Dijon
+119691,57423.0,Jordan Adeoti,Defender,Caen
+119744,79363.0,Mathieu Michel,Goalkeeper,Angers
+12057,99834.0,Jaroslav Plasil,Midfielder,Bordeaux
+120743,48213.0,Adrien Rabiot,Midfielder,Paris SG
+121111,70300.0,Ádám Lang,Defender,Dijon
+122775,103744.0,Morgan Sanson,Midfielder,Marseille
+12400,48376.0,Franck Signorino,Defender,Metz
+124148,64742.0,Opa Nguette,Midfielder,Metz
+124182,81412.0,Oussama Tannane,Forward,Saint-Étienne
+12488,63532.0,Jérémy Toulalan,Defender,Bordeaux
+12656,59920.0,Franck Beria,Defender,Lille
+128348,88082.0,Ibrahim Amadou,Midfielder,Lille
+12845,84961.0,Alaeddine Yahia,Defender,Caen
+129478,93058.0,Jordan Ikoko,Defender,Guingamp
+129479,51116.0,Presnel Kimpembe,Defender,Paris SG
+13262,108247.0,Vincent Enyeama,Goalkeeper,Lille
+13356,70850.0,Rod Fanni,Defender,Marseille
+133633,76429.0,Guido Milán,Defender,Metz
+13439,54162.0,Sébastien Squillaci,Defender,Bastia
+13939,78970.0,Cedric Varrault,Defender,Dijon
+141017,84607.0,Steven Moreira,Defender,Lorient
+145221,86687.0,Issiaga Sylla,Defender,Toulouse
+147577,88074.0,Lois Diony,Forward,Dijon
+148011,70039.0,Diego Rolan,Forward,Bordeaux
+149519,56050.0,Maxwel Cornet,Forward,Lyon
+149535,81900.0,Famara Diedhiou,Forward,Angers
+151873,99269.0,Wylan Cyprien,Midfielder,Nice
+152337,76023.0,Tobias Badila,Defender,Nancy
+153014,65292.0,Jordan Marié,Midfielder,Dijon
+153649,59310.0,Remi Walter,Midfielder,Nice
+161472,51638.0,Adrien Hunou,Midfielder,Rennes
+162654,90438.0,Jemerson,Defender,Monaco
+164474,97231.0,Youssouf Sabaly,Defender,Bordeaux
+164474,97231.0,Youssouf Sabaly,Defender,Paris SG
+165457,103023.0,Thomas Didillon,Goalkeeper,Metz
+165659,78253.0,Diego Carlos,Defender,Nantes
+165809,83918.0,Bernardo Silva,Midfielder,Monaco
+166325,63691.0,Cafú,Midfielder,Lorient
+166552,67122.0,Nabil Fekir,Forward,Lyon
+167443,52565.0,Gaetan Laborde,Forward,Bordeaux
+167449,78178.0,Thomas Lemar,Midfielder,Monaco
+168109,101979.0,Cheikh N'Doye,Midfielder,Angers
+168568,89923.0,Corentin Tolisso,Midfielder,Lyon
+168985,94061.0,Baptiste Santamaría,Midfielder,Angers
+169007,56410.0,Sergi Darder,Midfielder,Lyon
+169102,75492.0,Tiemoué Bakayoko,Midfielder,Monaco
+169141,82556.0,Steve Mounie,Forward,Montpellier
+170137,89164.0,Allan Saint-Maximin,Midfielder,Bastia
+170137,89164.0,Allan Saint-Maximin,Midfielder,Monaco
+170271,92061.0,Jean Michael Seri,Midfielder,Nice
+171101,102874.0,,,
+178492,76692.0,Enzo Crivelli,Forward,Bastia
+178492,76692.0,Enzo Crivelli,Forward,Bordeaux
+181092,80450.0,Malcom,Forward,Bordeaux
+181439,62954.0,Jerome Prior,Goalkeeper,Bordeaux
+183779,90860.0,Léo Dubois,Defender,Nantes
+184095,61950.0,Yann Karamoh,Forward,Caen
+18574,75678.0,Thomas Mangani,Midfielder,Angers
+18679,49927.0,,,
+189791,60396.0,Ramy Bensebaini,Defender,Rennes
+193409,62500.0,Yacine Bammou,Forward,Nantes
+193454,86269.0,Karl Toko Ekambi,Forward,Angers
+194302,65476.0,Yann Bodiger,Midfielder,Toulouse
+19500,74954.0,Jérémy Ménez,Forward,Bordeaux
+19510,62898.0,Mevlüt Erdinc,Forward,Metz
+195430,99621.0,Ellyes Skhiri,Midfielder,Montpellier
+19624,48887.0,João Moutinho,Midfielder,Monaco
+19670,70264.0,Loic Perrin,Defender,Saint-Étienne
+201392,78206.0,Alexis Blin,Midfielder,Toulouse
+201562,82060.0,Marcus Coco,Midfielder,Guingamp
+203325,69655.0,André-Frank Zambo Anguissa,Midfielder,Marseille
+203368,64011.0,Frederic Guilbert,Defender,Bordeaux
+203368,64011.0,Frederic Guilbert,Defender,Caen
+204727,107421.0,Malang Sarr,Defender,Nice
+204739,108474.0,Alban Lafont,Goalkeeper,Toulouse
+208135,62541.0,Mouctar Diakhaby,Defender,Lyon
+212325,68990.0,Pierre Lees-Melou,Midfielder,Dijon
+212752,79972.0,Dalbert,Defender,Nice
+213965,53291.0,Maxime Lopez,Midfielder,Marseille
+214254,48581.0,Habib Diallo,Forward,Metz
+214472,69228.0,Youssef Aït Bennasser,Midfielder,Monaco
+214472,69228.0,Youssef Aït Bennasser,Midfielder,Nancy
+215047,76975.0,Lassana Coulibaly,Midfielder,Bastia
+218005,50746.0,Adam Ounas,Midfielder,Bordeaux
+218705,50995.0,Joris Gnagnon,Defender,Rennes
+219924,74279.0,Issa Diop,Defender,Toulouse
+229608,94037.0,Amine Harit,Midfielder,Nantes
+232185,67633.0,Ismaila Sarr,Midfielder,Metz
+26894,85210.0,Dante,Defender,Nice
+27669,72481.0,Yoann Gourcuff,Midfielder,Rennes
+27674,78630.0,Arnold Mvuemba,Midfielder,Lorient
+27675,96050.0,Jimmy Briand,Forward,Guingamp
+28136,86973.0,Hilton,Defender,Montpellier
+28146,48703.0,Benoit Assou-Ekotto,Defender,Metz
+31878,69527.0,,,
+33946,82494.0,Oswaldo Vizcarrondo,Defender,Nantes
+37439,60293.0,Marko Basa,Defender,Lille
+37740,70691.0,Michael Ciani,Defender,Lorient
+37755,64755.0,Florian Marange,Defender,Bastia
+37758,51692.0,Paul Baysse,Defender,Nice
+37765,93929.0,Renaud Cohade,Midfielder,Metz
+37769,108144.0,Yohann Pelé,Goalkeeper,Marseille
+37776,108345.0,Ludovic Baal,Defender,Rennes
+37832,82647.0,Jérémy Morel,Defender,Lyon
+37838,97167.0,Rémy Riou,Goalkeeper,Nantes
+37852,48739.0,Mathieu Valbuena,Midfielder,Lyon
+37938,102388.0,Romain Danzé,Defender,Rennes
+37971,75211.0,Blaise Matuidi,Midfielder,Paris SG
+37998,95264.0,Bafétimbi Gomis,Forward,Marseille
+38002,67479.0,Daniel Congré,Defender,Montpellier
+38261,69654.0,Kévin Monnet-Paquet,Forward,Saint-Étienne
+38314,97387.0,Stéphane Ruffier,Goalkeeper,Saint-Étienne
+38816,83551.0,Guy NDy Assembe,Goalkeeper,Nancy
+39294,57547.0,Rolando,Defender,Marseille
+39379,52337.0,Issiar Dia,Forward,Nancy
+39680,75463.0,Gelson Fernandes,Midfielder,Rennes
+39804,56926.0,Julian Palmieri,Defender,Lille
+39905,61199.0,Moustapha Diallo,Midfielder,Guingamp
+40720,82349.0,Edinson Cavani,Forward,Paris SG
+40721,50769.0,Óscar Trejo,Midfielder,Toulouse
+40815,69672.0,William Vainqueur,Midfielder,Marseille
+42416,89690.0,Ismael Traoré,Defender,Angers
+42484,90020.0,Giovanni Sio,Forward,Rennes
+42586,105161.0,Guillaume Gillet,Midfielder,Nantes
+42713,108345.0,Benoit Costil,Goalkeeper,Rennes
+42714,103067.0,Jérémy Sorbon,Defender,Guingamp
+42761,80435.0,Vincent Bessat,Midfielder,Caen
+43455,97007.0,Georges Mandjeck,Midfielder,Metz
+44136,96763.0,Jean-Louis Leca,Goalkeeper,Bastia
+44138,86226.0,Yannick Cahuzac,Midfielder,Bastia
+44140,75633.0,Gilles Cioni,Defender,Bastia
+44287,108463.0,Damien Da Silva,Defender,Caen
+44476,56577.0,Geoffrey Jourdren,Goalkeeper,Montpellier
+44488,72630.0,Mapou Yanga-Mbiwa,Defender,Lyon
+45082,89466.0,Julien Féret,Midfielder,Caen
+45084,101017.0,Lucas Deaux,Midfielder,Guingamp
+45136,59884.0,Cheikh M'Bengue,Defender,Saint-Étienne
+45505,101979.0,Romain Thomas,Defender,Angers
+46497,70388.0,Ángel Di María,Midfielder,Paris SG
+48469,79255.0,Pierre Bengtsson,Defender,Bastia
+48768,85098.0,Younousse Sankharé,Midfielder,Bordeaux
+49181,57830.0,Tomas Hubocan,Defender,Marseille
+50148,51229.0,,,
+50996,99148.0,Ronny Rodelin,Forward,Caen
+51090,79083.0,Thiago Silva,Defender,Paris SG
+51498,71826.0,Mehdi Mostefa,Midfielder,Bastia
+51524,51353.0,Francois Bellugou,Midfielder,Lorient
+51525,51079.0,Nolan Roux,Forward,Saint-Étienne
+52154,77644.0,Ola Toivonen,Forward,Toulouse
+52635,86542.0,Éder,Forward,Lille
+54408,90493.0,Zargo Toure,Defender,Lorient
+54413,68275.0,Frederic Sammaritano,Midfielder,Dijon
+54518,89739.0,Vincent Manceau,Defender,Angers
+54772,75642.0,Rafael,Defender,Lyon
+54911,62520.0,Julien Cetout,Defender,Nancy
+55264,88863.0,Ryad Boudebouz,Midfielder,Montpellier
+55343,86777.0,Yannis Salibur,Midfielder,Guingamp
+55948,102185.0,Benjamin André,Midfielder,Rennes
+56995,79117.0,Grégory Sertic,Midfielder,Marseille
+57129,103473.0,Mathieu Peybernes,Defender,Lorient
+58309,86145.0,Yoann Andreu,Defender,Angers
+58636,70757.0,Kévin Théophile-Catherine,Defender,Saint-Étienne
+59340,68265.0,Diego Contento,Defender,Bordeaux
+59957,108568.0,Anthony Lopes,Goalkeeper,Lyon
+59963,78770.0,Maxime Gonalons,Midfielder,Lyon
+59966,76722.0,Alexandre Lacazette,Forward,Lyon
+60121,107749.0,Sébastien Corchia,Defender,Lille
+60319,86434.0,Ivan Santini,Forward,Caen
+60582,102061.0,Danijel Subasic,Goalkeeper,Monaco
+61170,63385.0,Marco Verratti,Midfielder,Paris SG
+61704,64353.0,Jimmy Durmaz,Midfielder,Toulouse
+61741,102924.0,Karl-Johan Johnsson,Goalkeeper,Guingamp
+66957,51561.0,Rémy Cabella,Midfielder,Marseille
+66959,80050.0,Younès Belhanda,Midfielder,Nice
+67278,102530.0,Vincent Le Goff,Defender,Lorient
+67346,54477.0,Walid Mesloub,Midfielder,Lorient
+6751,53851.0,Gaël Danic,Midfielder,Bastia
+68690,89558.0,Martin Braithwaite,Forward,Toulouse
+71389,59540.0,Maciej Rybus,Midfielder,Lyon
+71403,101927.0,Kamil Glik,Defender,Monaco
+71797,65547.0,Igor Lewczuk,Defender,Bordeaux
+73678,74166.0,Benjamin Moukandjo,Forward,Lorient
+78323,68621.0,Cheick Doukouré,Midfielder,Metz
+80226,62622.0,Serge Aurier,Defender,Paris SG
+80799,70146.0,Joffrey Cuffaut,Defender,Nancy
+80800,56227.0,Jonathan Rivierez,Defender,Metz
+81028,61323.0,Sadio Diallo,Midfielder,Bastia
+82184,79161.0,Majeed Waris,Forward,Lorient
+82313,91210.0,Nicolas Pallois,Defender,Bordeaux
+83340,72992.0,Kevin Malcuit,Defender,Saint-Étienne
+83577,70786.0,Léo Lacroix,Defender,Saint-Étienne
+84182,67628.0,Alphonse Areola,Goalkeeper,Paris SG
+85548,61266.0,Vincent Pajot,Midfielder,Saint-Étienne
+86281,87152.0,Jonathan Delaplace,Midfielder,Caen
+86873,68042.0,Benjamin Lecomte,Goalkeeper,Lorient
+89068,53967.0,Layvin Kurzawa,Defender,Paris SG
+90126,69898.0,,,
+91070,48888.0,Valentin Eysseric,Midfielder,Nice
+93289,88021.0,Jérôme Roussillon,Defender,Montpellier
+93498,59792.0,Loïc Puyo,Midfielder,Nancy
+93619,107824.0,Baptiste Reynet,Goalkeeper,Dijon
+95434,93269.0,Florian Thauvin,Midfielder,Marseille
+95715,88908.0,Lucas Moura,Midfielder,Paris SG
+96740,84276.0,Jordan Veretout,Midfielder,Saint-Étienne
+97041,68020.0,Valère Germain,Forward,Monaco
+97624,62193.0,Iván Balliu,Defender,Metz
+98746,79107.0,Mehdi Abeid,Midfielder,Dijon
+9980,76576.0,Benoit Pedretti,Midfielder,Nancy
+9997,84374.0,Rémy Vercoutre,Goalkeeper,Caen
+9999,51250.0,Laurent Pionnier,Goalkeeper,Montpellier

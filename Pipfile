@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+ipdb = "==0.11"
+ipython = "==7.3.0"
+numpy = "==1.16.2"
+pandas = "==0.24.1"
+lxml = "==4.3.2"
+jedi = "==0.13.3"
+ipython_genutils = "==0.2.0"
+
+[requires]
+python_version = "3.5"
