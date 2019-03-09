@@ -12,6 +12,7 @@ import logging
 REPO_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 DATA_DIR = os.path.join(REPO_DIR, 'data')
 GAMES_DIR = os.path.join(DATA_DIR, 'French-Ligue-One-20162017-season-Match-Day-1-19')
+OUTPUTS_DIR = os.path.join(REPO_DIR, 'outputs')
 LOGS_DIR = os.path.join(REPO_DIR, 'logs')
 
 # Logging
@@ -41,8 +42,12 @@ EVENTS_MAP = {
     'KICKOFF': '34',
     'PLAYER_OFF': '18',
     'PLAYER_ON': '19',
-    'END_PERIOD': '30'
+    'END_PERIOD': '30',
+    'DELETED_EVENT': '43'
 }
+OUTCOME_COL = 'outcome'
+KEYPASS_COL = 'keypass'
+ASSIST_COL = 'assist'
 
 QUALIFIER_COL = 'qualifier_id'
 QUALIFIER_MAP = {
@@ -63,5 +68,11 @@ NAME_COL = 'name'
 TEAM_NAME_COL = 'team_name'
 POSITION_COL = 'position'
 
+FILENAME_PLAYERS_MORE_800 = 'players_more_800_min.csv'
+
 GAME_ID_COL = 'game'
 GAME_TIME_COL = 'game_time_in_sec'
+
+COLS_TO_KEEP = [GAME_ID_COL, EVENT_TYPE_COL, PERIOD_COL, GAME_TIME_COL,
+                PLAYER_COL, TEAM_COL, OUTCOME_COL, KEYPASS_COL, ASSIST_COL,
+                X_COL, Y_COL]
