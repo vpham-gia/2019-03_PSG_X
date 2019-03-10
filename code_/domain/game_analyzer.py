@@ -1,10 +1,10 @@
 import logging
 import pandas as pd
-from os.path import join
 
 from code_.infrastructure.game import Game
 from code_.infrastructure.players import Players
 import settings as stg
+stg.enable_logging(log_filename='app.log')
 
 
 class GameAnalyzer():
@@ -14,8 +14,8 @@ class GameAnalyzer():
     ----------
     game: pandas.DataFrame
         Output of code_.infrastructure.game.Game.clean_game_data()
-    major_players: pandas.DataFrame
-        Similar to Players().major_players
+    eligible_players: list
+        Output of code_.infrastructure.players.Players.get_eligible_players_list()
 
     """
 
@@ -27,11 +27,11 @@ class GameAnalyzer():
         except TypeError as error:
             raise NameError('Error in GameAnalyzer initialization - {}'.format(error))
 
-        self.major_players = self._get_df_major_players()
+        self.eligible_players = Players().get_eligible_players_list()
 
-    def build_game_dataset_major_players(self, sliding_interval_min,
-                                         list_events_number,
-                                         list_events_with_sucess_rate):
+    def build_game_dataset_eligible_players(self, sliding_interval_min,
+                                            list_events_number,
+                                            list_events_with_sucess_rate):
         """Compute stats for every period with 15 min intervals for major players.
 
         Parameters
@@ -50,13 +50,12 @@ class GameAnalyzer():
 
         """
         df_game_stats = pd.DataFrame()
-        major_players_list = self.major_players[stg.PLAYER_COL].apply(str).values.tolist()
 
         for start in range(0, 36, sliding_interval_min):
             df = self._get_info_on_15_minutes(period='1', start_in_min=start,
                                               list_events_number=list_events_number,
                                               list_events_with_sucess_rate=list_events_with_sucess_rate)\
-                     .query('{} in {}'.format(stg.PLAYER_COL, major_players_list))
+                     .query('{} in {}'.format(stg.PLAYER_COL, self.eligible_players))
             df_game_stats = pd.concat([df_game_stats, df], axis=0,
                                       ignore_index=True, sort=False)
 
@@ -64,9 +63,12 @@ class GameAnalyzer():
             df = self._get_info_on_15_minutes(period='2', start_in_min=start,
                                               list_events_number=list_events_number,
                                               list_events_with_sucess_rate=list_events_with_sucess_rate)\
-                     .query('{} in {}'.format(stg.PLAYER_COL, major_players_list))
+                     .query('{} in {}'.format(stg.PLAYER_COL, self.eligible_players))
             df_game_stats = pd.concat([df_game_stats, df], axis=0,
                                       ignore_index=True, sort=False)
+
+        df_game_stats.fillna({col: 0 for col in df_game_stats.columns if col.endswith('_nb')},
+                             inplace=True)
 
         return df_game_stats
 
@@ -93,9 +95,7 @@ class GameAnalyzer():
 
         df_all_stats = df_players.merge(right=df_player_stats, on=stg.PLAYER_COL, how='left')\
                                  .merge(right=df_team_stats, on=stg.TEAM_COL, how='left')
-
-        return df_all_stats.fillna({col: 0 for col in df_all_stats.columns
-                                    if col.endswith('_nb')})
+        return df_all_stats
 
     def _get_agg_stats(self, df_with_events, agg_column, list_events_number, list_events_with_sucess_rate):
         df_stats = df_with_events[[agg_column]].drop_duplicates()
@@ -157,13 +157,6 @@ class GameAnalyzer():
                          inplace=True)
         return game_data.dropna().reset_index(drop=True)
 
-    def _get_df_major_players(self, filename=stg.FILENAME_PLAYERS_MORE_800):
-        try:
-            return pd.read_csv(filepath_or_buffer=join(stg.OUTPUTS_DIR, filename))
-        except FileNotFoundError:
-            logging.info('CSV with major players not found - Computing Players method')
-            return Players().major_players
-
 
 if __name__ == '__main__':
     ga = GameAnalyzer(filename='f24-24-2016-853139-eventdetails.xml')
@@ -171,9 +164,9 @@ if __name__ == '__main__':
                                       list_events_number=['4', '17'],
                                       list_events_with_sucess_rate=['1'])
 
-    df = ga.build_game_dataset_major_players(sliding_interval_min=5,
-                                             list_events_number=['4', '17'],
-                                             list_events_with_sucess_rate=['1'])
+    df = ga.build_game_dataset_eligible_players(sliding_interval_min=5,
+                                                list_events_number=['4', '17'],
+                                                list_events_with_sucess_rate=['1'])
 
     # titi = ga._compute_number_by_agg(df=toto, agg_column=stg.TEAM_COL, list_event_type_id=['4', '17'])
     # titi = ga._compute_number_by_agg(df=toto, agg_column=stg.TEAM_COL, list_event_type_id=['4', '17'])
