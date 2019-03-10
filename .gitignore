@@ -2,3 +2,4 @@
 code_/test.py
 data/*
 logs/*
+models/*.pkl

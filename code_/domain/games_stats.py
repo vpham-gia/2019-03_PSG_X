@@ -20,19 +20,19 @@ class SeasonFirstHalfAggregator():
         Time delta to slide time window in every game
     list_events_number: list
         Events type_id for which number aggregation are computed
-    list_events_with_sucess_rate: list
+    list_events_with_success_rate: list
         Events type_id for which number and success rate are computed
     saved_filename: string, default FILENAME_STATS_AGGREGATED in settings
 
     """
 
     def __init__(self, sliding_interval_min, list_events_number,
-                 list_events_with_sucess_rate,
+                 list_events_with_success_rate,
                  saved_filename=stg.FILENAME_STATS_AGGREGATED):
         """Class init."""
         self.sliding_interval_min = sliding_interval_min
         self.list_events_number = list_events_number
-        self.list_events_with_sucess_rate = list_events_with_sucess_rate
+        self.list_events_with_success_rate = list_events_with_success_rate
 
         self.saved_filename = saved_filename
 
@@ -57,11 +57,11 @@ class SeasonFirstHalfAggregator():
                 stats_game = GameAnalyzer(filename=file_)\
                     .build_game_dataset_eligible_players(sliding_interval_min=self.sliding_interval_min,
                                                          list_events_number=self.list_events_number,
-                                                         list_events_with_sucess_rate=self.list_events_with_sucess_rate)
+                                                         list_events_with_success_rate=self.list_events_with_success_rate)
 
                 df_stats = pd.concat([df_stats, stats_game], axis=0, ignore_index=True)
                 number_games_processed += 1
-                logging.debug('.. {}/{} - Sucessfully loaded file {}'
+                logging.debug('.. {}/{} - successfully loaded file {}'
                               .format(number_games_processed, len(os.listdir(stg.GAMES_DIR)), file_))
 
             df_stats.to_csv(join(stg.OUTPUTS_DIR, self.saved_filename))
@@ -92,7 +92,7 @@ class GameAnalyzer():
 
     def build_game_dataset_eligible_players(self, sliding_interval_min,
                                             list_events_number,
-                                            list_events_with_sucess_rate):
+                                            list_events_with_success_rate):
         """Compute stats for every period with 15 min intervals for major players.
 
         Parameters
@@ -101,8 +101,8 @@ class GameAnalyzer():
             Time interval to move sliding window
         list_events_number: list
             Event types ID for which number of events are computed
-        list_events_with_sucess_rate: list
-            Event types ID for which number of events and sucess rate are computed
+        list_events_with_success_rate: list
+            Event types ID for which number of events and success rate are computed
 
         Returns
         -------
@@ -115,7 +115,7 @@ class GameAnalyzer():
         for start in range(0, 36, sliding_interval_min):
             df = self._get_info_on_15_minutes(period='1', start_in_min=start,
                                               list_events_number=list_events_number,
-                                              list_events_with_sucess_rate=list_events_with_sucess_rate)\
+                                              list_events_with_success_rate=list_events_with_success_rate)\
                      .query('{} in {}'.format(stg.PLAYER_COL, self.eligible_players))
             df_game_stats = pd.concat([df_game_stats, df], axis=0,
                                       ignore_index=True, sort=False)
@@ -123,7 +123,7 @@ class GameAnalyzer():
         for start in range(45, 76, sliding_interval_min):
             df = self._get_info_on_15_minutes(period='2', start_in_min=start,
                                               list_events_number=list_events_number,
-                                              list_events_with_sucess_rate=list_events_with_sucess_rate)\
+                                              list_events_with_success_rate=list_events_with_success_rate)\
                      .query('{} in {}'.format(stg.PLAYER_COL, self.eligible_players))
             df_game_stats = pd.concat([df_game_stats, df], axis=0,
                                       ignore_index=True, sort=False)
@@ -158,16 +158,16 @@ class GameAnalyzer():
                                  .merge(right=df_team_stats, on=stg.TEAM_COL, how='left')
         return df_all_stats
 
-    def _get_agg_stats(self, df_with_events, agg_column, list_events_number, list_events_with_sucess_rate):
+    def _get_agg_stats(self, df_with_events, agg_column, list_events_number, list_events_with_success_rate):
         df_stats = df_with_events[[agg_column]].drop_duplicates()
 
         df_nb = self._compute_number_by_agg(df=df_with_events, agg_column=agg_column,
                                             list_event_type_id=list_events_number)
-        with_sucess_rate = self._compute_number_and_sucess_rate_by_agg(df=df_with_events, agg_column=agg_column,
-                                                                       list_event_type_id=list_events_with_sucess_rate)
+        with_success_rate = self._compute_number_and_success_rate_by_agg(df=df_with_events, agg_column=agg_column,
+                                                                         list_event_type_id=list_events_with_success_rate)
 
         df_stats = df_stats.merge(right=df_nb, on=agg_column, how='left')\
-                           .merge(right=with_sucess_rate, on=agg_column, how='left')
+                           .merge(right=with_success_rate, on=agg_column, how='left')
 
         return df_stats
 
@@ -185,10 +185,10 @@ class GameAnalyzer():
 
         return df_number
 
-    def _compute_number_and_sucess_rate_by_agg(self, df, agg_column, list_event_type_id):
+    def _compute_number_and_success_rate_by_agg(self, df, agg_column, list_event_type_id):
         NB_EVENT = '{id}_nb'
-        SUCCESS_EVENT = '{id}_sucess'
-        SUCCESS_RATE = '{id}_sucess_rate'
+        SUCCESS_EVENT = '{id}_success'
+        SUCCESS_RATE = '{id}_success_rate'
 
         df_number = self._compute_number_by_agg(df=df, agg_column=agg_column,
                                                 list_event_type_id=list_event_type_id)
@@ -225,11 +225,11 @@ if __name__ == '__main__':
     #
     # df = ga.build_game_dataset_eligible_players(sliding_interval_min=5,
     #                                             list_events_number=['4', '17'],
-    #                                             list_events_with_sucess_rate=['1'])
+    #                                             list_events_with_success_rate=['1'])
     #
     # df = df.merge(right=pl.all_players, on='player_id', how='left')
     sfha = SeasonFirstHalfAggregator(sliding_interval_min=5,
-                                     list_events_number=['4', '17'],
-                                     list_events_with_sucess_rate=['1'])
+                                     list_events_number=['4', '7', '10', '16', '17', '18', '19', '44', '61'],
+                                     list_events_with_success_rate=['1'])
 
     df = sfha.build_dataset()

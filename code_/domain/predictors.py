@@ -38,8 +38,8 @@ class PlayerPredictor():
 
     def fit(self, training_data):
         """Override fit method."""
-        X_train = training_data[self.FEATURES]
-        y_train = training_data[self.TARGET]
+        X_train = training_data[self.features]
+        y_train = training_data[self.target]
 
         predictor = self.model.fit(X_train, y_train)
         self.predictor = predictor
@@ -49,12 +49,12 @@ class PlayerPredictor():
     def save_model(self):
         """Save model."""
         joblib.dump(self.predictor,
-                    join(stg.MODELS_DIR, stg.MODEL_NAME))
+                    join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
         pass
 
-    def load_mode(self):
+    def load_model(self):
         """Load model."""
-        self.predictor = joblib.load(join(stg.MODELS_DIR, stg.MODEL_NAME))
+        self.predictor = joblib.load(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
         return self
 
     def predict(self, test_data):

@@ -19,6 +19,7 @@ LOGS_DIR = os.path.join(REPO_DIR, 'logs')
 
 # Logging
 def enable_logging(log_filename, logging_level=logging.DEBUG):
+    """Enable logging."""
     LOGGING_FORMAT = '[%(asctime)s][%(levelname)s][%(module)s] %(message)s'
     LOGGING_DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 
@@ -30,6 +31,7 @@ def enable_logging(log_filename, logging_level=logging.DEBUG):
     )
 
 
+# Manage XML files provided by OPTA
 XML_PATH_TO_GAME_INFO = '/Games/Game'
 XML_PATH_TO_EVENTS = '/Games/Game/Event'
 XML_PATH_TO_TEAMS = '/SoccerFeed/SoccerDocument/Team'
@@ -45,6 +47,7 @@ XML_PLAYER_STAT_TYPE_ATTRIBUTE = 'Type'
 XML_PLAYER_JOIN_DATE = 'join_date'
 XML_PLAYER_LEAVE_DATE = 'leave_date'
 
+# Game info from OPTA
 PERIOD_COL = 'period_id'
 EVENT_COL = 'event_id'
 EVENT_TYPE_COL = 'type_id'
@@ -64,6 +67,7 @@ QUALIFIER_MAP = {
     'ALL_PLAYERS': '30'
 }
 
+# Players info from OPTA
 TEAM_COL = 'team_id'
 PLAYER_COL = 'player_id'
 PLAYER_START_COL = 'start_game'
@@ -81,6 +85,7 @@ POSITION_COL = 'position'
 ARRIVAL_DATE = 'arrival_date'
 LEAVE_DATE = 'leave_date'
 
+# Outputs filenames
 FILENAME_ALL_PLAYERS = 'Noms des joueurs et IDs - F40 - L1 20162017.xml'
 FILENAME_PLAYERS_MORE_800 = 'players_more_800_min.csv'
 FILENAME_STATS_AGGREGATED = 'first_half_stats_by_player.csv'
@@ -92,4 +97,12 @@ COLS_TO_KEEP = [GAME_ID_COL, EVENT_TYPE_COL, PERIOD_COL, GAME_TIME_COL,
                 PLAYER_COL, TEAM_COL, OUTCOME_COL, KEYPASS_COL, ASSIST_COL,
                 X_COL, Y_COL]
 
-MODEL_NAME = 'player_model.pkl'
+# Model 1 - Players prediction
+PLAYER_TARGET = 'player_id'
+PLAYER_FEATURES = ['team_id', 'p_1_nb', 'p_1_success_rate', 'p_4_nb', 'p_7_nb', 'p_10_nb',
+                   'p_16_nb', 'p_17_nb', 'p_18_nb', 'p_19_nb', 'p_44_nb', 'p_61_nb',
+                   't_1_nb', 't_1_success_rate', 't_4_nb', 't_7_nb', 't_10_nb',
+                   't_16_nb', 't_17_nb', 't_18_nb', 't_19_nb', 't_44_nb', 't_61_nb']
+PLAYER_MODEL_NAME = 'player_model.pkl'
+PLAYER_MODEL_TYPE = 'rf'
+PLAYER_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 3}
