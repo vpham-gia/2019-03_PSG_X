@@ -82,6 +82,7 @@ LEAVE_DATE = 'leave_date'
 
 FILENAME_ALL_PLAYERS = 'Noms des joueurs et IDs - F40 - L1 20162017.xml'
 FILENAME_PLAYERS_MORE_800 = 'players_more_800_min.csv'
+FILENAME_STATS_AGGREGATED = 'first_half_stats_by_player.csv'
 
 GAME_ID_COL = 'game'
 GAME_TIME_COL = 'game_time_in_sec'

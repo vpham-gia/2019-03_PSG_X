@@ -8,7 +8,9 @@ from os.path import join
 
 from code_.infrastructure.game import Game
 import settings as stg
-stg.enable_logging(log_filename='players.log')
+
+if __name__ == '__main__':
+    stg.enable_logging(log_filename='players.log')
 
 
 class Players():
@@ -127,6 +129,8 @@ class Players():
                                              .agg({stg.GAME_TIME_COL: 'sum'})\
                                              .query('{} >= 60*800'.format(stg.GAME_TIME_COL))
 
+            players_more_800_min.to_csv(join(stg.OUTPUTS_DIR, read_from))
+            logging.info('Successfully saved players with 800+ mins.')
             return players_more_800_min
 
 

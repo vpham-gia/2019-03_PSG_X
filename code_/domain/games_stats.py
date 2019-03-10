@@ -1,10 +1,72 @@
+from os.path import join
 import logging
+import os
 import pandas as pd
 
 from code_.infrastructure.game import Game
 from code_.infrastructure.players import Players
 import settings as stg
-stg.enable_logging(log_filename='app.log')
+
+if __name__ == '__main__':
+    stg.enable_logging(log_filename='game_stats.log', logging_level=logging.DEBUG)
+
+
+class SeasonFirstHalfAggregator():
+    """Class to aggregate all stats from first half of season.
+
+    Attributes
+    ----------
+    sliding_interval_min: int
+        Time delta to slide time window in every game
+    list_events_number: list
+        Events type_id for which number aggregation are computed
+    list_events_with_sucess_rate: list
+        Events type_id for which number and success rate are computed
+    saved_filename: string, default FILENAME_STATS_AGGREGATED in settings
+
+    """
+
+    def __init__(self, sliding_interval_min, list_events_number,
+                 list_events_with_sucess_rate,
+                 saved_filename=stg.FILENAME_STATS_AGGREGATED):
+        """Class init."""
+        self.sliding_interval_min = sliding_interval_min
+        self.list_events_number = list_events_number
+        self.list_events_with_sucess_rate = list_events_with_sucess_rate
+
+        self.saved_filename = saved_filename
+
+    def build_dataset(self):
+        """Aggregate stats info for all games in first half of season.
+
+        Returns
+        -------
+        df_stats: pandas.DataFrame
+            Aggregation of stats for all games
+
+        """
+        try:
+            return pd.read_csv(join(stg.OUTPUTS_DIR, self.saved_filename))
+        except FileNotFoundError:
+            logging.debug('Start to aggregate game stats..')
+            number_games_processed = 0
+
+            df_stats = pd.DataFrame()
+
+            for file_ in os.listdir(stg.GAMES_DIR):
+                stats_game = GameAnalyzer(filename=file_)\
+                    .build_game_dataset_eligible_players(sliding_interval_min=self.sliding_interval_min,
+                                                         list_events_number=self.list_events_number,
+                                                         list_events_with_sucess_rate=self.list_events_with_sucess_rate)
+
+                df_stats = pd.concat([df_stats, stats_game], axis=0, ignore_index=True)
+                number_games_processed += 1
+                logging.debug('.. {}/{} - Sucessfully loaded file {}'
+                              .format(number_games_processed, len(os.listdir(stg.GAMES_DIR)), file_))
+
+            df_stats.to_csv(join(stg.OUTPUTS_DIR, self.saved_filename))
+            logging.info('Successfully saved aggregated stats.')
+            return df_stats
 
 
 class GameAnalyzer():
@@ -23,7 +85,6 @@ class GameAnalyzer():
         """Initialize class."""
         try:
             self.game = self._fillna_game_data(**kwargs)
-            logging.debug('Sucessfully initialized GameAnalyzer.')
         except TypeError as error:
             raise NameError('Error in GameAnalyzer initialization - {}'.format(error))
 
@@ -159,14 +220,16 @@ class GameAnalyzer():
 
 
 if __name__ == '__main__':
-    ga = GameAnalyzer(filename='f24-24-2016-853139-eventdetails.xml')
-    toto = ga._get_info_on_15_minutes(period='1', start_in_min=15,
-                                      list_events_number=['4', '17'],
-                                      list_events_with_sucess_rate=['1'])
+    # ga = GameAnalyzer(filename='f24-24-2016-853139-eventdetails.xml')
+    # pl = Players()
+    #
+    # df = ga.build_game_dataset_eligible_players(sliding_interval_min=5,
+    #                                             list_events_number=['4', '17'],
+    #                                             list_events_with_sucess_rate=['1'])
+    #
+    # df = df.merge(right=pl.all_players, on='player_id', how='left')
+    sfha = SeasonFirstHalfAggregator(sliding_interval_min=5,
+                                     list_events_number=['4', '17'],
+                                     list_events_with_sucess_rate=['1'])
 
-    df = ga.build_game_dataset_eligible_players(sliding_interval_min=5,
-                                                list_events_number=['4', '17'],
-                                                list_events_with_sucess_rate=['1'])
-
-    # titi = ga._compute_number_by_agg(df=toto, agg_column=stg.TEAM_COL, list_event_type_id=['4', '17'])
-    # titi = ga._compute_number_by_agg(df=toto, agg_column=stg.TEAM_COL, list_event_type_id=['4', '17'])
+    df = sfha.build_dataset()
