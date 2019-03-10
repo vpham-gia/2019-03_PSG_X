@@ -79,8 +79,8 @@ class Game():
         _add_game_teams = self._add_game_teams_index(df=_filter_events)
         _replace_teams_id = self._substitute_team_id(df=_add_game_teams)
 
-        clean_data = self._keep_game_columns(df=_replace_teams_id,
-                                             list_cols=stg.COLS_TO_KEEP)
+        clean_data = self._keep_game_columns_if_exists(df=_replace_teams_id,
+                                                       list_cols=stg.COLS_TO_KEEP)
         return clean_data
 
     def _get_teams_start_list(self):
@@ -163,8 +163,8 @@ class Game():
                                      inplace=True)
         return df_out
 
-    def _keep_game_columns(self, df, list_cols):
-        return df[list_cols]
+    def _keep_game_columns_if_exists(self, df, list_cols):
+        return df[[col for col in list_cols if col in df.columns]]
 
     def _gather_events(self):
         tree = etree.parse(join(stg.GAMES_DIR, self.filename))

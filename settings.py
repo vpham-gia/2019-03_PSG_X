@@ -13,6 +13,7 @@ REPO_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 DATA_DIR = os.path.join(REPO_DIR, 'data')
 GAMES_DIR = os.path.join(DATA_DIR, 'French-Ligue-One-20162017-season-Match-Day-1-19')
 OUTPUTS_DIR = os.path.join(REPO_DIR, 'outputs')
+MODELS_DIR = os.path.join(REPO_DIR, 'models')
 LOGS_DIR = os.path.join(REPO_DIR, 'logs')
 
 
@@ -90,3 +91,5 @@ GAME_TIME_COL = 'game_time_in_sec'
 COLS_TO_KEEP = [GAME_ID_COL, EVENT_TYPE_COL, PERIOD_COL, GAME_TIME_COL,
                 PLAYER_COL, TEAM_COL, OUTCOME_COL, KEYPASS_COL, ASSIST_COL,
                 X_COL, Y_COL]
+
+MODEL_NAME = 'player_model.pkl'
