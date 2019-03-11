@@ -20,7 +20,7 @@ LOGS_DIR = os.path.join(REPO_DIR, 'logs')
 # Logging
 def enable_logging(log_filename, logging_level=logging.DEBUG):
     """Enable logging."""
-    LOGGING_FORMAT = '[%(asctime)s][%(levelname)s][%(module)s] %(message)s'
+    LOGGING_FORMAT = '[%(asctime)s][%(module)s] %(levelname)s - %(message)s'
     LOGGING_DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 
     logging.basicConfig(
@@ -99,10 +99,25 @@ COLS_TO_KEEP = [GAME_ID_COL, EVENT_TYPE_COL, PERIOD_COL, GAME_TIME_COL,
 
 # Model 1 - Players prediction
 PLAYER_TARGET = 'player_id'
-PLAYER_FEATURES = ['team_id', 'p_1_nb', 'p_1_success_rate', 'p_4_nb', 'p_7_nb', 'p_10_nb',
-                   'p_16_nb', 'p_17_nb', 'p_18_nb', 'p_19_nb', 'p_44_nb', 'p_61_nb',
-                   't_1_nb', 't_1_success_rate', 't_4_nb', 't_7_nb', 't_10_nb',
-                   't_16_nb', 't_17_nb', 't_18_nb', 't_19_nb', 't_44_nb', 't_61_nb']
+EVENTS_COMPUTE_NUMBER = ['3', '4', '7', '8', '10', '14', '16', '17', '18', '19', '44', '61']
+EVENTS_COMPUTE_SUCCESS_RATE = ['1']
+PLAYER_FEATURES = ['team_id']\
+    + ['p_{}_nb'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
+    + ['p_{}_success_rate'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
+    + ['p_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\
+    + ['t_{}_nb'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
+    + ['t_{}_success_rate'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
+    + ['t_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\
+
 PLAYER_MODEL_NAME = 'player_model.pkl'
 PLAYER_MODEL_TYPE = 'rf'
-PLAYER_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 3}
+PLAYER_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1}
+BOOL_PLAYER_RS = True
+PLAYER_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
+                                    'max_features': [None, 'sqrt', 10, 15, 20],
+                                    'max_depth': [None, 4, 8, 10, 12, 15]}
+# PLAYER_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [500],
+#                                     'max_features': [20],
+#                                     'max_depth': [None, 15]}
+
+# PLAYER_MODEL_HYPERPARAMS = {'n_neighbors': 20, 'n_jobs': 3}

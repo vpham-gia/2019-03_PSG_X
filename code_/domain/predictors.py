@@ -2,6 +2,7 @@ from os.path import join
 from sklearn.externals import joblib
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import RandomizedSearchCV
 
 import settings as stg
 
@@ -35,6 +36,27 @@ class PlayerPredictor():
         self.model = self.MODEL_DICT[model_type].set_params(**hyperparameters)
         self.target = target
         self.features = features
+
+    def perform_random_search_cv(self, training_data, param_distributions, score):
+        """Perform Random search on hyperparameters.
+
+        Parameters
+        ----------
+        param_distributions: dict
+        score: string, ['accuracy', 'l2']
+
+        """
+        random_search = RandomizedSearchCV(estimator=self.model,
+                                           param_distributions=param_distributions,
+                                           n_iter=20, scoring=score, cv=3,
+                                           n_jobs=1)
+
+        random_search.fit(training_data[self.features], training_data[self.target])
+
+        best_estimator = random_search.best_estimator_
+        print('Best estimator: {}'.format(best_estimator.get_params()))
+        self.model = best_estimator
+        return self
 
     def fit(self, training_data):
         """Override fit method."""

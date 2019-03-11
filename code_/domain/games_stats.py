@@ -59,12 +59,14 @@ class SeasonFirstHalfAggregator():
                                                          list_events_number=self.list_events_number,
                                                          list_events_with_success_rate=self.list_events_with_success_rate)
 
-                df_stats = pd.concat([df_stats, stats_game], axis=0, ignore_index=True)
+                df_stats = pd.concat([df_stats, stats_game], axis=0,
+                                     ignore_index=True, sort=False)
                 number_games_processed += 1
                 logging.debug('.. {}/{} - successfully loaded file {}'
                               .format(number_games_processed, len(os.listdir(stg.GAMES_DIR)), file_))
 
-            df_stats.to_csv(join(stg.OUTPUTS_DIR, self.saved_filename))
+            df_stats.fillna({col: 0 for col in df_stats.columns if col.endswith('_nb')})\
+                    .to_csv(join(stg.OUTPUTS_DIR, self.saved_filename))
             logging.info('Successfully saved aggregated stats.')
             return df_stats
 
