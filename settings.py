@@ -20,6 +20,9 @@ LOGS_DIR = os.path.join(REPO_DIR, 'logs')
 # Logging
 def enable_logging(log_filename, logging_level=logging.DEBUG):
     """Enable logging."""
+    with open(os.path.join(LOGS_DIR, log_filename), 'a') as file:
+        file.write('\n')
+
     LOGGING_FORMAT = '[%(asctime)s][%(module)s] %(levelname)s - %(message)s'
     LOGGING_DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 
@@ -55,6 +58,7 @@ EVENTS_MAP = {
     'KICKOFF': '34',
     'PLAYER_OFF': '18',
     'PLAYER_ON': '19',
+    'START_PERIOD': '32',
     'END_PERIOD': '30',
     'DELETED_EVENT': '43'
 }
@@ -76,6 +80,7 @@ PLAYER_END_COL = 'end_game'
 MINUTES_COL = 'min'
 SECONDS_COL = 'sec'
 X_COL = 'x'
+X_PROJECTED_COL = 'x_along_team1_axis'
 Y_COL = 'y'
 
 NAME_COL = 'name'
@@ -89,6 +94,7 @@ LEAVE_DATE = 'leave_date'
 FILENAME_ALL_PLAYERS = 'Noms des joueurs et IDs - F40 - L1 20162017.xml'
 FILENAME_PLAYERS_MORE_800 = 'players_more_800_min.csv'
 FILENAME_STATS_AGGREGATED = 'first_half_stats_by_player.csv'
+FILENAME_NEXT_TEAM = 'first_half_next_team.csv'
 
 GAME_ID_COL = 'game'
 GAME_TIME_COL = 'game_time_in_sec'
@@ -121,3 +127,8 @@ PLAYER_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
 #                                     'max_depth': [None, 15]}
 
 # PLAYER_MODEL_HYPERPARAMS = {'n_neighbors': 20, 'n_jobs': 3}
+
+# Model 2 - Next team prediction
+NEXT_TEAM_TARGET = TEAM_COL
+NEXT_TEAM_COLS_TO_LAG = [PERIOD_COL, EVENT_TYPE_COL, TEAM_COL, X_PROJECTED_COL]
+NEXT_TEAM_MODEL_NAME = 'next_team_model.pkl'
