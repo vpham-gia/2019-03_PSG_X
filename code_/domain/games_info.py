@@ -1,4 +1,4 @@
-from os.path import basename, join
+from os.path import basename, join, splitext
 import logging
 import os
 import pandas as pd
@@ -8,7 +8,7 @@ from code_.infrastructure.players import Players
 import settings as stg
 
 if __name__ == '__main__':
-    stg.enable_logging(log_filename='{}.log'.format(basename(__file__)),
+    stg.enable_logging(log_filename='{}.log'.format(splitext(basename(__file__))[0]),
                        logging_level=logging.DEBUG)
 
 
