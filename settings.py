@@ -112,7 +112,7 @@ PLAYER_FEATURES = ['team_id']\
 PLAYER_MODEL_NAME = 'player_model.pkl'
 PLAYER_MODEL_TYPE = 'rf'
 PLAYER_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1}
-BOOL_PLAYER_RS = True
+BOOL_PLAYER_RS = False
 PLAYER_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
                                     'max_features': [None, 'sqrt', 10, 15, 20],
                                     'max_depth': [None, 4, 8, 10, 12, 15]}

@@ -48,7 +48,7 @@ class PlayerPredictor():
         """
         random_search = RandomizedSearchCV(estimator=self.model,
                                            param_distributions=param_distributions,
-                                           n_iter=20, scoring=score, cv=3,
+                                           n_iter=30, scoring=score, cv=3,
                                            n_jobs=1)
 
         random_search.fit(training_data[self.features], training_data[self.target])

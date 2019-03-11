@@ -54,7 +54,7 @@ class SeasonFirstHalfAggregator():
             df_stats = pd.DataFrame()
 
             for file_ in os.listdir(stg.GAMES_DIR):
-                stats_game = GameAnalyzer(filename=file_)\
+                stats_game = StatsGameAnalyzer(filename=file_)\
                     .build_game_dataset_eligible_players(sliding_interval_min=self.sliding_interval_min,
                                                          list_events_number=self.list_events_number,
                                                          list_events_with_success_rate=self.list_events_with_success_rate)
@@ -71,7 +71,7 @@ class SeasonFirstHalfAggregator():
             return df_stats
 
 
-class GameAnalyzer():
+class StatsGameAnalyzer():
     """Class to analyze a game and build datasets for ML.
 
     Attributes
@@ -88,7 +88,7 @@ class GameAnalyzer():
         try:
             self.game = self._fillna_game_data(**kwargs)
         except TypeError as error:
-            raise NameError('Error in GameAnalyzer initialization - {}'.format(error))
+            raise NameError('Error in StatsGameAnalyzer initialization - {}'.format(error))
 
         self.eligible_players = Players().get_eligible_players_list()
 
@@ -222,7 +222,7 @@ class GameAnalyzer():
 
 
 if __name__ == '__main__':
-    # ga = GameAnalyzer(filename='f24-24-2016-853139-eventdetails.xml')
+    # ga = StatsGameAnalyzer(filename='f24-24-2016-853139-eventdetails.xml')
     # pl = Players()
     #
     # df = ga.build_game_dataset_eligible_players(sliding_interval_min=5,

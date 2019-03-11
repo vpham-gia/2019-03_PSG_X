@@ -2,9 +2,10 @@ from os.path import join
 from sklearn.model_selection import train_test_split
 
 import logging
+import os
 
 from code_.domain.data_processing import DataQualityChecker
-from code_.domain.games_stats import SeasonFirstHalfAggregator
+from code_.domain.games_info import SeasonFirstHalfAggregator
 from code_.domain.predictors import PlayerPredictor
 from code_.domain.performance_analyzer import PerformanceAnalyzer
 
@@ -15,7 +16,7 @@ if __name__ == '__main__':
     with open(join(stg.LOGS_DIR, 'app.log'), 'a') as file:
         file.write('\n')
 
-logging.info('Start of script {}'.format(__file__))
+logging.info('Start of script {}'.format(os.path.basename(__file__)))
 
 logging.info('Load data ..')
 sfha = SeasonFirstHalfAggregator(sliding_interval_min=5,
@@ -57,4 +58,4 @@ accuracy = pa.compute_classification_accuracy()
 logging.info('Classification accuracy: {}'.format(accuracy))
 logging.info('.. Done')
 
-logging.info('End of script {}'.format(__file__))
+logging.info('End of script {}'.format(os.path.basename(__file__)))
