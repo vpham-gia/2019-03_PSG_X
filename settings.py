@@ -82,6 +82,7 @@ SECONDS_COL = 'sec'
 X_COL = 'x'
 X_PROJECTED_COL = 'x_along_team1_axis'
 Y_COL = 'y'
+Y_PROJECTED_COL = 'y_along_team1_axis'
 
 NAME_COL = 'name'
 LOAN_COL = 'loan'
@@ -94,7 +95,7 @@ LEAVE_DATE = 'leave_date'
 FILENAME_ALL_PLAYERS = 'Noms des joueurs et IDs - F40 - L1 20162017.xml'
 FILENAME_PLAYERS_MORE_800 = 'players_more_800_min.csv'
 FILENAME_STATS_AGGREGATED = 'first_half_stats_by_player.csv'
-FILENAME_NEXT_TEAM = 'first_half_next_team.csv'
+FILENAME_NEXT_EVENT = 'first_half_next_event.csv'
 
 GAME_ID_COL = 'game'
 GAME_TIME_COL = 'game_time_in_sec'
@@ -117,7 +118,7 @@ PLAYER_FEATURES = ['team_id']\
 
 PLAYER_MODEL_NAME = 'player_model.pkl'
 PLAYER_MODEL_TYPE = 'rf'
-BOOL_TRAIN_PLAYER_MODEL = False
+BOOL_TRAIN_PLAYER_MODEL = True
 BOOL_PLAYER_RS = False
 PLAYER_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1, 'max_depth': 15}
 PLAYER_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
@@ -125,19 +126,21 @@ PLAYER_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
                                     'max_depth': [None, 4, 8, 10, 12, 15]}
 
 # Model 2 - Next team prediction
+NEXT_EVENT_COLS_TO_LAG = [PERIOD_COL, EVENT_TYPE_COL, TEAM_COL,
+                          X_PROJECTED_COL, Y_PROJECTED_COL]
+NEXT_EVENT_LAGS = [1, 2, 3]
+
 NEXT_TEAM_TARGET = TEAM_COL
-NEXT_TEAM_COLS_TO_LAG = [PERIOD_COL, EVENT_TYPE_COL, TEAM_COL, X_PROJECTED_COL]
-NEXT_TEAM_LAGS = [1, 2, 3]
+NEXT_TEAM_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, X_PROJECTED_COL]
 NEXT_TEAM_FEATURES = ['{}_lag{}'.format(col, lag)
-                      for lag in NEXT_TEAM_LAGS
-                      for col in NEXT_TEAM_COLS_TO_LAG if col != PERIOD_COL]
+                      for lag in NEXT_EVENT_LAGS
+                      for col in NEXT_TEAM_COLS_TO_LAG_FOR_FEATS]
 
 NEXT_TEAM_MODEL_NAME = 'next_team_model.pkl'
 NEXT_TEAM_MODEL_TYPE = 'rf'
 BOOL_TRAIN_NEXT_TEAM_MODEL = True
-BOOL_NEXT_TEAM_RS = True
+BOOL_NEXT_TEAM_RS = False
 NEXT_TEAM_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1}
 NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
-                                        # 'max_features': [None, 'sqrt', 10, 15, 20],
-                                        'max_features': [1, 2, 3],
-                                        'max_depth': [None, 4, 8, 10, 12, 15]}
+                                       'max_features': [1, 2, 3],
+                                       'max_depth': [None, 4, 8, 10, 12, 15]}

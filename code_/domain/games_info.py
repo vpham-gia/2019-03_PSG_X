@@ -69,7 +69,7 @@ class SeasonFirstHalfAggregator():
             logging.info('Successfully saved aggregated stats.')
             return df_stats
 
-    def build_next_team_dataset(self, columns_to_lag, lags_to_add):
+    def build_next_event_dataset(self, columns_to_lag, lags_to_add):
         """Aggregate team with previous events for all games in first half of season.
 
         Parameters
@@ -95,8 +95,8 @@ class SeasonFirstHalfAggregator():
 
             for file_ in os.listdir(stg.GAMES_DIR):
                 game_next_team = NextEventInGame(filename=file_)\
-                    .build_next_team_dataset(columns_to_lag=columns_to_lag,
-                                             lags_to_add=lags_to_add)
+                    .build_next_event_dataset(columns_to_lag=columns_to_lag,
+                                              lags_to_add=lags_to_add)
 
                 df_next_team = pd.concat([df_next_team, game_next_team], axis=0,
                                          ignore_index=True, sort=False)
@@ -123,10 +123,11 @@ class NextEventInGame():
         """Initialize class."""
         try:
             self.game = self._filter_game_events(**kwargs)
+            self.game = self._project_coordinates_along_team1_axis(df=self.game)
         except TypeError as error:
             raise NameError('Error in NextEventInGame initialization - {}'.format(error))
 
-    def build_next_team_dataset(self, columns_to_lag, lags_to_add):
+    def build_next_event_dataset(self, columns_to_lag, lags_to_add):
         """Build dataset with previous events.
 
         Attributes
@@ -145,31 +146,28 @@ class NextEventInGame():
         try:
             assert(stg.PERIOD_COL in columns_to_lag)
 
-            target = self._get_target(target_col=stg.TEAM_COL)
+            dataset = self._get_targets()
 
             for lag in lags_to_add:
                 lag_df = self._lag_dataset(lag=lag)
                 columns_name_lagged = ['{}_lag{}'.format(col, lag) for col in columns_to_lag]
-                dataset = target.merge(right=lag_df[columns_name_lagged], how='left',
-                                       right_index=True, left_index=True)\
-                                .query('{period} == {period}_lag{lag}'.format(period=stg.PERIOD_COL, lag=lag))\
-                                .drop(labels='{}_lag{}'.format(stg.PERIOD_COL, lag), axis=1)
+                dataset = dataset.merge(right=lag_df[columns_name_lagged], how='left',
+                                        right_index=True, left_index=True)\
+                                 .query('{period} == {period}_lag{lag}'.format(period=stg.PERIOD_COL, lag=lag))\
+                                 .drop(labels='{}_lag{}'.format(stg.PERIOD_COL, lag), axis=1)
             return dataset
         except AssertionError:
             raise KeyError('{} not in columns_to_lag list'.format(stg.PERIOD_COL))
 
-    def _get_target(self, target_col):
-        df_target = self.game[[stg.GAME_ID_COL, stg.PERIOD_COL, target_col]]
+    def _get_targets(self):
+        df_target = self.game[[stg.GAME_ID_COL, stg.PERIOD_COL, stg.TEAM_COL,
+                               stg.X_PROJECTED_COL, stg.Y_PROJECTED_COL]]
         return df_target
 
     def _lag_dataset(self, lag):
-        # TODO: add variable creation in other method
-        df_x_projected = self.game.assign(**{stg.X_PROJECTED_COL:
-                                             lambda x: x[stg.TEAM_COL].apply(int) * x[stg.X_COL].apply(float) + (1 - x[stg.TEAM_COL].apply(int)) * (100 - x[stg.X_COL].apply(float))})
-        df_lagged = df_x_projected.shift(lag)\
-                                  .rename(columns={col: '{}_lag{}'.format(col, lag)
-                                                   for col in df_x_projected.columns})
-
+        df_lagged = self.game.shift(lag)\
+                             .rename(columns={col: '{}_lag{}'.format(col, lag)
+                                              for col in self.game.columns})
         return df_lagged
 
     def _filter_game_events(self, **kwargs):
@@ -178,6 +176,13 @@ class NextEventInGame():
             .reset_index(drop=True)\
             .query('{} not in {}'.format(stg.EVENT_TYPE_COL,
                                          [stg.EVENTS_MAP['START_PERIOD'], stg.EVENTS_MAP['END_PERIOD']]))
+
+    def _project_coordinates_along_team1_axis(self, df):
+        df_projections = df.assign(**{stg.X_PROJECTED_COL: lambda x: x[stg.TEAM_COL].apply(int) * x[stg.X_COL].apply(float) + (1 - x[stg.TEAM_COL].apply(int)) * (100 - x[stg.X_COL].apply(float)),
+                                      stg.Y_PROJECTED_COL: lambda x: x[stg.TEAM_COL].apply(int) * x[stg.Y_COL].apply(float) + (1 - x[stg.TEAM_COL].apply(int)) * (100 - x[stg.Y_COL].apply(float))
+                                      })
+
+        return df_projections
 
 
 class StatsGameAnalyzer():
@@ -340,8 +345,9 @@ if __name__ == '__main__':
     #
     # df = df.merge(right=pl.all_players, on='player_id', how='left')
 
-    # neig = NextEventInGame(filename='f24-24-2016-853139-eventdetails.xml')
-    # df = neig.build_next_team_dataset(columns_to_lag=[stg.PERIOD_COL] + stg.NEXT_TEAM_COLS_TO_LAG)
+    neig = NextEventInGame(filename='f24-24-2016-853139-eventdetails.xml')
+    df = neig.build_next_event_dataset(columns_to_lag=stg.NEXT_TEAM_COLS_TO_LAG,
+                                       lags_to_add=stg.NEXT_TEAM_LAGS)
 
-    sfha = SeasonFirstHalfAggregator(sliding_interval_min=5, list_events_number=[], list_events_with_success_rate=[])
-    df = sfha.build_next_team_dataset(columns_to_lag=stg.NEXT_TEAM_COLS_TO_LAG)
+    # sfha = SeasonFirstHalfAggregator(sliding_interval_min=5, list_events_number=[], list_events_with_success_rate=[])
+    # df = sfha.build_next_event_dataset(columns_to_lag=stg.NEXT_TEAM_COLS_TO_LAG)
