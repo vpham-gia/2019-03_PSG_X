@@ -18,10 +18,7 @@ if __name__ == '__main__':
 logging.info('Start of script {}'.format(basename(__file__)))
 
 logging.info('Load data ..')
-sfha = SeasonFirstHalfAggregator(sliding_interval_min=5,
-                                 list_events_number=stg.EVENTS_COMPUTE_NUMBER,
-                                 list_events_with_success_rate=stg.EVENTS_COMPUTE_SUCCESS_RATE,
-                                 saved_filename=stg.FILENAME_STATS_AGGREGATED)
+sfha = SeasonFirstHalfAggregator(saved_filename=stg.FILENAME_NEXT_TEAM)
 df = sfha.build_next_team_dataset(columns_to_lag=stg.NEXT_TEAM_COLS_TO_LAG)
 logging.info('.. Done')
 

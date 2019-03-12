@@ -1,3 +1,3 @@
 activate:
-	export $PYTHONPATH=$(pwd):$PYTHONPATH
 	pipenv shell
+	export PYTHONPATH="$(pwd):$PYTHONPATH"

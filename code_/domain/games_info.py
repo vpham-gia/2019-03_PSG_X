@@ -17,28 +17,26 @@ class SeasonFirstHalfAggregator():
 
     Attributes
     ----------
-    sliding_interval_min: int
-        Time delta to slide time window in every game
-    list_events_number: list
-        Events type_id for which number aggregation are computed
-    list_events_with_success_rate: list
-        Events type_id for which number and success rate are computed
     saved_filename: string, default FILENAME_STATS_AGGREGATED in settings
 
     """
 
-    def __init__(self, sliding_interval_min, list_events_number,
-                 list_events_with_success_rate,
-                 saved_filename=stg.FILENAME_STATS_AGGREGATED):
+    def __init__(self, saved_filename):
         """Class init."""
-        self.sliding_interval_min = sliding_interval_min
-        self.list_events_number = list_events_number
-        self.list_events_with_success_rate = list_events_with_success_rate
-
         self.saved_filename = saved_filename
 
-    def build_dataset(self):
+    def build_players_stats_dataset(self, sliding_interval_min,
+                                    list_events_number, list_events_with_success_rate,):
         """Aggregate stats info for all games in first half of season.
+
+        Parameters
+        ----------
+        liding_interval_min: int
+            Time delta to slide time window in every game
+        list_events_number: list
+            Events type_id for which number aggregation are computed
+        list_events_with_success_rate: list
+            Events type_id for which number and success rate are computed
 
         Returns
         -------
@@ -56,9 +54,9 @@ class SeasonFirstHalfAggregator():
 
             for file_ in os.listdir(stg.GAMES_DIR):
                 stats_game = StatsGameAnalyzer(filename=file_)\
-                    .build_game_dataset_eligible_players(sliding_interval_min=self.sliding_interval_min,
-                                                         list_events_number=self.list_events_number,
-                                                         list_events_with_success_rate=self.list_events_with_success_rate)
+                    .build_game_dataset_eligible_players(sliding_interval_min=sliding_interval_min,
+                                                         list_events_number=list_events_number,
+                                                         list_events_with_success_rate=list_events_with_success_rate)
 
                 df_stats = pd.concat([df_stats, stats_game], axis=0,
                                      ignore_index=True, sort=False)
@@ -71,8 +69,12 @@ class SeasonFirstHalfAggregator():
             logging.info('Successfully saved aggregated stats.')
             return df_stats
 
-    def build_next_team_dataset(self, columns_to_lag, filename=stg.FILENAME_NEXT_TEAM):
+    def build_next_team_dataset(self, columns_to_lag):
         """Aggregate team with previous events for all games in first half of season.
+
+        Parameters
+        ----------
+        columns_to_lag: list
 
         Returns
         -------
@@ -81,7 +83,7 @@ class SeasonFirstHalfAggregator():
 
         """
         try:
-            return pd.read_csv(join(stg.OUTPUTS_DIR, filename), index_col=0)
+            return pd.read_csv(join(stg.OUTPUTS_DIR, self.saved_filename), index_col=0)
         except FileNotFoundError:
             logging.debug('Start to aggregate next team dataset..')
             number_games_processed = 0
@@ -98,7 +100,7 @@ class SeasonFirstHalfAggregator():
                 logging.debug('.. {}/{} - successfully loaded file {}'
                               .format(number_games_processed, len(os.listdir(stg.GAMES_DIR)), file_))
 
-            df_next_team.to_csv(join(stg.OUTPUTS_DIR, filename))
+            df_next_team.to_csv(join(stg.OUTPUTS_DIR, self.saved_filename))
             logging.info('Successfully saved aggregated next team dataset.')
             return df_next_team
 
@@ -215,7 +217,7 @@ class StatsGameAnalyzer():
         """
         df_game_stats = pd.DataFrame()
 
-        for start in range(0, 36, sliding_interval_min):
+        for start in range(0, 31, sliding_interval_min):
             df = self._get_info_on_15_minutes(period='1', start_in_min=start,
                                               list_events_number=list_events_number,
                                               list_events_with_success_rate=list_events_with_success_rate)\

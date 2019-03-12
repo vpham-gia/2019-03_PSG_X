@@ -1,4 +1,6 @@
 from sklearn.metrics import accuracy_score
+from numpy.linalg import norm
+import numpy as np
 
 
 class PerformanceAnalyzer():
@@ -22,6 +24,12 @@ class PerformanceAnalyzer():
         """Classification accuracy score."""
         return accuracy_score(y_true=self.y_true, y_pred=self.y_pred)
 
-    def compute_l2_error(self):
+    def compute_accuracy_l2_error(self):
         """Metric for position prediction."""
-        pass
+        MAX_ERROR = np.sqrt(100 * 100 + 100 * 100)
+        return (1 - self.compute_avg_l2_error() / MAX_ERROR)
+
+    def compute_avg_l2_error(self):
+        """Metric for position prediction."""
+        l2_distance = norm(np.subtract(self.y_true, self.y_pred), axis=1)
+        return np.mean(l2_distance)
