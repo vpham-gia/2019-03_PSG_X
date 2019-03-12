@@ -131,4 +131,12 @@ PLAYER_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
 # Model 2 - Next team prediction
 NEXT_TEAM_TARGET = TEAM_COL
 NEXT_TEAM_COLS_TO_LAG = [PERIOD_COL, EVENT_TYPE_COL, TEAM_COL, X_PROJECTED_COL]
+NEXT_TEAM_FEATURES = ['{}_lag1'.format(col) for col in NEXT_TEAM_COLS_TO_LAG if col != PERIOD_COL]
 NEXT_TEAM_MODEL_NAME = 'next_team_model.pkl'
+
+NEXT_TEAM_MODEL_TYPE = 'rf'
+NEXT_TEAM_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1}
+BOOL_NEXT_TEAM_RS = False
+NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
+                                        'max_features': [None, 'sqrt', 10, 15, 20],
+                                        'max_depth': [None, 4, 8, 10, 12, 15]}

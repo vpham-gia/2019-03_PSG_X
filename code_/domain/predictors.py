@@ -68,15 +68,15 @@ class PlayerPredictor():
 
         return self
 
-    def save_model(self):
+    def save_model(self, save_modelname):
         """Save model."""
         joblib.dump(self.predictor,
-                    join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
+                    join(stg.MODELS_DIR, save_modelname))
         pass
 
-    def load_model(self):
+    def load_model(self, save_modelname):
         """Load model."""
-        self.predictor = joblib.load(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
+        self.predictor = joblib.load(join(stg.MODELS_DIR, save_modelname))
         return self
 
     def predict(self, test_data):

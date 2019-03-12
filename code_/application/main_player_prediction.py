@@ -25,6 +25,7 @@ df = sfha.build_dataset()
 logging.info('.. Done')
 
 logging.info('Data quality check ..')
+# TODO: adapt with df
 dqc = DataQualityChecker(filename=stg.FILENAME_STATS_AGGREGATED)
 dqc.print_completeness()
 dqc.print_min_nb_observations_by_target(target=stg.PLAYER_COL)
