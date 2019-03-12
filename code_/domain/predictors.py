@@ -1,6 +1,6 @@
 from os.path import join
 from sklearn.externals import joblib
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import RandomizedSearchCV
 
@@ -22,12 +22,13 @@ class Classificator():
     """
 
     MODEL_DICT = {'rf': RandomForestClassifier(),
-                  'knn': KNeighborsClassifier()}
+                  'knn': KNeighborsClassifier(),
+                  'rf_reg': RandomForestRegressor()}
 
     def __init__(self, model_type, hyperparameters, target, features):
         """Init class.
 
-        model_type: string, ['rf', 'knn']
+        model_type: string, ['rf_classif', 'knn', 'rf_reg']
         hyperparameters: dict
         target: string
         features: list

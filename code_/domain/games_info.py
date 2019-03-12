@@ -88,7 +88,7 @@ class SeasonFirstHalfAggregator():
         try:
             return pd.read_csv(join(stg.OUTPUTS_DIR, self.saved_filename), index_col=0)
         except FileNotFoundError:
-            logging.debug('Start to aggregate next team dataset..')
+            logging.debug('Start to aggregate next event dataset..')
             number_games_processed = 0
 
             df_next_team = pd.DataFrame()

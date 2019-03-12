@@ -19,7 +19,7 @@ logging.info('Start of script {}'.format(basename(__file__)))
 
 logging.info('Load data ..')
 sfha = SeasonFirstHalfAggregator(saved_filename=stg.FILENAME_NEXT_EVENT)
-df = sfha.build_next_event_dataset(columns_to_lag=stg.NEXT_TEAM_COLS_TO_LAG,
+df = sfha.build_next_event_dataset(columns_to_lag=stg.NEXT_EVENT_COLS_TO_LAG,
                                    lags_to_add=stg.NEXT_EVENT_LAGS)
 logging.info('.. Done')
 
@@ -38,12 +38,12 @@ logging.info('.. Done')
 logging.info('Data quality check - Train set..')
 dqc = DataQualityChecker(df=pd.concat([X_train, y_train], axis=1))
 dqc.print_completeness()
-dqc.print_min_nb_observations_by_target(target=stg.TEAM_COL)
+dqc.print_min_nb_observations_by_target(target=stg.NEXT_TEAM_TARGET)
 
 logging.info('Data quality check - Test set..')
 dqc = DataQualityChecker(df=pd.concat([X_test, y_test], axis=1))
 dqc.print_completeness()
-dqc.print_min_nb_observations_by_target(target=stg.TEAM_COL)
+dqc.print_min_nb_observations_by_target(target=stg.NEXT_TEAM_TARGET)
 logging.info('.. Done')
 
 next_team_model = Classificator(model_type=stg.NEXT_TEAM_MODEL_TYPE,
