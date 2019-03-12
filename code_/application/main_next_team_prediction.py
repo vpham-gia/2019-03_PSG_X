@@ -19,7 +19,8 @@ logging.info('Start of script {}'.format(basename(__file__)))
 
 logging.info('Load data ..')
 sfha = SeasonFirstHalfAggregator(saved_filename=stg.FILENAME_NEXT_TEAM)
-df = sfha.build_next_team_dataset(columns_to_lag=stg.NEXT_TEAM_COLS_TO_LAG)
+df = sfha.build_next_team_dataset(columns_to_lag=stg.NEXT_TEAM_COLS_TO_LAG,
+                                  lags_to_add=stg.NEXT_TEAM_LAGS)
 logging.info('.. Done')
 
 logging.info('Data quality check ..')
@@ -30,10 +31,11 @@ train, test = train_test_split(df.dropna(), test_size=0.3, random_state=42)
 X_train, y_train = train[stg.NEXT_TEAM_FEATURES], train[stg.NEXT_TEAM_TARGET]
 X_test, y_test = test[stg.NEXT_TEAM_FEATURES], test[stg.NEXT_TEAM_TARGET]
 
-cat_proj = CategoricalProjector(column_to_substitute='{}_lag1'.format(stg.EVENT_TYPE_COL),
-                                columns_to_build_change_var=[stg.NEXT_TEAM_TARGET, '{}_lag1'.format(stg.NEXT_TEAM_TARGET)])
-cat_proj.fit_transform(X_train, y_train)
-cat_proj.transform(X_test)
+for lag in stg.NEXT_TEAM_LAGS:
+    cat_proj = CategoricalProjector(column_to_substitute='{}_lag{}'.format(stg.EVENT_TYPE_COL, lag),
+                                    columns_to_build_change_var=[stg.NEXT_TEAM_TARGET, '{}_lag{}'.format(stg.NEXT_TEAM_TARGET, lag)])
+    cat_proj.fit_transform(X_train, y_train)
+    cat_proj.transform(X_test)
 logging.info('.. Done')
 
 logging.info('Data quality check - Train set..')

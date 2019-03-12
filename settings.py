@@ -127,7 +127,10 @@ PLAYER_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
 # Model 2 - Next team prediction
 NEXT_TEAM_TARGET = TEAM_COL
 NEXT_TEAM_COLS_TO_LAG = [PERIOD_COL, EVENT_TYPE_COL, TEAM_COL, X_PROJECTED_COL]
-NEXT_TEAM_FEATURES = ['{}_lag1'.format(col) for col in NEXT_TEAM_COLS_TO_LAG if col != PERIOD_COL]
+NEXT_TEAM_LAGS = [1, 2, 3]
+NEXT_TEAM_FEATURES = ['{}_lag{}'.format(col, lag)
+                      for lag in NEXT_TEAM_LAGS
+                      for col in NEXT_TEAM_COLS_TO_LAG if col != PERIOD_COL]
 
 NEXT_TEAM_MODEL_NAME = 'next_team_model.pkl'
 NEXT_TEAM_MODEL_TYPE = 'rf'

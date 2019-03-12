@@ -69,12 +69,15 @@ class SeasonFirstHalfAggregator():
             logging.info('Successfully saved aggregated stats.')
             return df_stats
 
-    def build_next_team_dataset(self, columns_to_lag):
+    def build_next_team_dataset(self, columns_to_lag, lags_to_add):
         """Aggregate team with previous events for all games in first half of season.
 
         Parameters
         ----------
         columns_to_lag: list
+            Columns to keep from self.game to use in ML
+        lags_to_add: list
+            Lags to perform
 
         Returns
         -------
@@ -92,7 +95,8 @@ class SeasonFirstHalfAggregator():
 
             for file_ in os.listdir(stg.GAMES_DIR):
                 game_next_team = NextEventInGame(filename=file_)\
-                    .build_next_team_dataset(columns_to_lag=columns_to_lag)
+                    .build_next_team_dataset(columns_to_lag=columns_to_lag,
+                                             lags_to_add=lags_to_add)
 
                 df_next_team = pd.concat([df_next_team, game_next_team], axis=0,
                                          ignore_index=True, sort=False)
@@ -122,13 +126,15 @@ class NextEventInGame():
         except TypeError as error:
             raise NameError('Error in NextEventInGame initialization - {}'.format(error))
 
-    def build_next_team_dataset(self, columns_to_lag):
+    def build_next_team_dataset(self, columns_to_lag, lags_to_add):
         """Build dataset with previous events.
 
         Attributes
         ----------
         columns_to_lag: list
             Columns to keep from self.game to use in ML
+        lags_to_add: list
+            Lags to perform
 
         Returns
         -------
@@ -141,13 +147,13 @@ class NextEventInGame():
 
             target = self._get_target(target_col=stg.TEAM_COL)
 
-            lag = 1
-            lag_df = self._lag_dataset(lag=1)
-            columns_name_lagged = ['{}_lag{}'.format(col, lag) for col in columns_to_lag]
-            dataset = target.merge(right=lag_df[columns_name_lagged], how='left',
-                                   right_index=True, left_index=True)\
-                            .query('{period} == {period}_lag{lag}'.format(period=stg.PERIOD_COL, lag=lag))\
-                            .drop(labels='{}_lag{}'.format(stg.PERIOD_COL, lag), axis=1)
+            for lag in lags_to_add:
+                lag_df = self._lag_dataset(lag=lag)
+                columns_name_lagged = ['{}_lag{}'.format(col, lag) for col in columns_to_lag]
+                dataset = target.merge(right=lag_df[columns_name_lagged], how='left',
+                                       right_index=True, left_index=True)\
+                                .query('{period} == {period}_lag{lag}'.format(period=stg.PERIOD_COL, lag=lag))\
+                                .drop(labels='{}_lag{}'.format(stg.PERIOD_COL, lag), axis=1)
             return dataset
         except AssertionError:
             raise KeyError('{} not in columns_to_lag list'.format(stg.PERIOD_COL))
