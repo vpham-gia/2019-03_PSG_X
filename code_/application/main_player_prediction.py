@@ -6,7 +6,7 @@ import pandas as pd
 
 from code_.domain.data_processing import DataQualityChecker
 from code_.domain.games_info import SeasonFirstHalfAggregator
-from code_.domain.predictors import PlayerPredictor
+from code_.domain.predictors import Classificator
 from code_.domain.performance_analyzer import PerformanceAnalyzer
 
 import settings as stg
@@ -25,7 +25,6 @@ df = sfha.build_players_stats_dataset(sliding_interval_min=5,
 logging.info('.. Done')
 
 logging.info('Data quality check ..')
-# TODO: adapt with df
 dqc = DataQualityChecker(df=pd.read_csv(join(stg.OUTPUTS_DIR, stg.FILENAME_STATS_AGGREGATED)))
 dqc.print_completeness()
 dqc.print_min_nb_observations_by_target(target=stg.PLAYER_COL)
@@ -33,10 +32,10 @@ logging.info('.. Done')
 
 train, test = train_test_split(df.dropna(), test_size=0.3, random_state=42)
 
-player_pred = PlayerPredictor(model_type=stg.PLAYER_MODEL_TYPE,
-                              hyperparameters=stg.PLAYER_MODEL_HYPERPARAMS,
-                              target=stg.PLAYER_TARGET,
-                              features=stg.PLAYER_FEATURES)
+player_pred = Classificator(model_type=stg.PLAYER_MODEL_TYPE,
+                            hyperparameters=stg.PLAYER_MODEL_HYPERPARAMS,
+                            target=stg.PLAYER_TARGET,
+                            features=stg.PLAYER_FEATURES)
 
 if stg.BOOL_TRAIN_PLAYER_MODEL:
     if stg.BOOL_PLAYER_RS:

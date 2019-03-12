@@ -6,7 +6,7 @@ import pandas as pd
 
 from code_.domain.data_processing import CategoricalProjector, DataQualityChecker
 from code_.domain.games_info import SeasonFirstHalfAggregator
-from code_.domain.predictors import PlayerPredictor
+from code_.domain.predictors import Classificator
 from code_.domain.performance_analyzer import PerformanceAnalyzer
 
 import settings as stg
@@ -47,24 +47,29 @@ dqc.print_completeness()
 dqc.print_min_nb_observations_by_target(target=stg.TEAM_COL)
 logging.info('.. Done')
 
-# TODO: refactor name to have generic predictor
-next_team_model = PlayerPredictor(model_type=stg.NEXT_TEAM_MODEL_TYPE,
-                                  hyperparameters=stg.NEXT_TEAM_MODEL_HYPERPARAMS,
-                                  target=stg.NEXT_TEAM_TARGET,
-                                  features=stg.NEXT_TEAM_FEATURES)
+next_team_model = Classificator(model_type=stg.NEXT_TEAM_MODEL_TYPE,
+                                hyperparameters=stg.NEXT_TEAM_MODEL_HYPERPARAMS,
+                                target=stg.NEXT_TEAM_TARGET,
+                                features=stg.NEXT_TEAM_FEATURES)
 
-if stg.BOOL_NEXT_TEAM_RS:
-    logging.info('Cross-validation ..')
-    next_team_model.perform_random_search_cv(training_data=pd.concat([X_train, y_train], axis=1),
-                                             score='accuracy',
-                                             param_distributions=stg.NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS)
+if stg.BOOL_TRAIN_NEXT_TEAM_MODEL:
+    if stg.BOOL_NEXT_TEAM_RS:
+        logging.info('Cross-validation ..')
+        next_team_model.perform_random_search_cv(training_data=pd.concat([X_train, y_train], axis=1),
+                                                 score='accuracy',
+                                                 param_distributions=stg.NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS)
+        logging.info('.. Done')
+
+    logging.info('Model to predict next event..')
+    next_team_model.model.set_params(**{'n_jobs': 3})
+    next_team_model.fit(training_data=pd.concat([X_train, y_train], axis=1))
+    logging.debug('Fit ok')
+    next_team_model.save_model(save_modelname=stg.NEXT_TEAM_MODEL_NAME)
     logging.info('.. Done')
-
-logging.info('Model to predict players..')
-next_team_model.model.set_params(**{'n_jobs': 3})
-next_team_model.fit(training_data=pd.concat([X_train, y_train], axis=1))
-next_team_model.save_model(save_modelname=stg.NEXT_TEAM_MODEL_NAME)
-logging.info('.. Done')
+else:
+    logging.info('Loading latest model ..')
+    next_team_model.load_model(save_modelname=stg.NEXT_TEAM_MODEL_NAME)
+    logging.info('.. Done')
 
 logging.info('Performance evaluation ..')
 pred = next_team_model.predict(test_data=X_test)

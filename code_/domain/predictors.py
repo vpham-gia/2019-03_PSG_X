@@ -7,11 +7,11 @@ from sklearn.model_selection import RandomizedSearchCV
 import settings as stg
 
 
-class PlayerPredictor():
-    """Predictor for players.
+class Classificator():
+    """Predictor for players and for next event.
 
     Relies on a RandomForestRegressor.
-    Tries to predict player_id from game stats
+    Tries to predict player_id from game stats and next event from previous events
 
     Attributes
     ----------
