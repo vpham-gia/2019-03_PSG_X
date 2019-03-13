@@ -158,11 +158,21 @@ NEXT_TEAM_MODEL_HYPERPARAMS = {'n_estimators': 300,
                                'learning_rate': 0.1,
                                'max_depth': 6, 'reg_lambda': 2}
 
-BOOL_NEXT_TEAM_RS = False
-NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
-                                       'max_features': [None, 'sqrt', 2, 6, 9],
-                                       'max_depth': [None, 4, 8, 10, 12, 15],
-                                       'criterion': ['gini', 'entropy']}
+BOOL_NEXT_TEAM_RS = True
+# NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
+#                                        'max_features': [None, 'sqrt', 2, 6, 9],
+#                                        'max_depth': [None, 4, 8, 10, 12, 15],
+#                                        'criterion': ['gini', 'entropy']}
+NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS = {'objective': ['binary:logistic'],
+                                       'learning_rate': [0.01, 0.05, 0.1, 0.3, 0.8],
+                                       'n_estimators': [30, 75, 150, 300, 500],
+                                       'max_depth': [4, 7, 10],
+                                       'min_child_weight': [1, 5, 10],
+                                       'subsample': [1],
+                                       'colsample_bytree': [0.8, 1],
+                                       'reg_lambda': [1, 5, 10],
+                                       'gamma': [0],
+                                       'scale_pos_weight': [1]}
 
 # Model 3 - Coordinates prediction
 X_PROJ_TARGET = X_PROJECTED_COL
@@ -185,9 +195,18 @@ Y_PROJ_MODEL_HYPERPARAMS = {'max_depth': 12, 'n_estimators': 200, 'max_features'
 COORDS_MODEL_TYPE = 'rf_reg'
 BOOL_TRAIN_COORDS_MODEL = True
 BOOL_COORDS_RS = False
-COORDS_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
-                                    'max_features': [2, 4, 6, 8],
-                                    'max_depth': [4, 8, 10, 12, 15, 20, 30],
-                                    'criterion': ['gini', 'entropy']}
+# COORDS_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
+#                                     'max_features': [2, 4, 6, 8],
+#                                     'max_depth': [4, 8, 10, 12, 15, 20, 30],
+#                                     'criterion': ['gini', 'entropy']}
+COORDS_RANDOM_SEARCH_HYPERPARAMS = {'objective': ['binary:logistic'],
+                                    'learning_rate': [0.01, 0.05, 0.1, 0.3, 0.8],
+                                    'n_estimators': [30, 75, 150, 300, 500],
+                                    'max_depth': [4, 7, 10],
+                                    'min_child_weight': [1, 5, 10],
+                                    'subsample': [1],
+                                    'colsample_bytree': [0.8, 1],
+                                    'reg_lambda': [1, 5, 10],
+                                    'gamma': [0], 'scale_pos_weight': [1]}
 
 N_JOBS = 3
