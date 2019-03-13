@@ -47,7 +47,7 @@ dqc.print_min_nb_observations_by_target(target=stg.NEXT_TEAM_TARGET)
 logging.info('.. Done')
 
 next_team_model = Modeler(model_type=stg.NEXT_TEAM_MODEL_TYPE,
-                          hyperparameters=stg.NEXT_TEAM_MODEL_HYPERPARAMS,
+                          hyperparameters=stg.NEXT_TEAM_MODEL_BASE_HYPERPARAMS,
                           target=stg.NEXT_TEAM_TARGET,
                           features=stg.NEXT_TEAM_FEATURES)
 

@@ -117,27 +117,51 @@ PLAYER_FEATURES = ['team_id']\
     + ['t_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\
 
 PLAYER_MODEL_NAME = 'player_model.pkl'
-PLAYER_MODEL_TYPE = 'xgb_classif'
+# ---------------
+PLAYER_MODEL_TYPE = 'rf_classif'
 BOOL_TRAIN_PLAYER_MODEL = True
-# PLAYER_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1, 'max_depth': 15}
-PLAYER_MODEL_HYPERPARAMS = {'n_estimators': 300, 'learning_rate': 0.1,
-                            'max_depth': 6, 'reg_lambda': 2}
-
 BOOL_PLAYER_RS = False
-# PLAYER_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
-#                                     'max_features': [None, 'sqrt', 10, 15, 20],
-#                                     'max_depth': [None, 4, 8, 10, 12, 15],
-#                                     'criterion' :['gini', 'entropy']}
-PLAYER_RANDOM_SEARCH_HYPERPARAMS = {'objective': ['multi:softmax'],
-                                    'learning_rate': [0.01, 0.05, 0.1, 0.3, 0.8],
-                                    'n_estimators': [30, 75, 150, 300, 500],
-                                    'max_depth': [4, 7, 10],
-                                    'min_child_weight': [1, 5, 10],
-                                    'subsample': [1],
-                                    'colsample_bytree': [0.8, 1],
-                                    'reg_lambda': [1, 5, 10],
-                                    'gamma': [0],
-                                    'scale_pos_weight': [1]}
+# ---------------
+PLAYER_MODELS_HYPERPARAMS = {
+    'base': {
+        'rf_classif': {
+            'n_estimators': 500,
+            'n_jobs': 1,
+            'max_depth': 15
+        },
+        'xgb_classif': {
+            'objective': ['multi:softmax'],
+            'num_class': 227,
+            'n_estimators': 300,
+            'learning_rate': 0.1,
+            'max_depth': 6,
+            'reg_lambda': 2
+        }
+    },
+    'random_search': {
+        'rf_classif': {
+            'n_estimators': [50, 100, 200, 500],
+            'max_features': [None, 'sqrt', 10, 15, 20],
+            'max_depth': [None, 4, 8, 10, 12, 15],
+            'criterion': ['gini', 'entropy']
+        },
+        'xgb_classif': {
+            'objective': ['multi:softmax'],
+            'num_class': 227,
+            'learning_rate': [0.01, 0.05, 0.1, 0.3, 0.8],
+            'n_estimators': [30, 75, 150, 300, 500],
+            'max_depth': [4, 7, 10],
+            'min_child_weight': [1, 5, 10],
+            'subsample': [1],
+            'colsample_bytree': [0.8, 1],
+            'reg_lambda': [1, 5, 10],
+            'gamma': [0],
+            'scale_pos_weight': [1]
+        }
+    }
+}
+PLAYER_MODEL_BASE_HYPERPARAMS = PLAYER_MODELS_HYPERPARAMS['base'][PLAYER_MODEL_TYPE]
+PLAYER_RANDOM_SEARCH_HYPERPARAMS = PLAYER_MODELS_HYPERPARAMS['random_search'][PLAYER_MODEL_TYPE]
 
 # Model 2 - Next team prediction
 NEXT_EVENT_COLS_TO_LAG = [PERIOD_COL, EVENT_TYPE_COL, TEAM_COL,
@@ -151,28 +175,44 @@ NEXT_TEAM_FEATURES = ['{}_lag{}'.format(col, lag)
                       for col in NEXT_TEAM_COLS_TO_LAG_FOR_FEATS]
 
 NEXT_TEAM_MODEL_NAME = 'next_team_model.pkl'
+# ---------------
 NEXT_TEAM_MODEL_TYPE = 'xgb_classif'
 BOOL_TRAIN_NEXT_TEAM_MODEL = True
-# NEXT_TEAM_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1}
-NEXT_TEAM_MODEL_HYPERPARAMS = {'n_estimators': 300,
-                               'learning_rate': 0.1,
-                               'max_depth': 6, 'reg_lambda': 2}
-
 BOOL_NEXT_TEAM_RS = True
-# NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
-#                                        'max_features': [None, 'sqrt', 2, 6, 9],
-#                                        'max_depth': [None, 4, 8, 10, 12, 15],
-#                                        'criterion': ['gini', 'entropy']}
-NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS = {'objective': ['binary:logistic'],
-                                       'learning_rate': [0.01, 0.05, 0.1, 0.3, 0.8],
-                                       'n_estimators': [30, 75, 150, 300, 500],
-                                       'max_depth': [4, 7, 10],
-                                       'min_child_weight': [1, 5, 10],
-                                       'subsample': [1],
-                                       'colsample_bytree': [0.8, 1],
-                                       'reg_lambda': [1, 5, 10],
-                                       'gamma': [0],
-                                       'scale_pos_weight': [1]}
+# ---------------
+NEXT_TEAM_MODEL_HYPERPARAMS = {
+    'base': {
+        'rf_classif': {'n_estimators': 500},
+        'xgb_classif': {
+            'n_estimators': 300,
+            'learning_rate': 0.1,
+            'max_depth': 6,
+            'reg_lambda': 2
+        }
+    },
+    'random_search': {
+        'rf_classif': {
+            'n_estimators': [50, 100, 200, 500],
+            'max_features': [None, 'sqrt', 2, 6, 9],
+            'max_depth': [None, 4, 8, 10, 12, 15],
+            'criterion': ['gini', 'entropy']
+        },
+        'xgb_classif': {
+            'objective': ['binary:logistic'],
+            'learning_rate': [0.01, 0.05, 0.1, 0.3, 0.8],
+            'n_estimators': [30, 75, 150, 300, 500],
+            'max_depth': [4, 7, 10],
+            'min_child_weight': [1, 5, 10],
+            'subsample': [1],
+            'colsample_bytree': [0.8, 1],
+            'reg_lambda': [1, 5, 10],
+            'gamma': [0],
+            'scale_pos_weight': [1]
+        }
+    }
+}
+NEXT_TEAM_MODEL_BASE_HYPERPARAMS = NEXT_TEAM_MODEL_HYPERPARAMS['base'][PLAYER_MODEL_TYPE]
+NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS = NEXT_TEAM_MODEL_HYPERPARAMS['random_search'][PLAYER_MODEL_TYPE]
 
 # Model 3 - Coordinates prediction
 X_PROJ_TARGET = X_PROJECTED_COL
@@ -181,8 +221,6 @@ X_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in X_PROJ_COLS_TO_LAG_FOR_FEATS]
 X_PROJ_MODEL_NAME = 'coords_x_proj_model.pkl'
-X_PROJ_MODEL_HYPERPARAMS = {'max_depth': 12, 'n_estimators': 100, 'max_features': 8}
-
 
 Y_PROJ_TARGET = Y_PROJECTED_COL
 Y_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, Y_PROJECTED_COL]
@@ -190,23 +228,48 @@ Y_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in Y_PROJ_COLS_TO_LAG_FOR_FEATS]
 Y_PROJ_MODEL_NAME = 'coords_y_proj_model.pkl'
-Y_PROJ_MODEL_HYPERPARAMS = {'max_depth': 12, 'n_estimators': 200, 'max_features': 6}
-
+# ---------------
 COORDS_MODEL_TYPE = 'xgb_reg'
 BOOL_TRAIN_COORDS_MODEL = True
 BOOL_COORDS_RS = True
-# COORDS_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
-#                                     'max_features': [2, 4, 6, 8],
-#                                     'max_depth': [4, 8, 10, 12, 15, 20, 30],
-#                                     'criterion': ['gini', 'entropy']}
-COORDS_RANDOM_SEARCH_HYPERPARAMS = {'objective': ['reg:linear'],
-                                    'learning_rate': [0.01, 0.05, 0.1, 0.3, 0.8],
-                                    'n_estimators': [30, 75, 150, 300, 500],
-                                    'max_depth': [4, 7, 10],
-                                    'min_child_weight': [1, 5, 10],
-                                    'subsample': [1],
-                                    'colsample_bytree': [0.8, 1],
-                                    'reg_lambda': [1, 5, 10],
-                                    'gamma': [0], 'scale_pos_weight': [1]}
+# ---------------
+COORDS_RF_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
+                                       'max_features': [2, 4, 6, 8],
+                                       'max_depth': [4, 8, 10, 12, 15, 20, 30],
+                                       'criterion': ['gini', 'entropy']}
+COORDS_XGB_RANDOM_SEARCH_HYPERPARAMS = {'objective': ['reg:linear'],
+                                        'learning_rate': [0.01, 0.05, 0.1, 0.3, 0.8],
+                                        'n_estimators': [30, 75, 150, 300, 500],
+                                        'max_depth': [4, 7, 10],
+                                        'min_child_weight': [1, 5, 10],
+                                        'subsample': [1],
+                                        'colsample_bytree': [0.8, 1],
+                                        'reg_lambda': [1, 5, 10],
+                                        'gamma': [0], 'scale_pos_weight': [1]}
+X_PROJ_MODEL_HYPERPARAMS = {
+    'base': {
+        'rf_reg': {'n_estimators': 500},
+        'xgb_reg': {'max_depth': 12, 'n_estimators': 100, 'max_features': 8}
+    },
+    'random_search': {
+        'rf_reg': COORDS_RF_RANDOM_SEARCH_HYPERPARAMS,
+        'xgb_reg': COORDS_XGB_RANDOM_SEARCH_HYPERPARAMS
+    }
+}
+X_PROJ_MODEL_BASE_HYPERPARAMS = X_PROJ_MODEL_HYPERPARAMS['base'][COORDS_MODEL_TYPE]
+X_PROJ_RANDOM_SEARCH_HYPERPARAMS = X_PROJ_MODEL_HYPERPARAMS['random_search'][COORDS_MODEL_TYPE]
+
+Y_PROJ_MODEL_HYPERPARAMS = {
+    'base': {
+        'rf_reg': {'n_estimators': 500},
+        'xgb_reg': {'max_depth': 12, 'n_estimators': 200, 'max_features': 6}
+    },
+    'random_search': {
+        'rf_reg': COORDS_RF_RANDOM_SEARCH_HYPERPARAMS,
+        'xgb_reg': COORDS_XGB_RANDOM_SEARCH_HYPERPARAMS
+    }
+}
+Y_PROJ_MODEL_BASE_HYPERPARAMS = Y_PROJ_MODEL_HYPERPARAMS['base'][COORDS_MODEL_TYPE]
+Y_PROJ_RANDOM_SEARCH_HYPERPARAMS = Y_PROJ_MODEL_HYPERPARAMS['random_search'][COORDS_MODEL_TYPE]
 
 N_JOBS = 3

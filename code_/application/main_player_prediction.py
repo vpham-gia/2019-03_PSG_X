@@ -33,7 +33,7 @@ logging.info('.. Done')
 train, test = train_test_split(df.dropna(), test_size=0.3, random_state=42)
 
 player_pred = Modeler(model_type=stg.PLAYER_MODEL_TYPE,
-                      hyperparameters=stg.PLAYER_MODEL_HYPERPARAMS,
+                      hyperparameters=stg.PLAYER_MODEL_BASE_HYPERPARAMS,
                       target=stg.PLAYER_TARGET, features=stg.PLAYER_FEATURES)
 
 if stg.BOOL_TRAIN_PLAYER_MODEL:

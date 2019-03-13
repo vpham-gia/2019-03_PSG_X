@@ -6,7 +6,7 @@ import pandas as pd
 
 from code_.domain.data_processing import CategoricalProjectorOnAvgDistance as CatProjAvg, DataQualityChecker
 from code_.domain.games_info import SeasonFirstHalfAggregator
-from code_.domain.predictors import Classificator
+from code_.domain.predictors import Modeler
 from code_.domain.performance_analyzer import PerformanceAnalyzer
 
 import settings as stg
@@ -65,26 +65,24 @@ dqc = DataQualityChecker(df=pd.concat([X_test_ycoords, y_test_ycoords], axis=1))
 dqc.print_completeness()
 logging.info('.. Done')
 
-xcoords_model = Classificator(model_type=stg.COORDS_MODEL_TYPE,
-                              hyperparameters=stg.X_PROJ_MODEL_HYPERPARAMS,
-                              target=stg.X_PROJ_TARGET,
-                              features=stg.X_PROJ_FEATURES)
-ycoords_model = Classificator(model_type=stg.COORDS_MODEL_TYPE,
-                              hyperparameters=stg.Y_PROJ_MODEL_HYPERPARAMS,
-                              target=stg.Y_PROJ_TARGET,
-                              features=stg.Y_PROJ_FEATURES)
+xcoords_model = Modeler(model_type=stg.COORDS_MODEL_TYPE,
+                        hyperparameters=stg.X_PROJ_MODEL_BASE_HYPERPARAMS,
+                        target=stg.X_PROJ_TARGET, features=stg.X_PROJ_FEATURES)
+ycoords_model = Modeler(model_type=stg.COORDS_MODEL_TYPE,
+                        hyperparameters=stg.Y_PROJ_MODEL_BASE_HYPERPARAMS,
+                        target=stg.Y_PROJ_TARGET, features=stg.Y_PROJ_FEATURES)
 
 if stg.BOOL_TRAIN_COORDS_MODEL:
     if stg.BOOL_COORDS_RS:
         logging.info('Cross-validation ..')
         xcoords_model.perform_random_search_cv(training_data=pd.concat([X_train_xcoords, y_train_xcoords], axis=1),
                                                score='neg_mean_squared_error',
-                                               param_distributions=stg.COORDS_RANDOM_SEARCH_HYPERPARAMS,
+                                               param_distributions=stg.X_PROJ_RANDOM_SEARCH_HYPERPARAMS,
                                                n_jobs=stg.N_JOBS)
         logging.debug('Done for X coordinate')
         ycoords_model.perform_random_search_cv(training_data=pd.concat([X_train_ycoords, y_train_ycoords], axis=1),
                                                score='neg_mean_squared_error',
-                                               param_distributions=stg.COORDS_RANDOM_SEARCH_HYPERPARAMS,
+                                               param_distributions=stg.Y_PROJ_RANDOM_SEARCH_HYPERPARAMS,
                                                n_jobs=stg.N_JOBS)
         logging.debug('Done for Y coordinate')
         logging.info('.. Done')
