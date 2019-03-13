@@ -168,4 +168,4 @@ COORDS_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
                                     'max_features': [2, 4, 6, 8],
                                     'max_depth': [4, 8, 10, 12, 15, 20, 30]}
 
-N_JOBS = 5
+N_JOBS = 3
