@@ -170,7 +170,7 @@ if __name__ == '__main__':
                           'team_id_lag1': ['0', '0'],
                           'x_along_team1_axis_lag1': ['50', '50']})
     toto = df_ex[stg.NEXT_TEAM_FEATURES]
-    cat_proj = CategoricalProjector(column_to_substitute='{}_lag1'.format(stg.EVENT_TYPE_COL),
-                                    columns_to_build_change_var=[stg.NEXT_TEAM_TARGET, '{}_lag1'.format(stg.NEXT_TEAM_TARGET)])
+    cat_proj = CategoricalProjectorOnTeamChange(column_to_substitute='{}_lag1'.format(stg.EVENT_TYPE_COL),
+                                                columns_to_build_change_var=[stg.NEXT_TEAM_TARGET, '{}_lag1'.format(stg.NEXT_TEAM_TARGET)])
     cat_proj.fit_transform(X_train, y_train)
     cat_proj.transform(toto)

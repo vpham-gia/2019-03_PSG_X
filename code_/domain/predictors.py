@@ -7,7 +7,7 @@ from sklearn.model_selection import RandomizedSearchCV
 import settings as stg
 
 
-class Classificator():
+class Modeler():
     """Predictor for players and for next event.
 
     Relies on a RandomForestRegressor.
@@ -21,8 +21,8 @@ class Classificator():
 
     """
 
-    MODEL_DICT = {'rf': RandomForestClassifier(),
-                  'knn': KNeighborsClassifier(),
+    MODEL_DICT = {'knn': KNeighborsClassifier(),
+                  'rf_classif': RandomForestClassifier(),
                   'rf_reg': RandomForestRegressor()}
 
     def __init__(self, model_type, hyperparameters, target, features):

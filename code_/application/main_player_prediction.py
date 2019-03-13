@@ -6,7 +6,7 @@ import pandas as pd
 
 from code_.domain.data_processing import DataQualityChecker
 from code_.domain.games_info import SeasonFirstHalfAggregator
-from code_.domain.predictors import Classificator
+from code_.domain.predictors import Modeler
 from code_.domain.performance_analyzer import PerformanceAnalyzer
 
 import settings as stg
@@ -32,10 +32,9 @@ logging.info('.. Done')
 
 train, test = train_test_split(df.dropna(), test_size=0.3, random_state=42)
 
-player_pred = Classificator(model_type=stg.PLAYER_MODEL_TYPE,
-                            hyperparameters=stg.PLAYER_MODEL_HYPERPARAMS,
-                            target=stg.PLAYER_TARGET,
-                            features=stg.PLAYER_FEATURES)
+player_pred = Modeler(model_type=stg.PLAYER_MODEL_TYPE,
+                      hyperparameters=stg.PLAYER_MODEL_HYPERPARAMS,
+                      target=stg.PLAYER_TARGET, features=stg.PLAYER_FEATURES)
 
 if stg.BOOL_TRAIN_PLAYER_MODEL:
     if stg.BOOL_PLAYER_RS:

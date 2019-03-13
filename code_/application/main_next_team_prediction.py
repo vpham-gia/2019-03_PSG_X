@@ -6,7 +6,7 @@ import pandas as pd
 
 from code_.domain.data_processing import CategoricalProjectorOnTeamChange, DataQualityChecker
 from code_.domain.games_info import SeasonFirstHalfAggregator
-from code_.domain.predictors import Classificator
+from code_.domain.predictors import Modeler
 from code_.domain.performance_analyzer import PerformanceAnalyzer
 
 import settings as stg
@@ -46,10 +46,10 @@ dqc.print_completeness()
 dqc.print_min_nb_observations_by_target(target=stg.NEXT_TEAM_TARGET)
 logging.info('.. Done')
 
-next_team_model = Classificator(model_type=stg.NEXT_TEAM_MODEL_TYPE,
-                                hyperparameters=stg.NEXT_TEAM_MODEL_HYPERPARAMS,
-                                target=stg.NEXT_TEAM_TARGET,
-                                features=stg.NEXT_TEAM_FEATURES)
+next_team_model = Modeler(model_type=stg.NEXT_TEAM_MODEL_TYPE,
+                          hyperparameters=stg.NEXT_TEAM_MODEL_HYPERPARAMS,
+                          target=stg.NEXT_TEAM_TARGET,
+                          features=stg.NEXT_TEAM_FEATURES)
 
 if stg.BOOL_TRAIN_NEXT_TEAM_MODEL:
     if stg.BOOL_NEXT_TEAM_RS:

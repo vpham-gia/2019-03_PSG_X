@@ -117,7 +117,7 @@ PLAYER_FEATURES = ['team_id']\
     + ['t_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\
 
 PLAYER_MODEL_NAME = 'player_model.pkl'
-PLAYER_MODEL_TYPE = 'rf'
+PLAYER_MODEL_TYPE = 'rf_classif'
 BOOL_TRAIN_PLAYER_MODEL = True
 BOOL_PLAYER_RS = False
 PLAYER_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1, 'max_depth': 15}
@@ -137,7 +137,7 @@ NEXT_TEAM_FEATURES = ['{}_lag{}'.format(col, lag)
                       for col in NEXT_TEAM_COLS_TO_LAG_FOR_FEATS]
 
 NEXT_TEAM_MODEL_NAME = 'next_team_model.pkl'
-NEXT_TEAM_MODEL_TYPE = 'rf'
+NEXT_TEAM_MODEL_TYPE = 'rf_classif'
 BOOL_TRAIN_NEXT_TEAM_MODEL = True
 BOOL_NEXT_TEAM_RS = False
 NEXT_TEAM_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1}
