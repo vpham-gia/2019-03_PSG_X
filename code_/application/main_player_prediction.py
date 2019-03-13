@@ -30,7 +30,14 @@ dqc.print_completeness()
 dqc.print_min_nb_observations_by_target(target=stg.PLAYER_COL)
 logging.info('.. Done')
 
-train, test = train_test_split(df.dropna(), test_size=0.3, random_state=42)
+train, test = train_test_split(df, test_size=0.3, random_state=42)
+X_train, y_train = train[stg.PLAYER_FEATURES], train[stg.PLAYER_TARGET]
+X_test, y_test = test[stg.PLAYER_FEATURES], test[stg.PLAYER_TARGET]
+
+logging.info('Impute missing values with median ..')
+X_test.fillna(X_train.median(), inplace=True)
+X_train.fillna(X_train.median(), inplace=True)
+logging.info('.. Done')
 
 player_pred = Modeler(model_type=stg.PLAYER_MODEL_TYPE,
                       hyperparameters=stg.PLAYER_MODEL_BASE_HYPERPARAMS,
@@ -39,14 +46,15 @@ player_pred = Modeler(model_type=stg.PLAYER_MODEL_TYPE,
 if stg.BOOL_TRAIN_PLAYER_MODEL:
     if stg.BOOL_PLAYER_RS:
         logging.info('Cross-validation ..')
-        player_pred.perform_random_search_cv(training_data=train, score='accuracy',
+        player_pred.perform_random_search_cv(training_data=pd.concat([X_train, y_train], axis=1),
+                                             score='accuracy',
                                              param_distributions=stg.PLAYER_RANDOM_SEARCH_HYPERPARAMS,
                                              n_jobs=stg.N_JOBS)
         logging.info('.. Done')
 
     logging.info('Model to predict players..')
     player_pred.model.set_params(**{'n_jobs': 3})
-    player_pred.fit(training_data=train)
+    player_pred.fit(training_data=pd.concat([X_train, y_train], axis=1))
     logging.debug('Fit ok')
     player_pred.save_model(save_modelname=stg.PLAYER_MODEL_NAME)
     logging.info('.. Done')
@@ -56,8 +64,8 @@ else:
     logging.info('.. Done')
 
 logging.info('Performance evaluation ..')
-pred = player_pred.predict(test_data=test[stg.PLAYER_FEATURES])
-pa = PerformanceAnalyzer(y_true=test[stg.PLAYER_COL].values, y_pred=pred)
+pred = player_pred.predict(test_data=X_test)
+pa = PerformanceAnalyzer(y_true=y_test, y_pred=pred)
 accuracy = pa.compute_classification_accuracy()
 logging.info('Classification accuracy: {}'.format(accuracy))
 logging.info('.. Done')
