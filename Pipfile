@@ -15,6 +15,11 @@ jedi = "==0.13.3"
 ipython_genutils = "==0.2.0"
 sklearn = "*"
 xgboost = "*"
+deap = "*"
+update-checker = "*"
+tqdm = "*"
+stopit = "*"
+tpot = "*"
 
 [requires]
 python_version = "3.5"

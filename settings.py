@@ -120,7 +120,7 @@ PLAYER_MODEL_NAME = 'player_model.pkl'
 # ---------------
 PLAYER_MODEL_TYPE = 'rf_classif'
 BOOL_TRAIN_PLAYER_MODEL = True
-BOOL_PLAYER_RS = True
+BOOL_PLAYER_RS = False
 # ---------------
 PLAYER_MODELS_HYPERPARAMS = {
     'base': {
@@ -178,7 +178,7 @@ NEXT_TEAM_MODEL_NAME = 'next_team_model.pkl'
 # ---------------
 NEXT_TEAM_MODEL_TYPE = 'xgb_classif'
 BOOL_TRAIN_NEXT_TEAM_MODEL = True
-BOOL_NEXT_TEAM_RS = True
+BOOL_NEXT_TEAM_RS = False
 # ---------------
 NEXT_TEAM_MODEL_HYPERPARAMS = {
     'base': {
@@ -229,9 +229,9 @@ Y_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for col in Y_PROJ_COLS_TO_LAG_FOR_FEATS]
 Y_PROJ_MODEL_NAME = 'coords_y_proj_model.pkl'
 # ---------------
-COORDS_MODEL_TYPE = 'xgb_reg'
+COORDS_MODEL_TYPE = 'rf_reg'
 BOOL_TRAIN_COORDS_MODEL = True
-BOOL_COORDS_RS = True
+BOOL_COORDS_RS = False
 # ---------------
 COORDS_RF_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
                                        'max_features': [2, 4, 6, 8],
@@ -248,7 +248,7 @@ COORDS_XGB_RANDOM_SEARCH_HYPERPARAMS = {'objective': ['reg:linear'],
                                         'gamma': [0], 'scale_pos_weight': [1]}
 X_PROJ_MODEL_HYPERPARAMS = {
     'base': {
-        'rf_reg': {'n_estimators': 500},
+        'rf_reg': {'n_estimators': 10},
         'xgb_reg': {'max_depth': 12, 'n_estimators': 100, 'max_features': 8}
     },
     'random_search': {
@@ -261,7 +261,7 @@ X_PROJ_RANDOM_SEARCH_HYPERPARAMS = X_PROJ_MODEL_HYPERPARAMS['random_search'][COO
 
 Y_PROJ_MODEL_HYPERPARAMS = {
     'base': {
-        'rf_reg': {'n_estimators': 500},
+        'rf_reg': {'n_estimators': 10},
         'xgb_reg': {'max_depth': 12, 'n_estimators': 200, 'max_features': 6}
     },
     'random_search': {
