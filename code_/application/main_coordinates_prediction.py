@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 import logging
 import pandas as pd
 
-from code_.domain.data_processing import CategoricalProjector, DataQualityChecker
+from code_.domain.data_processing import CategoricalProjectorOnAvgDistance as CatProjAvg, DataQualityChecker
 from code_.domain.games_info import SeasonFirstHalfAggregator
 from code_.domain.predictors import Classificator
 from code_.domain.performance_analyzer import PerformanceAnalyzer
@@ -25,54 +25,111 @@ logging.info('.. Done')
 
 logging.info('Feature engineering ..')
 train, test = train_test_split(df.dropna(), test_size=0.3, random_state=42)
-X_train, y_train = train[stg.COORDS_FEATURES], train[stg.COORDS_TARGET]
-X_test, y_test = test[stg.COORDS_FEATURES], test[stg.COORDS_TARGET]
 
-# for lag in stg.NEXT_EVENT_LAGS:
-#     cat_proj = CategoricalProjector(column_to_substitute='{}_lag{}'.format(stg.EVENT_TYPE_COL, lag),
-#                                     columns_to_build_change_var=[stg.COORDS_TARGET, '{}_lag{}'.format(stg.COORDS_TARGET, lag)])
-#     cat_proj.fit_transform(X_train, y_train)
-#     cat_proj.transform(X_test)
-# logging.info('.. Done')
+X_train_xcoords, y_train_xcoords = train[stg.X_PROJ_FEATURES], train[stg.X_PROJ_TARGET]
+X_test_xcoords, y_test_xcoords = test[stg.X_PROJ_FEATURES], test[stg.X_PROJ_TARGET]
 
-logging.info('Data quality check - Train set..')
-dqc = DataQualityChecker(df=pd.concat([X_train, y_train], axis=1))
-dqc.print_completeness()
-dqc.print_min_nb_observations_by_target(target=stg.COORDS_TARGET)
+X_train_ycoords, y_train_ycoords = train[stg.Y_PROJ_FEATURES], train[stg.Y_PROJ_TARGET]
+X_test_ycoords, y_test_ycoords = test[stg.Y_PROJ_FEATURES], test[stg.Y_PROJ_TARGET]
 
-logging.info('Data quality check - Test set..')
-dqc = DataQualityChecker(df=pd.concat([X_test, y_test], axis=1))
-dqc.print_completeness()
-dqc.print_min_nb_observations_by_target(target=stg.COORDS_TARGET)
+for lag in stg.NEXT_EVENT_LAGS:
+    cat_proj_xcoords = CatProjAvg(cat_column_name='{}_lag{}'.format(stg.EVENT_TYPE_COL, lag),
+                                  columns_to_build_avg_distance=[stg.X_PROJ_TARGET,
+                                                                 '{}_lag{}'.format(stg.X_PROJ_TARGET, lag)])
+    cat_proj_xcoords.fit_transform(X_train_xcoords, y_train_xcoords)
+    cat_proj_xcoords.transform(X_test_xcoords)
+
+    cat_proj_ycoords = CatProjAvg(cat_column_name='{}_lag{}'.format(stg.EVENT_TYPE_COL, lag),
+                                  columns_to_build_avg_distance=[stg.Y_PROJ_TARGET,
+                                                                 '{}_lag{}'.format(stg.Y_PROJ_TARGET, lag)])
+    cat_proj_ycoords.fit_transform(X_train_ycoords, y_train_ycoords)
+    cat_proj_ycoords.transform(X_test_ycoords)
+
 logging.info('.. Done')
 
-coords_model = Classificator(model_type=stg.COORDS_MODEL_TYPE,
-                             hyperparameters=stg.COORDS_MODEL_HYPERPARAMS,
-                             target=stg.COORDS_TARGET,
-                             features=stg.COORDS_FEATURES)
+logging.info('Data quality check - Train set X coordinate ..')
+dqc = DataQualityChecker(df=pd.concat([X_train_xcoords, y_train_xcoords], axis=1))
+dqc.print_completeness()
+dqc.print_min_nb_observations_by_target(target=stg.X_PROJ_TARGET)
+
+logging.info('Data quality check - Test set X coordinate ..')
+dqc = DataQualityChecker(df=pd.concat([X_test_xcoords, y_test_xcoords], axis=1))
+dqc.print_completeness()
+dqc.print_min_nb_observations_by_target(target=stg.X_PROJ_TARGET)
+logging.info('.. Done')
+
+logging.info('Data quality check - Train set Y coordinate ..')
+dqc = DataQualityChecker(df=pd.concat([X_train_ycoords, y_train_ycoords], axis=1))
+dqc.print_completeness()
+dqc.print_min_nb_observations_by_target(target=stg.Y_PROJ_TARGET)
+
+logging.info('Data quality check - Test set Y coordinate ..')
+dqc = DataQualityChecker(df=pd.concat([X_test_ycoords, y_test_ycoords], axis=1))
+dqc.print_completeness()
+dqc.print_min_nb_observations_by_target(target=stg.Y_PROJ_TARGET)
+logging.info('.. Done')
+
+xcoords_model = Classificator(model_type=stg.COORDS_MODEL_TYPE,
+                              hyperparameters=stg.COORDS_MODEL_HYPERPARAMS,
+                              target=stg.X_PROJ_TARGET,
+                              features=stg.X_PROJ_FEATURES)
+ycoords_model = Classificator(model_type=stg.COORDS_MODEL_TYPE,
+                              hyperparameters=stg.COORDS_MODEL_HYPERPARAMS,
+                              target=stg.Y_PROJ_TARGET,
+                              features=stg.Y_PROJ_FEATURES)
 
 if stg.BOOL_TRAIN_COORDS_MODEL:
     if stg.BOOL_COORDS_RS:
         logging.info('Cross-validation ..')
-        coords_model.perform_random_search_cv(training_data=pd.concat([X_train, y_train], axis=1),
-                                              score='accuracy',
-                                              param_distributions=stg.COORDS_RANDOM_SEARCH_HYPERPARAMS)
+        xcoords_model.perform_random_search_cv(training_data=pd.concat([X_train_xcoords, y_train_xcoords], axis=1),
+                                               score='l2', param_distributions=stg.COORDS_RANDOM_SEARCH_HYPERPARAMS)
+        logging.debug('Done for X coordinate')
+        ycoords_model.perform_random_search_cv(training_data=pd.concat([X_train_ycoords, y_train_ycoords], axis=1),
+                                               score='l2', param_distributions=stg.COORDS_RANDOM_SEARCH_HYPERPARAMS)
+        logging.debug('Done for Y coordinate')
         logging.info('.. Done')
 
     logging.info('Model to predict coordinates..')
-    coords_model.model.set_params(**{'n_jobs': 3})
-    coords_model.fit(training_data=pd.concat([X_train, y_train], axis=1))
-    logging.debug('Fit ok')
-    coords_model.save_model(save_modelname=stg.COORDS_MODEL_NAME)
+    xcoords_model.model.set_params(**{'n_jobs': 3})
+    xcoords_model.fit(training_data=pd.concat([X_train_xcoords, y_train_xcoords], axis=1))
+    logging.debug('X coordinate - Fit ok')
+    xcoords_model.save_model(save_modelname=stg.X_PROJ_MODEL_NAME)
+    logging.debug('X coordinate - Model saved')
+
+    ycoords_model.model.set_params(**{'n_jobs': 3})
+    ycoords_model.fit(training_data=pd.concat([X_train_ycoords, y_train_ycoords], axis=1))
+    logging.debug('Y coordinate - Fit ok')
+    ycoords_model.save_model(save_modelname=stg.Y_PROJ_MODEL_NAME)
+    logging.debug('Y coordinate - Model saved')
     logging.info('.. Done')
 else:
     logging.info('Loading latest model ..')
-    coords_model.load_model(save_modelname=stg.COORDS_MODEL_NAME)
+    xcoords_model.load_model(save_modelname=stg.X_PROJ_MODEL_NAME)
+    ycoords_model.load_model(save_modelname=stg.Y_PROJ_MODEL_NAME)
     logging.info('.. Done')
 
+"""
+x_true = train[stg.X_PROJ_TARGET]
+x_pred = train['x_along_team1_axis_lag1']
+y_true = train[stg.Y_PROJ_TARGET]
+y_pred = train['y_along_team1_axis_lag1']
+
+true = [(x, y) for (x, y) in zip(x_true, y_true)]
+pred = [(x, y) for (x, y) in zip(x_pred, y_pred)]
+
+pa = PerformanceAnalyzer(y_true=true, y_pred=pred)
+accuracy = pa.compute_accuracy_l2_error()
+print('L2 accuracy: {}'.format(accuracy))
+"""
+
 logging.info('Performance evaluation ..')
-pred = coords_model.predict(test_data=X_test)
-pa = PerformanceAnalyzer(y_true=y_test, y_pred=pred)
+xcoords_pred = xcoords_model.predict(test_data=X_test_xcoords)
+ycoords_pred = ycoords_model.predict(test_data=X_test_ycoords)
+
+pred = [(x, y) for (x, y) in zip(xcoords_pred, ycoords_pred)]
+true = [(x, y) for (x, y) in zip(y_test_xcoords, y_test_ycoords)]
+
+pa = PerformanceAnalyzer(y_true=true, y_pred=pred)
 accuracy = pa.compute_accuracy_l2_error()
 logging.info('L2 accuracy: {}'.format(accuracy))
 logging.info('.. Done')

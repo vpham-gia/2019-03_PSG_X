@@ -142,5 +142,28 @@ BOOL_TRAIN_NEXT_TEAM_MODEL = True
 BOOL_NEXT_TEAM_RS = False
 NEXT_TEAM_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1}
 NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
-                                       'max_features': [1, 2, 3],
+                                       'max_features': [None, 'sqrt', 2, 6, 9],
                                        'max_depth': [None, 4, 8, 10, 12, 15]}
+
+# Model 3 - Coordinates prediction
+X_PROJ_TARGET = X_PROJECTED_COL
+X_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, X_PROJECTED_COL]
+X_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
+                   for lag in NEXT_EVENT_LAGS
+                   for col in X_PROJ_COLS_TO_LAG_FOR_FEATS]
+X_PROJ_MODEL_NAME = 'coords_x_proj_model.pkl'
+
+Y_PROJ_TARGET = Y_PROJECTED_COL
+Y_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, Y_PROJECTED_COL]
+Y_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
+                   for lag in NEXT_EVENT_LAGS
+                   for col in Y_PROJ_COLS_TO_LAG_FOR_FEATS]
+Y_PROJ_MODEL_NAME = 'coords_y_proj_model.pkl'
+
+COORDS_MODEL_TYPE = 'rf_reg'
+BOOL_TRAIN_COORDS_MODEL = True
+BOOL_COORDS_RS = False
+COORDS_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1}
+COORDS_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
+                                    'max_features': [2, 4, 6, 8],
+                                    'max_depth': [4, 8, 10, 12, 15, 20, 30]}

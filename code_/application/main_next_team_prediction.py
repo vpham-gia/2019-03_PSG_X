@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 import logging
 import pandas as pd
 
-from code_.domain.data_processing import CategoricalProjector, DataQualityChecker
+from code_.domain.data_processing import CategoricalProjectorOnTeamChange, DataQualityChecker
 from code_.domain.games_info import SeasonFirstHalfAggregator
 from code_.domain.predictors import Classificator
 from code_.domain.performance_analyzer import PerformanceAnalyzer
@@ -29,8 +29,8 @@ X_train, y_train = train[stg.NEXT_TEAM_FEATURES], train[stg.NEXT_TEAM_TARGET]
 X_test, y_test = test[stg.NEXT_TEAM_FEATURES], test[stg.NEXT_TEAM_TARGET]
 
 for lag in stg.NEXT_EVENT_LAGS:
-    cat_proj = CategoricalProjector(column_to_substitute='{}_lag{}'.format(stg.EVENT_TYPE_COL, lag),
-                                    columns_to_build_change_var=[stg.NEXT_TEAM_TARGET, '{}_lag{}'.format(stg.NEXT_TEAM_TARGET, lag)])
+    cat_proj = CategoricalProjectorOnTeamChange(cat_column_name='{}_lag{}'.format(stg.EVENT_TYPE_COL, lag),
+                                                columns_to_build_change_var=[stg.NEXT_TEAM_TARGET, '{}_lag{}'.format(stg.NEXT_TEAM_TARGET, lag)])
     cat_proj.fit_transform(X_train, y_train)
     cat_proj.transform(X_test)
 logging.info('.. Done')

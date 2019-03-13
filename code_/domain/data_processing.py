@@ -1,4 +1,4 @@
-from os.path import join
+import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 
@@ -41,13 +41,13 @@ class DataQualityChecker():
         print(df.head(5))
 
 
-class CategoricalProjector(BaseEstimator, TransformerMixin):
-    """Project categorical variables using the target variable.
+class CategoricalProjectorOnTeamChange(BaseEstimator, TransformerMixin):
+    """Project categorical variables using change in teams.
 
     Attributes
     ----------
     column_name: string
-        Name of column to project using change column
+        Name of categorical column to substitute change_ratio
     columns_to_build_change_var: list of length 2
         2 columns used to compute change column (boolean)
     projection_dict: dict
@@ -57,9 +57,9 @@ class CategoricalProjector(BaseEstimator, TransformerMixin):
 
     """
 
-    def __init__(self, column_to_substitute, columns_to_build_change_var):
+    def __init__(self, cat_column_name, columns_to_build_change_var):
         """Init class."""
-        self.column_name = column_to_substitute
+        self.column_name = cat_column_name
 
         try:
             assert(len(columns_to_build_change_var) == 2)
@@ -87,6 +87,57 @@ class CategoricalProjector(BaseEstimator, TransformerMixin):
                                  .assign(change_ratio=lambda x: x['True'] / (x['True'] + x['False']))\
                                  .drop(labels=['False', 'True'], axis=1)\
                                  .to_dict()['change_ratio']
+
+        self.mean = X[self.column_name].map(self.projection_dict).mean()
+
+        return self
+
+    def transform(self, X):
+        """Transform."""
+        X[self.column_name] = X[self.column_name].map(self.projection_dict)\
+                                                 .fillna(value=self.mean)
+        return X
+
+
+class CategoricalProjectorOnAvgDistance(BaseEstimator, TransformerMixin):
+    """Project categorical variable using average traveled distance by the ball.
+
+    Attributes
+    ----------
+    column_name: string
+        Name of column to project using change column
+    columns_to_build_avg_distance: list of length 2
+        2 columns used to compute distance
+    projection_dict: dict
+        Dictionnary to map values
+    mean: float
+        Mean value of train set to impute if new categories are found
+
+    """
+
+    def __init__(self, cat_column_name, columns_to_build_avg_distance):
+        """Init class."""
+        self.column_name = cat_column_name
+
+        try:
+            assert(len(columns_to_build_avg_distance) == 2)
+            self.columns_to_build_avg_distance = columns_to_build_avg_distance
+        except AssertionError:
+            raise AttributeError('columns_to_build_avg_distance must have 2 elements')
+
+        self.projection_dict = dict()
+        self.mean = None
+
+    def fit(self, X, y):
+        """Fit."""
+        DISTANCE_COL = 'distance'
+
+        df = pd.concat([X, y], axis=1)
+        df[DISTANCE_COL] = df[self.columns_to_build_avg_distance[0]] - df[self.columns_to_build_avg_distance[1]]
+
+        self.projection_dict = df.groupby(self.column_name)\
+                                 .agg({DISTANCE_COL: np.mean})\
+                                 .to_dict()[DISTANCE_COL]
 
         self.mean = X[self.column_name].map(self.projection_dict).mean()
 
