@@ -152,6 +152,8 @@ X_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in X_PROJ_COLS_TO_LAG_FOR_FEATS]
 X_PROJ_MODEL_NAME = 'coords_x_proj_model.pkl'
+X_PROJ_MODEL_HYPERPARAMS = {'max_depth': 12, 'n_estimators': 100, 'max_features': 8}
+
 
 Y_PROJ_TARGET = Y_PROJECTED_COL
 Y_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, Y_PROJECTED_COL]
@@ -159,11 +161,11 @@ Y_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in Y_PROJ_COLS_TO_LAG_FOR_FEATS]
 Y_PROJ_MODEL_NAME = 'coords_y_proj_model.pkl'
+Y_PROJ_MODEL_HYPERPARAMS = {'max_depth': 12, 'n_estimators': 200, 'max_features': 6}
 
 COORDS_MODEL_TYPE = 'rf_reg'
 BOOL_TRAIN_COORDS_MODEL = True
 BOOL_COORDS_RS = False
-COORDS_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1, 'max_depth': 15}
 COORDS_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
                                     'max_features': [2, 4, 6, 8],
                                     'max_depth': [4, 8, 10, 12, 15, 20, 30]}

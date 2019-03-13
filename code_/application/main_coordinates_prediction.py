@@ -66,11 +66,11 @@ dqc.print_completeness()
 logging.info('.. Done')
 
 xcoords_model = Classificator(model_type=stg.COORDS_MODEL_TYPE,
-                              hyperparameters=stg.COORDS_MODEL_HYPERPARAMS,
+                              hyperparameters=stg.X_PROJ_MODEL_HYPERPARAMS,
                               target=stg.X_PROJ_TARGET,
                               features=stg.X_PROJ_FEATURES)
 ycoords_model = Classificator(model_type=stg.COORDS_MODEL_TYPE,
-                              hyperparameters=stg.COORDS_MODEL_HYPERPARAMS,
+                              hyperparameters=stg.Y_PROJ_MODEL_HYPERPARAMS,
                               target=stg.Y_PROJ_TARGET,
                               features=stg.Y_PROJ_FEATURES)
 
