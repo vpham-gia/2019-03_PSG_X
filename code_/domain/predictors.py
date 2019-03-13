@@ -38,7 +38,7 @@ class Classificator():
         self.target = target
         self.features = features
 
-    def perform_random_search_cv(self, training_data, param_distributions, score):
+    def perform_random_search_cv(self, training_data, param_distributions, score, n_jobs):
         """Perform Random search on hyperparameters.
 
         Parameters
@@ -50,7 +50,7 @@ class Classificator():
         random_search = RandomizedSearchCV(estimator=self.model,
                                            param_distributions=param_distributions,
                                            n_iter=30, scoring=score, cv=3,
-                                           n_jobs=1)
+                                           n_jobs=n_jobs)
 
         random_search.fit(training_data[self.features], training_data[self.target])
 

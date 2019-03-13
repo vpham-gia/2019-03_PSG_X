@@ -56,7 +56,8 @@ if stg.BOOL_TRAIN_NEXT_TEAM_MODEL:
         logging.info('Cross-validation ..')
         next_team_model.perform_random_search_cv(training_data=pd.concat([X_train, y_train], axis=1),
                                                  score='accuracy',
-                                                 param_distributions=stg.NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS)
+                                                 param_distributions=stg.NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS,
+                                                 n_jobs=stg.N_JOBS)
         logging.info('.. Done')
 
     logging.info('Model to predict next event..')

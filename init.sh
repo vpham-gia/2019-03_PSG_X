@@ -25,11 +25,10 @@ sudo ./configure --enable-optimizations
 sudo make install
 
 sudo python3.5 -m pip install --upgrade pip
-pip3 install --user pipenv
+pip install --user pipenv
 echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 pipenv install
-
 ----------------------
 # pip install pyenv
 

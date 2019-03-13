@@ -78,10 +78,14 @@ if stg.BOOL_TRAIN_COORDS_MODEL:
     if stg.BOOL_COORDS_RS:
         logging.info('Cross-validation ..')
         xcoords_model.perform_random_search_cv(training_data=pd.concat([X_train_xcoords, y_train_xcoords], axis=1),
-                                               score='l2', param_distributions=stg.COORDS_RANDOM_SEARCH_HYPERPARAMS)
+                                               score='neg_mean_squared_error',
+                                               param_distributions=stg.COORDS_RANDOM_SEARCH_HYPERPARAMS,
+                                               n_jobs=stg.N_JOBS)
         logging.debug('Done for X coordinate')
         ycoords_model.perform_random_search_cv(training_data=pd.concat([X_train_ycoords, y_train_ycoords], axis=1),
-                                               score='l2', param_distributions=stg.COORDS_RANDOM_SEARCH_HYPERPARAMS)
+                                               score='neg_mean_squared_error',
+                                               param_distributions=stg.COORDS_RANDOM_SEARCH_HYPERPARAMS,
+                                               n_jobs=stg.N_JOBS)
         logging.debug('Done for Y coordinate')
         logging.info('.. Done')
 

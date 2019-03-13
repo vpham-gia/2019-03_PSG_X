@@ -41,7 +41,8 @@ if stg.BOOL_TRAIN_PLAYER_MODEL:
     if stg.BOOL_PLAYER_RS:
         logging.info('Cross-validation ..')
         player_pred.perform_random_search_cv(training_data=train, score='accuracy',
-                                             param_distributions=stg.PLAYER_RANDOM_SEARCH_HYPERPARAMS)
+                                             param_distributions=stg.PLAYER_RANDOM_SEARCH_HYPERPARAMS,
+                                             n_jobs=stg.N_JOBS)
         logging.info('.. Done')
 
     logging.info('Model to predict players..')
