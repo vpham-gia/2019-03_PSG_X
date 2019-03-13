@@ -1,6 +1,7 @@
 from os.path import join
 from sklearn.externals import joblib
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+from xgboost.sklearn import XGBClassifier, XGBRegressor
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import RandomizedSearchCV
 
@@ -23,12 +24,14 @@ class Modeler():
 
     MODEL_DICT = {'knn': KNeighborsClassifier(),
                   'rf_classif': RandomForestClassifier(),
-                  'rf_reg': RandomForestRegressor()}
+                  'rf_reg': RandomForestRegressor(),
+                  'xgb_classif': XGBClassifier(),
+                  'xgb_reg': XGBRegressor()}
 
     def __init__(self, model_type, hyperparameters, target, features):
         """Init class.
 
-        model_type: string, ['rf_classif', 'knn', 'rf_reg']
+        model_type: string, ['knn', 'rf_classif', 'rf_reg', 'xgb_classif', 'xgb_reg']
         hyperparameters: dict
         target: string
         features: list

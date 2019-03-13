@@ -14,6 +14,7 @@ lxml = "==4.3.2"
 jedi = "==0.13.3"
 ipython_genutils = "==0.2.0"
 sklearn = "*"
+xgboost = "*"
 
 [requires]
 python_version = "3.5"
