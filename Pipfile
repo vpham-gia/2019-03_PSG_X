@@ -13,7 +13,7 @@ pandas = "==0.24.1"
 lxml = "==4.3.2"
 jedi = "==0.13.3"
 ipython_genutils = "==0.2.0"
-sklearn = "==0.20.3"
+sklearn = "*"
 
 [requires]
 python_version = "3.5"

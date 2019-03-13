@@ -163,7 +163,7 @@ Y_PROJ_MODEL_NAME = 'coords_y_proj_model.pkl'
 COORDS_MODEL_TYPE = 'rf_reg'
 BOOL_TRAIN_COORDS_MODEL = True
 BOOL_COORDS_RS = False
-COORDS_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1}
+COORDS_MODEL_HYPERPARAMS = {'n_estimators': 500, 'n_jobs': 1, 'max_depth': 15}
 COORDS_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
                                     'max_features': [2, 4, 6, 8],
                                     'max_depth': [4, 8, 10, 12, 15, 20, 30]}

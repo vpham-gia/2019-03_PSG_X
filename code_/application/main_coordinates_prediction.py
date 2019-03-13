@@ -50,23 +50,19 @@ logging.info('.. Done')
 logging.info('Data quality check - Train set X coordinate ..')
 dqc = DataQualityChecker(df=pd.concat([X_train_xcoords, y_train_xcoords], axis=1))
 dqc.print_completeness()
-dqc.print_min_nb_observations_by_target(target=stg.X_PROJ_TARGET)
 
 logging.info('Data quality check - Test set X coordinate ..')
 dqc = DataQualityChecker(df=pd.concat([X_test_xcoords, y_test_xcoords], axis=1))
 dqc.print_completeness()
-dqc.print_min_nb_observations_by_target(target=stg.X_PROJ_TARGET)
 logging.info('.. Done')
 
 logging.info('Data quality check - Train set Y coordinate ..')
 dqc = DataQualityChecker(df=pd.concat([X_train_ycoords, y_train_ycoords], axis=1))
 dqc.print_completeness()
-dqc.print_min_nb_observations_by_target(target=stg.Y_PROJ_TARGET)
 
 logging.info('Data quality check - Test set Y coordinate ..')
 dqc = DataQualityChecker(df=pd.concat([X_test_ycoords, y_test_ycoords], axis=1))
 dqc.print_completeness()
-dqc.print_min_nb_observations_by_target(target=stg.Y_PROJ_TARGET)
 logging.info('.. Done')
 
 xcoords_model = Classificator(model_type=stg.COORDS_MODEL_TYPE,
