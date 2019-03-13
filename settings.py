@@ -192,14 +192,14 @@ Y_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
 Y_PROJ_MODEL_NAME = 'coords_y_proj_model.pkl'
 Y_PROJ_MODEL_HYPERPARAMS = {'max_depth': 12, 'n_estimators': 200, 'max_features': 6}
 
-COORDS_MODEL_TYPE = 'rf_reg'
+COORDS_MODEL_TYPE = 'xgb_reg'
 BOOL_TRAIN_COORDS_MODEL = True
-BOOL_COORDS_RS = False
+BOOL_COORDS_RS = True
 # COORDS_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
 #                                     'max_features': [2, 4, 6, 8],
 #                                     'max_depth': [4, 8, 10, 12, 15, 20, 30],
 #                                     'criterion': ['gini', 'entropy']}
-COORDS_RANDOM_SEARCH_HYPERPARAMS = {'objective': ['binary:logistic'],
+COORDS_RANDOM_SEARCH_HYPERPARAMS = {'objective': ['reg:linear'],
                                     'learning_rate': [0.01, 0.05, 0.1, 0.3, 0.8],
                                     'n_estimators': [30, 75, 150, 300, 500],
                                     'max_depth': [4, 7, 10],
