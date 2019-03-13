@@ -120,7 +120,7 @@ PLAYER_MODEL_NAME = 'player_model.pkl'
 # ---------------
 PLAYER_MODEL_TYPE = 'rf_classif'
 BOOL_TRAIN_PLAYER_MODEL = True
-BOOL_PLAYER_RS = False
+BOOL_PLAYER_RS = True
 # ---------------
 PLAYER_MODELS_HYPERPARAMS = {
     'base': {
