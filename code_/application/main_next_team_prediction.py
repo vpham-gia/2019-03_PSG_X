@@ -1,5 +1,6 @@
-from os.path import basename, splitext
+from os.path import basename, splitext, join
 from sklearn.model_selection import train_test_split
+from tpot import TPOTClassifier
 
 import logging
 import pandas as pd
@@ -46,36 +47,44 @@ dqc.print_completeness()
 dqc.print_min_nb_observations_by_target(target=stg.NEXT_TEAM_TARGET)
 logging.info('.. Done')
 
-next_team_model = Modeler(model_type=stg.NEXT_TEAM_MODEL_TYPE,
-                          hyperparameters=stg.NEXT_TEAM_MODEL_BASE_HYPERPARAMS,
-                          target=stg.NEXT_TEAM_TARGET,
-                          features=stg.NEXT_TEAM_FEATURES)
-
-if stg.BOOL_TRAIN_NEXT_TEAM_MODEL:
-    if stg.BOOL_NEXT_TEAM_RS:
-        logging.info('Cross-validation ..')
-        next_team_model.perform_random_search_cv(training_data=pd.concat([X_train, y_train], axis=1),
-                                                 score='accuracy',
-                                                 param_distributions=stg.NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS,
-                                                 n_jobs=stg.N_JOBS)
-        logging.info('.. Done')
-
-    logging.info('Model to predict next event..')
-    next_team_model.model.set_params(**{'n_jobs': 3})
-    next_team_model.fit(training_data=pd.concat([X_train, y_train], axis=1))
-    logging.debug('Fit ok')
-    next_team_model.save_model(save_modelname=stg.NEXT_TEAM_MODEL_NAME)
+if stg.BOOL_TPOT_NEXT_TEAM:
+    logging.info('Starting TPOT - max time: {} min ..'.format(stg.NEXT_TEAM_TPOT_LIMIT_TIME))
+    pipeline_optimizer = TPOTClassifier(**stg.NEXT_TEAM_TPOT_HYPERPARAMS)
+    pipeline_optimizer.fit(X_train, y_train)
+    logging.info('TPOT Score: {}'.format(pipeline_optimizer.score(X_test, y_test)))
+    pipeline_optimizer.export(join(stg.OUTPUTS_DIR, stg.NEXT_TEAM_TPOT_FILENAME))
     logging.info('.. Done')
 else:
-    logging.info('Loading latest model ..')
-    next_team_model.load_model(save_modelname=stg.NEXT_TEAM_MODEL_NAME)
-    logging.info('.. Done')
+    next_team_model = Modeler(model_type=stg.NEXT_TEAM_MODEL_TYPE,
+                              hyperparameters=stg.NEXT_TEAM_MODEL_BASE_HYPERPARAMS,
+                              target=stg.NEXT_TEAM_TARGET,
+                              features=stg.NEXT_TEAM_FEATURES)
 
-logging.info('Performance evaluation ..')
-pred = next_team_model.predict(test_data=X_test)
-pa = PerformanceAnalyzer(y_true=y_test, y_pred=pred)
-accuracy = pa.compute_classification_accuracy()
-logging.info('Classification accuracy: {}'.format(accuracy))
-logging.info('.. Done')
+    if stg.BOOL_TRAIN_NEXT_TEAM_MODEL:
+        if stg.BOOL_NEXT_TEAM_RS:
+            logging.info('Cross-validation ..')
+            next_team_model.perform_random_search_cv(training_data=pd.concat([X_train, y_train], axis=1),
+                                                     score='accuracy',
+                                                     param_distributions=stg.NEXT_TEAM_RANDOM_SEARCH_HYPERPARAMS,
+                                                     n_jobs=stg.N_JOBS)
+            logging.info('.. Done')
+
+        logging.info('Model to predict next event..')
+        next_team_model.model.set_params(**{'n_jobs': 3})
+        next_team_model.fit(training_data=pd.concat([X_train, y_train], axis=1))
+        logging.debug('Fit ok')
+        next_team_model.save_model(save_modelname=stg.NEXT_TEAM_MODEL_NAME)
+        logging.info('.. Done')
+    else:
+        logging.info('Loading latest model ..')
+        next_team_model.load_model(save_modelname=stg.NEXT_TEAM_MODEL_NAME)
+        logging.info('.. Done')
+
+    logging.info('Performance evaluation ..')
+    pred = next_team_model.predict(test_data=X_test)
+    pa = PerformanceAnalyzer(y_true=y_test, y_pred=pred)
+    accuracy = pa.compute_classification_accuracy()
+    logging.info('Classification accuracy: {}'.format(accuracy))
+    logging.info('.. Done')
 
 logging.info('End of script {}'.format(basename(__file__)))

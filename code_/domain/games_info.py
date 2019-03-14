@@ -270,6 +270,8 @@ class StatsGameAnalyzer():
         df_team_stats.columns = ['t_{}'.format(col) if col != stg.TEAM_COL else col
                                  for col in df_team_stats.columns]
 
+        # TODO: add other method to compute stats from column
+
         df_all_stats = df_players.merge(right=df_player_stats, on=stg.PLAYER_COL, how='left')\
                                  .merge(right=df_team_stats, on=stg.TEAM_COL, how='left')
         return df_all_stats

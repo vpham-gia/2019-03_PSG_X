@@ -37,7 +37,7 @@ logging.info('.. Done')
 
 from tpot import TPOTClassifier
 pipeline_optimizer = TPOTClassifier(generations=100, population_size=100, cv=3,
-                                    random_state=42, verbosity=2, max_time_mins=60*7)
+                                    random_state=42, verbosity=2, max_time_mins=1)
 pipeline_optimizer.fit(X_train, y_train)
 print('Score: {}'.format(pipeline_optimizer.score(X_test, y_test)))
 pipeline_optimizer.export('tpot_exported_pipeline.py')

@@ -1,5 +1,6 @@
-from os.path import basename, splitext
+from os.path import basename, splitext, join
 from sklearn.model_selection import train_test_split
+from tpot import TPOTClassifier
 
 import logging
 import pandas as pd
@@ -65,71 +66,88 @@ dqc = DataQualityChecker(df=pd.concat([X_test_ycoords, y_test_ycoords], axis=1))
 dqc.print_completeness()
 logging.info('.. Done')
 
-xcoords_model = Modeler(model_type=stg.COORDS_MODEL_TYPE,
-                        hyperparameters=stg.X_PROJ_MODEL_BASE_HYPERPARAMS,
-                        target=stg.X_PROJ_TARGET, features=stg.X_PROJ_FEATURES)
-ycoords_model = Modeler(model_type=stg.COORDS_MODEL_TYPE,
-                        hyperparameters=stg.Y_PROJ_MODEL_BASE_HYPERPARAMS,
-                        target=stg.Y_PROJ_TARGET, features=stg.Y_PROJ_FEATURES)
+if stg.BOOL_TPOT_COORDS:
+    logging.info('Starting TPOT (X proj) - max time: {} min ..'.format(stg.COORDS_TPOT_LIMIT_TIME))
+    pipeline_optimizer = TPOTClassifier(**stg.COORDS_TPOT_HYPERPARAMS)
+    pipeline_optimizer.fit(X_train_xcoords, y_train_xcoords)
+    logging.info('TPOT Score: {}'.format(pipeline_optimizer.score(X_test_xcoords, y_test_xcoords)))
+    pipeline_optimizer.export(join(stg.OUTPUTS_DIR, stg.X_PROJ_TPOT_FILENAME))
 
-if stg.BOOL_TRAIN_COORDS_MODEL:
-    if stg.BOOL_COORDS_RS:
-        logging.info('Cross-validation ..')
-        xcoords_model.perform_random_search_cv(training_data=pd.concat([X_train_xcoords, y_train_xcoords], axis=1),
-                                               score='neg_mean_squared_error',
-                                               param_distributions=stg.X_PROJ_RANDOM_SEARCH_HYPERPARAMS,
-                                               n_jobs=stg.N_JOBS)
-        logging.debug('Done for X coordinate')
-        ycoords_model.perform_random_search_cv(training_data=pd.concat([X_train_ycoords, y_train_ycoords], axis=1),
-                                               score='neg_mean_squared_error',
-                                               param_distributions=stg.Y_PROJ_RANDOM_SEARCH_HYPERPARAMS,
-                                               n_jobs=stg.N_JOBS)
-        logging.debug('Done for Y coordinate')
-        logging.info('.. Done')
+    logging.debug('Done for X coordinate')
 
-    logging.info('Model to predict coordinates..')
-    xcoords_model.model.set_params(**{'n_jobs': 3})
-    xcoords_model.fit(training_data=pd.concat([X_train_xcoords, y_train_xcoords], axis=1))
-    logging.debug('X coordinate - Fit ok')
-    xcoords_model.save_model(save_modelname=stg.X_PROJ_MODEL_NAME)
-    logging.debug('X coordinate - Model saved')
+    logging.info('Starting TPOT (Y proj) - max time: {} min ..'.format(stg.COORDS_TPOT_LIMIT_TIME))
+    pipeline_optimizer = TPOTClassifier(**stg.COORDS_TPOT_HYPERPARAMS)
+    pipeline_optimizer.fit(X_train_xcoords, y_train_xcoords)
+    logging.info('TPOT Score: {}'.format(pipeline_optimizer.score(X_test_xcoords, y_test_xcoords)))
+    pipeline_optimizer.export(join(stg.OUTPUTS_DIR, stg.Y_PROJ_TPOT_FILENAME))
 
-    ycoords_model.model.set_params(**{'n_jobs': 3})
-    ycoords_model.fit(training_data=pd.concat([X_train_ycoords, y_train_ycoords], axis=1))
-    logging.debug('Y coordinate - Fit ok')
-    ycoords_model.save_model(save_modelname=stg.Y_PROJ_MODEL_NAME)
-    logging.debug('Y coordinate - Model saved')
     logging.info('.. Done')
 else:
-    logging.info('Loading latest model ..')
-    xcoords_model.load_model(save_modelname=stg.X_PROJ_MODEL_NAME)
-    ycoords_model.load_model(save_modelname=stg.Y_PROJ_MODEL_NAME)
+    xcoords_model = Modeler(model_type=stg.COORDS_MODEL_TYPE,
+                            hyperparameters=stg.X_PROJ_MODEL_BASE_HYPERPARAMS,
+                            target=stg.X_PROJ_TARGET, features=stg.X_PROJ_FEATURES)
+    ycoords_model = Modeler(model_type=stg.COORDS_MODEL_TYPE,
+                            hyperparameters=stg.Y_PROJ_MODEL_BASE_HYPERPARAMS,
+                            target=stg.Y_PROJ_TARGET, features=stg.Y_PROJ_FEATURES)
+
+    if stg.BOOL_TRAIN_COORDS_MODEL:
+        if stg.BOOL_COORDS_RS:
+            logging.info('Cross-validation ..')
+            xcoords_model.perform_random_search_cv(training_data=pd.concat([X_train_xcoords, y_train_xcoords], axis=1),
+                                                   score='neg_mean_squared_error',
+                                                   param_distributions=stg.X_PROJ_RANDOM_SEARCH_HYPERPARAMS,
+                                                   n_jobs=stg.N_JOBS)
+            logging.debug('Done for X coordinate')
+            ycoords_model.perform_random_search_cv(training_data=pd.concat([X_train_ycoords, y_train_ycoords], axis=1),
+                                                   score='neg_mean_squared_error',
+                                                   param_distributions=stg.Y_PROJ_RANDOM_SEARCH_HYPERPARAMS,
+                                                   n_jobs=stg.N_JOBS)
+            logging.debug('Done for Y coordinate')
+            logging.info('.. Done')
+
+        logging.info('Model to predict coordinates..')
+        xcoords_model.model.set_params(**{'n_jobs': 3})
+        xcoords_model.fit(training_data=pd.concat([X_train_xcoords, y_train_xcoords], axis=1))
+        logging.debug('X coordinate - Fit ok')
+        xcoords_model.save_model(save_modelname=stg.X_PROJ_MODEL_NAME)
+        logging.debug('X coordinate - Model saved')
+
+        ycoords_model.model.set_params(**{'n_jobs': 3})
+        ycoords_model.fit(training_data=pd.concat([X_train_ycoords, y_train_ycoords], axis=1))
+        logging.debug('Y coordinate - Fit ok')
+        ycoords_model.save_model(save_modelname=stg.Y_PROJ_MODEL_NAME)
+        logging.debug('Y coordinate - Model saved')
+        logging.info('.. Done')
+    else:
+        logging.info('Loading latest model ..')
+        xcoords_model.load_model(save_modelname=stg.X_PROJ_MODEL_NAME)
+        ycoords_model.load_model(save_modelname=stg.Y_PROJ_MODEL_NAME)
+        logging.info('.. Done')
+
+    """
+    x_true = train[stg.X_PROJ_TARGET]
+    x_pred = train['x_along_team1_axis_lag1']
+    y_true = train[stg.Y_PROJ_TARGET]
+    y_pred = train['y_along_team1_axis_lag1']
+
+    true = [(x, y) for (x, y) in zip(x_true, y_true)]
+    pred = [(x, y) for (x, y) in zip(x_pred, y_pred)]
+
+    pa = PerformanceAnalyzer(y_true=true, y_pred=pred)
+    accuracy = pa.compute_accuracy_l2_error()
+    print('L2 accuracy: {}'.format(accuracy))
+    """
+
+    logging.info('Performance evaluation ..')
+    xcoords_pred = xcoords_model.predict(test_data=X_test_xcoords)
+    ycoords_pred = ycoords_model.predict(test_data=X_test_ycoords)
+
+    pred = [(x, y) for (x, y) in zip(xcoords_pred, ycoords_pred)]
+    true = [(x, y) for (x, y) in zip(y_test_xcoords, y_test_ycoords)]
+
+    pa = PerformanceAnalyzer(y_true=true, y_pred=pred)
+    accuracy = pa.compute_accuracy_l2_error()
+    logging.info('L2 accuracy: {}'.format(accuracy))
     logging.info('.. Done')
-
-"""
-x_true = train[stg.X_PROJ_TARGET]
-x_pred = train['x_along_team1_axis_lag1']
-y_true = train[stg.Y_PROJ_TARGET]
-y_pred = train['y_along_team1_axis_lag1']
-
-true = [(x, y) for (x, y) in zip(x_true, y_true)]
-pred = [(x, y) for (x, y) in zip(x_pred, y_pred)]
-
-pa = PerformanceAnalyzer(y_true=true, y_pred=pred)
-accuracy = pa.compute_accuracy_l2_error()
-print('L2 accuracy: {}'.format(accuracy))
-"""
-
-logging.info('Performance evaluation ..')
-xcoords_pred = xcoords_model.predict(test_data=X_test_xcoords)
-ycoords_pred = ycoords_model.predict(test_data=X_test_ycoords)
-
-pred = [(x, y) for (x, y) in zip(xcoords_pred, ycoords_pred)]
-true = [(x, y) for (x, y) in zip(y_test_xcoords, y_test_ycoords)]
-
-pa = PerformanceAnalyzer(y_true=true, y_pred=pred)
-accuracy = pa.compute_accuracy_l2_error()
-logging.info('L2 accuracy: {}'.format(accuracy))
-logging.info('.. Done')
 
 logging.info('End of script {}'.format(basename(__file__)))

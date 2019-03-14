@@ -117,11 +117,22 @@ PLAYER_FEATURES = ['team_id']\
     + ['t_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\
 
 PLAYER_MODEL_NAME = 'player_model.pkl'
+PLAYER_TPOT_FILENAME = 'player_tpot.py'
 # ---------------
+BOOL_TPOT_PLAYER = True
+PLAYER_TPOT_LIMIT_TIME = 3 * 24 * 60 + 5 * 60
+
 PLAYER_MODEL_TYPE = 'rf_classif'
 BOOL_TRAIN_PLAYER_MODEL = True
 BOOL_PLAYER_RS = False
 # ---------------
+PLAYER_TPOT_HYPERPARAMS = {'n_jobs': 3,
+                           'generations': 100,
+                           'population_size': 100,
+                           'cv': 3,
+                           'random_state': 42,
+                           'verbosity': 2,
+                           'max_time_mins': PLAYER_TPOT_LIMIT_TIME}
 PLAYER_MODELS_HYPERPARAMS = {
     'base': {
         'rf_classif': {
@@ -175,11 +186,22 @@ NEXT_TEAM_FEATURES = ['{}_lag{}'.format(col, lag)
                       for col in NEXT_TEAM_COLS_TO_LAG_FOR_FEATS]
 
 NEXT_TEAM_MODEL_NAME = 'next_team_model.pkl'
+NEXT_TEAM_TPOT_FILENAME = 'next_team_tpot.py'
 # ---------------
+BOOL_TPOT_NEXT_TEAM = True
+NEXT_TEAM_TPOT_LIMIT_TIME = 3 * 24 * 60 + 5 * 60
+
 NEXT_TEAM_MODEL_TYPE = 'xgb_classif'
 BOOL_TRAIN_NEXT_TEAM_MODEL = True
 BOOL_NEXT_TEAM_RS = False
 # ---------------
+NEXT_TEAM_TPOT_HYPERPARAMS = {'n_jobs': 2,
+                              'generations': 100,
+                              'population_size': 100,
+                              'cv': 3,
+                              'random_state': 42,
+                              'verbosity': 2,
+                              'max_time_mins': NEXT_TEAM_TPOT_LIMIT_TIME}
 NEXT_TEAM_MODEL_HYPERPARAMS = {
     'base': {
         'rf_classif': {'n_estimators': 500},
@@ -221,6 +243,7 @@ X_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in X_PROJ_COLS_TO_LAG_FOR_FEATS]
 X_PROJ_MODEL_NAME = 'coords_x_proj_model.pkl'
+X_PROJ_TPOT_FILENAME = 'coords_x_tpot.py'
 
 Y_PROJ_TARGET = Y_PROJECTED_COL
 Y_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, Y_PROJECTED_COL]
@@ -228,11 +251,19 @@ Y_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in Y_PROJ_COLS_TO_LAG_FOR_FEATS]
 Y_PROJ_MODEL_NAME = 'coords_y_proj_model.pkl'
+Y_PROJ_TPOT_FILENAME = 'coords_y_tpot.py'
+
 # ---------------
+BOOL_TPOT_COORDS = True
+COORDS_TPOT_LIMIT_TIME = (3 * 24 * 60 + 5 * 60) / 2
+
 COORDS_MODEL_TYPE = 'rf_reg'
 BOOL_TRAIN_COORDS_MODEL = True
 BOOL_COORDS_RS = False
 # ---------------
+COORDS_TPOT_HYPERPARAMS = {'n_jobs': 2, 'generations': 100, 'verbosity': 2,
+                           'population_size': 100, 'cv': 3, 'random_state': 42,
+                           'max_time_mins': COORDS_TPOT_LIMIT_TIME}
 COORDS_RF_RANDOM_SEARCH_HYPERPARAMS = {'n_estimators': [50, 100, 200, 500],
                                        'max_features': [2, 4, 6, 8],
                                        'max_depth': [4, 8, 10, 12, 15, 20, 30],

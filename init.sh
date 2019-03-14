@@ -15,6 +15,7 @@ echo "Your environment should contain numpy:"
 pip list --format=columns | grep numpy
 
 ----------------------
+sudo apt-get update
 sudo apt-get install build-essential checkinstall wget
 sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
 cd /usr/src
