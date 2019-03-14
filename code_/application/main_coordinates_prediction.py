@@ -1,6 +1,6 @@
 from os.path import basename, splitext, join
 from sklearn.model_selection import train_test_split
-from tpot import TPOTClassifier
+from tpot import TPOTRegressor
 
 import logging
 import pandas as pd
@@ -68,7 +68,7 @@ logging.info('.. Done')
 
 if stg.BOOL_TPOT_COORDS:
     logging.info('Starting TPOT (X proj) - max time: {} min ..'.format(stg.COORDS_TPOT_LIMIT_TIME))
-    pipeline_optimizer = TPOTClassifier(**stg.COORDS_TPOT_HYPERPARAMS)
+    pipeline_optimizer = TPOTRegressor(**stg.COORDS_TPOT_HYPERPARAMS)
     pipeline_optimizer.fit(X_train_xcoords, y_train_xcoords)
     logging.info('TPOT Score: {}'.format(pipeline_optimizer.score(X_test_xcoords, y_test_xcoords)))
     pipeline_optimizer.export(join(stg.OUTPUTS_DIR, stg.X_PROJ_TPOT_FILENAME))
@@ -76,7 +76,7 @@ if stg.BOOL_TPOT_COORDS:
     logging.debug('Done for X coordinate')
 
     logging.info('Starting TPOT (Y proj) - max time: {} min ..'.format(stg.COORDS_TPOT_LIMIT_TIME))
-    pipeline_optimizer = TPOTClassifier(**stg.COORDS_TPOT_HYPERPARAMS)
+    pipeline_optimizer = TPOTRegressor(**stg.COORDS_TPOT_HYPERPARAMS)
     pipeline_optimizer.fit(X_train_xcoords, y_train_xcoords)
     logging.info('TPOT Score: {}'.format(pipeline_optimizer.score(X_test_xcoords, y_test_xcoords)))
     pipeline_optimizer.export(join(stg.OUTPUTS_DIR, stg.Y_PROJ_TPOT_FILENAME))
