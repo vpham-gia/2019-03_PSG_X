@@ -66,6 +66,11 @@ OUTCOME_COL = 'outcome'
 KEYPASS_COL = 'keypass'
 ASSIST_COL = 'assist'
 
+GK_EVENTS = ['10', '11', '41', '52', '53', '54', '58']
+GK_EVENTS_COL = 'gk_events'
+SHOTS_EVENTS = ['13', '14', '15', '16']
+SHOTS_COL = 'shots'
+
 QUALIFIER_COL = 'qualifier_id'
 QUALIFIER_MAP = {
     'ALL_PLAYERS': '30'

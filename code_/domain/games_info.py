@@ -200,7 +200,7 @@ class StatsGameAnalyzer():
     def __init__(self, **kwargs):
         """Initialize class."""
         try:
-            self.game = self._fillna_game_data(**kwargs)
+            self.game = self._fillna_game_data_and_convert_types(**kwargs)
         except TypeError as error:
             raise NameError('Error in StatsGameAnalyzer initialization - {}'.format(error))
 
@@ -271,10 +271,48 @@ class StatsGameAnalyzer():
                                  for col in df_team_stats.columns]
 
         # TODO: add other method to compute stats from column
+        df_player_info = self._build_dataset_from_bool_columns(df_with_events=df_15_min)
 
-        df_all_stats = df_players.merge(right=df_player_stats, on=stg.PLAYER_COL, how='left')\
+        df_all_stats = df_players.merge(right=df_player_info, on=stg.PLAYER_COL, how='left')\
+                                 .merge(right=df_player_stats, on=stg.PLAYER_COL, how='left')\
                                  .merge(right=df_team_stats, on=stg.TEAM_COL, how='left')
         return df_all_stats
+
+    def _build_dataset_from_bool_columns(self, df_with_events):
+        df_with_info = pd.DataFrame({stg.PLAYER_COL: list()})
+
+        df_nb_keypass = self._count_number_by_player_and_col(df=df_with_events, column=stg.KEYPASS_COL)
+        df_nb_assist = self._count_number_by_player_and_col(df=df_with_events, column=stg.ASSIST_COL)
+        df_nb_gk_events = self._compute_nb_gk_events(df=df_with_events)
+        df_nb_shots = self._compute_nb_shots(df=df_with_events)
+
+        df_with_info = df_with_info.merge(right=df_nb_keypass, on=stg.PLAYER_COL, how='outer')\
+                                   .merge(right=df_nb_assist, on=stg.PLAYER_COL, how='outer')\
+                                   .merge(right=df_nb_gk_events, on=stg.PLAYER_COL, how='outer')\
+                                   .merge(right=df_nb_shots, on=stg.PLAYER_COL, how='outer')
+
+        return df_with_info
+
+    def _compute_nb_gk_events(self, df):
+        df_gk_events = df.assign(**{stg.GK_EVENTS_COL: lambda x: x[stg.EVENT_TYPE_COL].apply(lambda x: 1 if x in stg.GK_EVENTS else 0)
+                                    })
+
+        df_gk_by_player = self._count_number_by_player_and_col(df=df_gk_events,
+                                                               column=stg.GK_EVENTS_COL)
+        return df_gk_by_player
+
+    def _compute_nb_shots(self, df):
+        df_shots = df.assign(**{stg.SHOTS_COL: lambda x: x[stg.EVENT_TYPE_COL].apply(lambda x: 1 if x in stg.SHOTS_EVENTS else 0)})
+
+        df_shots_by_player = self._count_number_by_player_and_col(df=df_shots,
+                                                                  column=stg.SHOTS_COL)
+        return df_shots_by_player
+
+    def _count_number_by_player_and_col(self, df, column):
+        df_number = df.groupby(stg.PLAYER_COL)\
+                      .agg({column: 'sum'})\
+                      .rename(columns={column: 'nb_{}'.format(column)})
+        return df_number
 
     def _get_agg_stats(self, df_with_events, agg_column, list_events_number, list_events_with_success_rate):
         df_stats = df_with_events[[agg_column]].drop_duplicates()
@@ -330,26 +368,31 @@ class StatsGameAnalyzer():
 
         return df_stats
 
-    def _fillna_game_data(self, **kwargs):
-        game_data = Game(**kwargs).clean_game_data()
-        game_data.fillna(value={stg.KEYPASS_COL: '0', stg.ASSIST_COL: '0'},
-                         inplace=True)
+    def _fillna_game_data_and_convert_types(self, **kwargs):
+        game_data = Game(**kwargs).clean_game_data()\
+                                  .fillna(value={stg.KEYPASS_COL: '0',
+                                                 stg.ASSIST_COL: '0'})\
+                                  .assign(**{stg.KEYPASS_COL: lambda x: x[stg.KEYPASS_COL].apply(int),
+                                             stg.ASSIST_COL: lambda x: x[stg.ASSIST_COL].apply(int)})
+        # game_data.fillna(value={stg.KEYPASS_COL: '0', stg.ASSIST_COL: '0'},
+        #                  inplace=True)
+
         return game_data.dropna().reset_index(drop=True)
 
 
 if __name__ == '__main__':
-    # ga = StatsGameAnalyzer(filename='f24-24-2016-853139-eventdetails.xml')
-    # pl = Players()
-    #
+    ga = StatsGameAnalyzer(filename='f24-24-2016-853139-eventdetails.xml')
+    pl = Players()
+    toto = ga._build_dataset_from_bool_columns(df_with_events=ga.game)
     # df = ga.build_game_dataset_eligible_players(sliding_interval_min=5,
     #                                             list_events_number=['4', '17'],
     #                                             list_events_with_success_rate=['1'])
     #
     # df = df.merge(right=pl.all_players, on='player_id', how='left')
 
-    neig = NextEventInGame(filename='f24-24-2016-853139-eventdetails.xml')
-    df = neig.build_next_event_dataset(columns_to_lag=stg.NEXT_TEAM_COLS_TO_LAG,
-                                       lags_to_add=stg.NEXT_TEAM_LAGS)
+    # neig = NextEventInGame(filename='f24-24-2016-853139-eventdetails.xml')
+    # df = neig.build_next_event_dataset(columns_to_lag=stg.NEXT_EVENT_COLS_TO_LAG,
+    #                                    lags_to_add=stg.NEXT_EVENT_LAGS)
 
     # sfha = SeasonFirstHalfAggregator(sliding_interval_min=5, list_events_number=[], list_events_with_success_rate=[])
     # df = sfha.build_next_event_dataset(columns_to_lag=stg.NEXT_TEAM_COLS_TO_LAG)
