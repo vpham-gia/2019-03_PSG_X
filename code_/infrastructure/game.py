@@ -4,7 +4,7 @@ from lxml import etree
 from os.path import join
 
 import settings as stg
-
+import logging
 
 class Game():
     """Soccer game representation.
@@ -164,6 +164,10 @@ class Game():
         return df_out
 
     def _keep_game_columns_if_exists(self, df, list_cols):
+        for col in list_cols:
+            if col not in df.columns:
+                logging.debug('File {}: {} not in columns'.format(self.filename, col))
+                df[col] = '0'
         return df[[col for col in list_cols if col in df.columns]]
 
     def _gather_events(self):

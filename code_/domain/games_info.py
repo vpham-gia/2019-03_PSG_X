@@ -279,19 +279,27 @@ class StatsGameAnalyzer():
         return df_all_stats
 
     def _build_dataset_from_bool_columns(self, df_with_events):
-        df_with_info = pd.DataFrame({stg.PLAYER_COL: list()})
+        players = pd.DataFrame({stg.PLAYER_COL: list()})
 
-        df_nb_keypass = self._count_number_by_player_and_col(df=df_with_events, column=stg.KEYPASS_COL)
-        df_nb_assist = self._count_number_by_player_and_col(df=df_with_events, column=stg.ASSIST_COL)
-        df_nb_gk_events = self._compute_nb_gk_events(df=df_with_events)
-        df_nb_shots = self._compute_nb_shots(df=df_with_events)
+        nb_keypass = self._count_number_by_player_and_col(df=df_with_events, column=stg.KEYPASS_COL)
+        nb_assist = self._count_number_by_player_and_col(df=df_with_events, column=stg.ASSIST_COL)
+        nb_gk_events = self._compute_nb_gk_events(df=df_with_events)
+        nb_shots = self._compute_nb_shots(df=df_with_events)
+        nb_free_kick_pass = self._compute_nb_pass_after_event(df=df_with_events,
+                                                              previous_event_id=stg.EVENTS_MAP['FOUL'],
+                                                              colname=stg.FREE_KICK_COL)
+        nb_corner = self._compute_nb_pass_after_event(df=df_with_events,
+                                                      previous_event_id=stg.EVENTS_MAP['CORNER_AWARDED'],
+                                                      colname=stg.CORNER_COL)
 
-        df_with_info = df_with_info.merge(right=df_nb_keypass, on=stg.PLAYER_COL, how='outer')\
-                                   .merge(right=df_nb_assist, on=stg.PLAYER_COL, how='outer')\
-                                   .merge(right=df_nb_gk_events, on=stg.PLAYER_COL, how='outer')\
-                                   .merge(right=df_nb_shots, on=stg.PLAYER_COL, how='outer')
+        df_out = players.merge(right=nb_keypass, on=stg.PLAYER_COL, how='outer')\
+                        .merge(right=nb_assist, on=stg.PLAYER_COL, how='outer')\
+                        .merge(right=nb_gk_events, on=stg.PLAYER_COL, how='outer')\
+                        .merge(right=nb_shots, on=stg.PLAYER_COL, how='outer')\
+                        .merge(right=nb_free_kick_pass, on=stg.PLAYER_COL, how='outer')\
+                        .merge(right=nb_corner, on=stg.PLAYER_COL, how='outer')
 
-        return df_with_info
+        return df_out
 
     def _compute_nb_gk_events(self, df):
         df_gk_events = df.assign(**{stg.GK_EVENTS_COL: lambda x: x[stg.EVENT_TYPE_COL].apply(lambda x: 1 if x in stg.GK_EVENTS else 0)
@@ -307,6 +315,23 @@ class StatsGameAnalyzer():
         df_shots_by_player = self._count_number_by_player_and_col(df=df_shots,
                                                                   column=stg.SHOTS_COL)
         return df_shots_by_player
+
+    def _compute_nb_pass_after_event(self, df, previous_event_id, colname):
+        PREVIOUS_EVENT = '{}_previous_event'.format(stg.EVENT_TYPE_COL)
+
+        df_previous_event = df.shift(1)[[stg.EVENT_TYPE_COL]]\
+                              .rename(columns={stg.EVENT_TYPE_COL: PREVIOUS_EVENT})
+
+        with_prev_event = df.merge(right=df_previous_event, right_index=True,
+                                   left_index=True, how='inner')
+
+        with_prev_event['bool_event'] = with_prev_event[stg.EVENT_TYPE_COL] == stg.EVENTS_MAP['PASS']
+        with_prev_event['bool_prev_event'] = with_prev_event[PREVIOUS_EVENT] == previous_event_id
+        with_prev_event[colname] = with_prev_event['bool_event'] & with_prev_event['bool_prev_event']
+
+        df_nb = self._count_number_by_player_and_col(df=with_prev_event,
+                                                     column=colname)
+        return df_nb
 
     def _count_number_by_player_and_col(self, df, column):
         df_number = df.groupby(stg.PLAYER_COL)\
@@ -384,9 +409,9 @@ if __name__ == '__main__':
     ga = StatsGameAnalyzer(filename='f24-24-2016-853139-eventdetails.xml')
     pl = Players()
     toto = ga._build_dataset_from_bool_columns(df_with_events=ga.game)
-    # df = ga.build_game_dataset_eligible_players(sliding_interval_min=5,
-    #                                             list_events_number=['4', '17'],
-    #                                             list_events_with_success_rate=['1'])
+    df = ga.build_game_dataset_eligible_players(sliding_interval_min=5,
+                                                list_events_number=['4', '17'],
+                                                list_events_with_success_rate=['1'])
     #
     # df = df.merge(right=pl.all_players, on='player_id', how='left')
 

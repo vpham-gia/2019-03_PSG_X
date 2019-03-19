@@ -55,6 +55,9 @@ PERIOD_COL = 'period_id'
 EVENT_COL = 'event_id'
 EVENT_TYPE_COL = 'type_id'
 EVENTS_MAP = {
+    'PASS': '1',
+    'FOUL': '4',
+    'CORNER_AWARDED': '6',
     'KICKOFF': '34',
     'PLAYER_OFF': '18',
     'PLAYER_ON': '19',
@@ -70,6 +73,8 @@ GK_EVENTS = ['10', '11', '41', '52', '53', '54', '58']
 GK_EVENTS_COL = 'gk_events'
 SHOTS_EVENTS = ['13', '14', '15', '16']
 SHOTS_COL = 'shots'
+FREE_KICK_COL = 'free_kick'
+CORNER_COL = 'corner'
 
 QUALIFIER_COL = 'qualifier_id'
 QUALIFIER_MAP = {
@@ -114,6 +119,7 @@ PLAYER_TARGET = 'player_id'
 EVENTS_COMPUTE_NUMBER = ['3', '4', '7', '8', '10', '14', '16', '17', '18', '19', '44', '61']
 EVENTS_COMPUTE_SUCCESS_RATE = ['1']
 PLAYER_FEATURES = ['team_id']\
+    + ['nb_assist', 'nb_keypass', 'nb_gk_events', 'nb_shots', 'nb_free_kick', 'nb_corner']\
     + ['p_{}_nb'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
     + ['p_{}_success_rate'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
     + ['p_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\
@@ -124,7 +130,7 @@ PLAYER_FEATURES = ['team_id']\
 PLAYER_MODEL_NAME = 'player_model.pkl'
 PLAYER_TPOT_FILENAME = 'player_tpot.py'
 # ---------------
-BOOL_TPOT_PLAYER = True
+BOOL_TPOT_PLAYER = False
 PLAYER_TPOT_LIMIT_TIME = 3 * 24 * 60 + 5 * 60
 
 PLAYER_MODEL_TYPE = 'rf_classif'
