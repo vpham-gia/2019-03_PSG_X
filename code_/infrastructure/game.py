@@ -6,6 +6,7 @@ from os.path import join
 import settings as stg
 import logging
 
+
 class Game():
     """Soccer game representation.
 
@@ -176,10 +177,33 @@ class Game():
 
         for event in tree.xpath(stg.XML_PATH_TO_EVENTS):
             df_event = pd.DataFrame(dict(event.attrib), index=[0])
+            # df_qualifiers = self._get_qualifiers_for_event(event_xml_element=event)
+            # with_qualifiers = pd.merge(left=df_event, right=df_qualifiers,
+            #                            left_index=True, right_index=True, how='left')
+
             df_events = pd.concat([df_events, df_event],
                                   axis=0, ignore_index=True, sort=False)
 
         return df_events
+
+    def _get_qualifiers_for_event(self, event_xml_element):
+        qualifiers = event_xml_element.findall(stg.XML_QUALIFIER_TAG)
+        # To filter on qualifier 56
+        # qualifiers = event_xml_element.findall('{}/[@{}="56"]'.format(stg.XML_QUALIFIER_TAG, stg.QUALIFIER_COL))
+
+        df_qualifiers = pd.DataFrame({
+            stg.QUALIFIER_COL: list(map(lambda x: x.get(stg.QUALIFIER_COL), qualifiers)),
+            stg.XML_QUALIFIER_VALUE_ATTRIBUTE: list(map(lambda x: x.get(stg.XML_QUALIFIER_VALUE_ATTRIBUTE), qualifiers)),
+        })
+
+        df_in_row = df_qualifiers.set_index(stg.QUALIFIER_COL)\
+                                 .transpose()\
+                                 .reset_index(drop=True)\
+                                 .fillna('value')
+        df_in_row.columns = ['{}_{}'.format(stg.QUALIFIER_COL, col)
+                             for col in df_in_row.columns]
+
+        return df_in_row
 
     def _get_home_and_away_id(self):
         tree = etree.parse(join(stg.GAMES_DIR, self.filename))
@@ -192,7 +216,7 @@ if __name__ == '__main__':
 
     # df = game.clean_data()
 
-    toto = game._get_teams_start_list()
-    subs = game._get_substitutions()
-    df = game.get_play_time_by_player()
-    toto = game.clean_game_data()
+    # toto = game._get_teams_start_list()
+    # subs = game._get_substitutions()
+    # df = game.get_play_time_by_player()
+    # toto = game.clean_game_data()
