@@ -130,10 +130,10 @@ PLAYER_FEATURES = ['team_id']\
     + ['t_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\
 
 PLAYER_MODEL_NAME = 'player_model.pkl'
-PLAYER_TPOT_FILENAME = 'player_tpot.py'
+PLAYER_TPOT_FILENAME = 'tpot_player.py'
 # ---------------
-BOOL_TPOT_PLAYER = False
-PLAYER_TPOT_LIMIT_TIME = 3 * 24 * 60 + 5 * 60
+BOOL_TPOT_PLAYER = True
+PLAYER_TPOT_LIMIT_TIME = 6 * 24 * 60 + 12 * 60
 
 PLAYER_MODEL_TYPE = 'rf_classif'
 BOOL_TRAIN_PLAYER_MODEL = True
@@ -199,10 +199,10 @@ NEXT_TEAM_FEATURES = ['{}_lag{}'.format(col, lag)
                       for col in NEXT_TEAM_COLS_TO_LAG_FOR_FEATS]
 
 NEXT_TEAM_MODEL_NAME = 'next_team_model.pkl'
-NEXT_TEAM_TPOT_FILENAME = 'next_team_tpot.py'
+NEXT_TEAM_TPOT_FILENAME = 'tpot_next_team.py'
 # ---------------
 BOOL_TPOT_NEXT_TEAM = True
-NEXT_TEAM_TPOT_LIMIT_TIME = 3 * 24 * 60 + 5 * 60
+NEXT_TEAM_TPOT_LIMIT_TIME = 6 * 24 * 60 + 12 * 60
 
 NEXT_TEAM_MODEL_TYPE = 'xgb_classif'
 BOOL_TRAIN_NEXT_TEAM_MODEL = True
@@ -268,7 +268,7 @@ Y_PROJ_TPOT_FILENAME = 'coords_y_tpot.py'
 
 # ---------------
 BOOL_TPOT_COORDS = True
-COORDS_TPOT_LIMIT_TIME = (3 * 24 * 60 + 5 * 60) / 2
+COORDS_TPOT_LIMIT_TIME = (6 * 24 * 60 + 12 * 60) / 2
 
 COORDS_MODEL_TYPE = 'rf_reg'
 BOOL_TRAIN_COORDS_MODEL = True
