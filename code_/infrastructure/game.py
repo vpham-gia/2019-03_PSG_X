@@ -172,7 +172,11 @@ class Game():
         return df[[col for col in list_cols if col in df.columns]]
 
     def _gather_events(self):
-        tree = etree.parse(join(stg.GAMES_DIR, self.filename))
+        try:
+            tree = etree.parse(join(stg.GAMES_DIR, self.filename))
+        except OSError:
+            tree = etree.parse(self.filename)
+
         df_events = pd.DataFrame()
 
         for event in tree.xpath(stg.XML_PATH_TO_EVENTS):
@@ -206,7 +210,11 @@ class Game():
         return df_in_row
 
     def _get_home_and_away_id(self):
-        tree = etree.parse(join(stg.GAMES_DIR, self.filename))
+        try:
+            tree = etree.parse(join(stg.GAMES_DIR, self.filename))
+        except OSError:
+            tree = etree.parse(self.filename)
+
         game_info = tree.xpath(stg.XML_PATH_TO_GAME_INFO)[0]
         return game_info.get('home_team_id'), game_info.get('away_team_id')
 

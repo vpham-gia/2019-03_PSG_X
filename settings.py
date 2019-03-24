@@ -129,7 +129,9 @@ PLAYER_FEATURES = ['team_id']\
     + ['t_{}_success_rate'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
     + ['t_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\
 
-PLAYER_MODEL_NAME = 'player_model.pkl'
+PLAYER_FEATURES_MEDIAN_FILENAME = 'player_model_missing_values.joblib'
+
+PLAYER_MODEL_NAME = 'player_model.joblib'
 PLAYER_TPOT_FILENAME = 'tpot_player.py'
 # ---------------
 BOOL_TPOT_PLAYER = True
@@ -198,7 +200,8 @@ NEXT_TEAM_FEATURES = ['{}_lag{}'.format(col, lag)
                       for lag in NEXT_EVENT_LAGS
                       for col in NEXT_TEAM_COLS_TO_LAG_FOR_FEATS]
 
-NEXT_TEAM_MODEL_NAME = 'next_team_model.pkl'
+NEXT_TEAM_CAT_PROJ_NAME = 'next_team_cat_proj_lag{lag}.joblib'
+NEXT_TEAM_MODEL_NAME = 'next_team_model.joblib'
 NEXT_TEAM_TPOT_FILENAME = 'tpot_next_team.py'
 # ---------------
 BOOL_TPOT_NEXT_TEAM = True
@@ -255,16 +258,18 @@ X_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, X_PROJECTED_COL]
 X_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in X_PROJ_COLS_TO_LAG_FOR_FEATS]
-X_PROJ_MODEL_NAME = 'coords_x_proj_model.pkl'
-X_PROJ_TPOT_FILENAME = 'coords_x_tpot.py'
+X_PROJ_CAT_PROJ_NAME = 'coords_x_cat_proj_lag{lag}.joblib'
+X_PROJ_MODEL_NAME = 'coords_x_proj_model.joblib'
+X_PROJ_TPOT_FILENAME = 'tpot_coords_x.py'
 
 Y_PROJ_TARGET = Y_PROJECTED_COL
 Y_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, Y_PROJECTED_COL]
 Y_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in Y_PROJ_COLS_TO_LAG_FOR_FEATS]
-Y_PROJ_MODEL_NAME = 'coords_y_proj_model.pkl'
-Y_PROJ_TPOT_FILENAME = 'coords_y_tpot.py'
+Y_PROJ_CAT_PROJ_NAME = 'coords_y_cat_proj_lag{lag}.joblib'
+Y_PROJ_MODEL_NAME = 'coords_y_proj_model.joblib'
+Y_PROJ_TPOT_FILENAME = 'tpot_coords_y.py'
 
 # ---------------
 BOOL_TPOT_COORDS = True

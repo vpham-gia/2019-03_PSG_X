@@ -249,6 +249,41 @@ class StatsGameAnalyzer():
 
         return df_game_stats
 
+    def build_stats_for_test_set(self, df_15_min, **kwargs):
+        """Build dataset from cleaned events game in test set.
+
+        Parameters
+        ----------
+        df_15_min: pandas.DataFrame
+            Cleaned dataframe with all events within 15 minutes
+
+        Returns
+        -------
+        df_stats: pandas.DataFrame
+            Dataframe to make predictions on
+
+        """
+        df_players = df_15_min.query('{} == "1"'.format(stg.PLAYER_COL))\
+                              .filter(items=[stg.PLAYER_COL, stg.TEAM_COL])\
+                              .drop_duplicates()
+
+        df_player_stats = self._get_agg_stats(df_with_events=df_15_min, agg_column=stg.PLAYER_COL, **kwargs)
+        df_player_stats.columns = ['p_{}'.format(col) if col != stg.PLAYER_COL else col
+                                   for col in df_player_stats.columns]
+
+        df_team_stats = self._get_agg_stats(df_with_events=df_15_min, agg_column=stg.TEAM_COL, **kwargs)
+        df_team_stats.columns = ['t_{}'.format(col) if col != stg.TEAM_COL else col
+                                 for col in df_team_stats.columns]
+
+        df_player_info = self._build_dataset_from_bool_columns(df_with_events=df_15_min)
+
+        df_stats = df_players.merge(right=df_player_info, on=stg.PLAYER_COL, how='left')\
+                             .merge(right=df_player_stats, on=stg.PLAYER_COL, how='left')\
+                             .merge(right=df_team_stats, on=stg.TEAM_COL, how='left')
+        df_stats.fillna({col: 0 for col in df_stats.columns if col.endswith('_nb')},
+                        inplace=True)
+        return df_stats
+
     def _get_info_on_15_minutes(self, period, start_in_min, **kwargs):
         df_15_min = self.game.query('{start}*60 <= {col} <= ({start}+15)*60'.format(start=start_in_min,
                                                                                     col=stg.GAME_TIME_COL))\
@@ -270,7 +305,6 @@ class StatsGameAnalyzer():
         df_team_stats.columns = ['t_{}'.format(col) if col != stg.TEAM_COL else col
                                  for col in df_team_stats.columns]
 
-        # TODO: add other method to compute stats from column
         df_player_info = self._build_dataset_from_bool_columns(df_with_events=df_15_min)
 
         df_all_stats = df_players.merge(right=df_player_info, on=stg.PLAYER_COL, how='left')\
@@ -399,8 +433,6 @@ class StatsGameAnalyzer():
                                                  stg.ASSIST_COL: '0'})\
                                   .assign(**{stg.KEYPASS_COL: lambda x: x[stg.KEYPASS_COL].apply(int),
                                              stg.ASSIST_COL: lambda x: x[stg.ASSIST_COL].apply(int)})
-        # game_data.fillna(value={stg.KEYPASS_COL: '0', stg.ASSIST_COL: '0'},
-        #                  inplace=True)
 
         return game_data.dropna().reset_index(drop=True)
 

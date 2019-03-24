@@ -22,7 +22,7 @@ logging.info('Load data ..')
 sfha = SeasonFirstHalfAggregator(saved_filename=stg.FILENAME_STATS_AGGREGATED)
 df = sfha.build_players_stats_dataset(sliding_interval_min=5,
                                       list_events_number=stg.EVENTS_COMPUTE_NUMBER,
-                                      list_events_with_success_rate=stg.EVENTS_COMPUTE_SUCCESS_RATE,)
+                                      list_events_with_success_rate=stg.EVENTS_COMPUTE_SUCCESS_RATE)
 logging.info('.. Done')
 
 logging.info('Data quality check ..')
