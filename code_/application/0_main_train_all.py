@@ -45,19 +45,16 @@ if check == 'y':
     logging.info('Step 1 - Fit and save pipeline to predict players..')
     player_pipeline = make_pipeline(
         make_union(
-            make_pipeline(
-                FastICA(tol=0.4),
-                ZeroCount()
-            ),
+            FastICA(tol=0.8500000000000001),
             FunctionTransformer(copy)
         ),
-        ExtraTreesClassifier(bootstrap=False, criterion="gini", max_features=0.15000000000000002, min_samples_leaf=1, min_samples_split=2, n_estimators=100)
+        ExtraTreesClassifier(bootstrap=False, criterion="gini", max_features=0.1, min_samples_leaf=1, min_samples_split=2, n_estimators=100)
     )
     player_pipeline.fit(X_player, y_player)
     logging.debug('Step 1 - Fit ok')
 
-    file_size, compress_nb = 0, 0
-    while file_size > 50000000 or file_size == 0:
+    file_size, compress_nb = 0, 9
+    while (file_size > 50000000 or file_size == 0) and compress_nb <= 9:
         logging.debug('Step 1 - Compression option {} | Model size: {}'.format(compress_nb, file_size / 1000000))
         dump(player_pipeline, join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME), compress=compress_nb)
         file_size = getsize(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))

@@ -20,6 +20,7 @@ update-checker = "*"
 tqdm = "*"
 stopit = "*"
 tpot = "*"
+lz4 = "*"
 
 [requires]
 python_version = "3.5"
