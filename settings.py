@@ -134,12 +134,12 @@ PLAYER_FEATURES_MEDIAN_FILENAME = 'player_model_missing_values.joblib'
 PLAYER_MODEL_NAME = 'player_model.joblib'
 PLAYER_TPOT_FILENAME = 'tpot_player.py'
 # ---------------
-BOOL_TPOT_PLAYER = True
+BOOL_TPOT_PLAYER = False
 PLAYER_TPOT_LIMIT_TIME = 6 * 24 * 60 + 12 * 60
 
-PLAYER_MODEL_TYPE = 'rf_classif'
+PLAYER_MODEL_TYPE = 'et_classif'
 BOOL_TRAIN_PLAYER_MODEL = True
-BOOL_PLAYER_RS = False
+BOOL_PLAYER_RS = True
 # ---------------
 PLAYER_TPOT_HYPERPARAMS = {'n_jobs': 3,
                            'generations': 100,
@@ -150,6 +150,11 @@ PLAYER_TPOT_HYPERPARAMS = {'n_jobs': 3,
                            'max_time_mins': PLAYER_TPOT_LIMIT_TIME}
 PLAYER_MODELS_HYPERPARAMS = {
     'base': {
+        'et_classif': {
+            'n_estimators': 100,
+            'n_jobs': 1,
+            'max_depth': 15
+        },
         'rf_classif': {
             'n_estimators': 500,
             'n_jobs': 1,
@@ -165,6 +170,12 @@ PLAYER_MODELS_HYPERPARAMS = {
         }
     },
     'random_search': {
+        'et_classif': {
+            'n_estimators': [50, 100, 200, 500],
+            'max_features': [None, 'sqrt', 10, 15, 20],
+            'max_depth': [None, 4, 8, 10, 12, 15],
+            'criterion': ['gini', 'entropy']
+        },
         'rf_classif': {
             'n_estimators': [50, 100, 200, 500],
             'max_features': [None, 'sqrt', 10, 15, 20],

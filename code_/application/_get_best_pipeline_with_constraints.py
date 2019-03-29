@@ -42,7 +42,7 @@ for nb in range(20, 100, 5):
 
     player_pipeline = make_pipeline(
         make_union(
-            FastICA(tol=0.4),
+            FastICA(tol=0.85),
             FunctionTransformer(copy)
         ),
         ExtraTreesClassifier(n_estimators=nb,
