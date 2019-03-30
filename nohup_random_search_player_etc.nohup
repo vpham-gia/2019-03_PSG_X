@@ -1,0 +1,89 @@
+
+
+Number of obserations: 44057
+Number after dropna(): 43221
+
+
+           nb_observations
+player_id                 
+28146                  119
+12400                  119
+218705                 121
+37852                  122
+10955                  123
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/externals/loky/backend/utils.py:55: UserWarning: Failed to kill subprocesses on this platform. Pleaseinstall psutil: https://github.com/giampaolo/psutil
+  warnings.warn("Failed to kill subprocesses on this platform. Please"
+sklearn.externals.joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/externals/loky/process_executor.py", line 418, in _process_worker
+    r = call_item()
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/externals/loky/process_executor.py", line 272, in __call__
+    return self.fn(*self.args, **self.kwargs)
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/_parallel_backends.py", line 567, in __call__
+    return self.func(*args, **kwargs)
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/parallel.py", line 225, in __call__
+    for func, args, kwargs in self.items]
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/parallel.py", line 225, in <listcomp>
+    for func, args, kwargs in self.items]
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/model_selection/_validation.py", line 528, in _fit_and_score
+    estimator.fit(X_train, y_train, **fit_params)
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/ensemble/forest.py", line 333, in fit
+    for i, t in enumerate(trees))
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/parallel.py", line 920, in __call__
+    while self.dispatch_one_batch(iterator):
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/parallel.py", line 759, in dispatch_one_batch
+    self._dispatch(tasks)
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/parallel.py", line 716, in _dispatch
+    job = self._backend.apply_async(batch, callback=cb)
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/_parallel_backends.py", line 182, in apply_async
+    result = ImmediateResult(func)
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/_parallel_backends.py", line 549, in __init__
+    self.results = batch()
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/parallel.py", line 225, in __call__
+    for func, args, kwargs in self.items]
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/parallel.py", line 225, in <listcomp>
+    for func, args, kwargs in self.items]
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/ensemble/forest.py", line 121, in _parallel_build_trees
+    tree.fit(X, y, sample_weight=sample_weight, check_input=False)
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/tree/tree.py", line 801, in fit
+    X_idx_sorted=X_idx_sorted)
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/tree/tree.py", line 366, in fit
+    builder.build(self.tree_, X, y, sample_weight, X_idx_sorted)
+  File "sklearn/tree/_tree.pyx", line 145, in sklearn.tree._tree.DepthFirstTreeBuilder.build
+  File "sklearn/tree/_tree.pyx", line 244, in sklearn.tree._tree.DepthFirstTreeBuilder.build
+  File "sklearn/tree/_tree.pyx", line 735, in sklearn.tree._tree.Tree._add_node
+  File "sklearn/tree/_tree.pyx", line 707, in sklearn.tree._tree.Tree._resize_c
+  File "sklearn/tree/_utils.pyx", line 39, in sklearn.tree._utils.safe_realloc
+MemoryError: could not allocate 119013376 bytes
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "code_/application/1_player_prediction.py", line 61, in <module>
+    n_jobs=stg.N_JOBS)
+  File "/home/vinhpham-gia/2019-03_PSG_X/code_/domain/predictors.py", line 59, in perform_random_search_cv
+    random_search.fit(training_data[self.features], training_data[self.target])
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/model_selection/_search.py", line 722, in fit
+    self._run_search(evaluate_candidates)
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/model_selection/_search.py", line 1515, in _run_search
+    random_state=self.random_state))
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/model_selection/_search.py", line 711, in evaluate_candidates
+    cv.split(X, y, groups)))
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/parallel.py", line 930, in __call__
+    self.retrieve()
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/parallel.py", line 833, in retrieve
+    self._output.extend(job.get(timeout=self.timeout))
+  File "/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/externals/joblib/_parallel_backends.py", line 521, in wrap_future_result
+    return future.result(timeout=timeout)
+  File "/usr/local/lib/python3.5/concurrent/futures/_base.py", line 405, in result
+    return self.__get_result()
+  File "/usr/local/lib/python3.5/concurrent/futures/_base.py", line 357, in __get_result
+    raise self._exception
+MemoryError: could not allocate 119013376 bytes

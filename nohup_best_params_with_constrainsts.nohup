@@ -1,0 +1,726 @@
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/pandas/core/generic.py:6130: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._update_inplace(new_data)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)
+/home/vinhpham-gia/.local/share/virtualenvs/2019-03_PSG_X-LKtu43O3/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py:98: FutureWarning: The default validate=True will be replaced by validate=False in 0.22.
+  "validate=False in 0.22.", FutureWarning)

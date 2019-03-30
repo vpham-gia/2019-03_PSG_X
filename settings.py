@@ -292,7 +292,7 @@ COORDS_MODEL_TYPE = 'rf_reg'
 BOOL_TRAIN_COORDS_MODEL = True
 BOOL_COORDS_RS = False
 # ---------------
-COORDS_TPOT_HYPERPARAMS = {'n_jobs': 3, 'generations': 100, 'verbosity': 2,
+COORDS_TPOT_HYPERPARAMS = {'n_jobs': 4, 'generations': 100, 'verbosity': 2,
                            'population_size': 100, 'cv': 3, 'random_state': 42,
                            'config_dict': stg_tpot.regressor_config_dict,
                            'max_time_mins': COORDS_TPOT_LIMIT_TIME}
