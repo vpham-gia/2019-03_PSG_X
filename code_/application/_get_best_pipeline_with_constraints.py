@@ -29,53 +29,55 @@ train, test = train_test_split(df, test_size=0.3, random_state=42)
 logging.info('.. Done')
 
 df_nb_trees_characteristics = pd.DataFrame(columns=['ntree', 'file_size_mo', 'load_time', 'accuracy_test_set', 'compression'])
-for nb in range(20, 100, 5):
-    logging.info('Pipeline ntree {} ..'.format(nb))
+for nb in range(50, 101, 5):
+    for depth in range(15, 21, 1):
+        logging.info('Pipeline ntree {} ..'.format(depth))
 
-    X_train, y_train = train[stg.PLAYER_FEATURES], train[stg.PLAYER_TARGET]
-    X_test, y_test = test[stg.PLAYER_FEATURES], test[stg.PLAYER_TARGET]
+        X_train, y_train = train[stg.PLAYER_FEATURES], train[stg.PLAYER_TARGET]
+        X_test, y_test = test[stg.PLAYER_FEATURES], test[stg.PLAYER_TARGET]
 
-    logging.debug('Impute missing values with median ..')
-    X_test.fillna(X_train.median(), inplace=True)
-    X_train.fillna(X_train.median(), inplace=True)
-    logging.debug('.. Done')
+        logging.debug('Impute missing values with median ..')
+        X_test.fillna(X_train.median(), inplace=True)
+        X_train.fillna(X_train.median(), inplace=True)
+        logging.debug('.. Done')
 
-    player_pipeline = make_pipeline(
-        make_union(
-            FastICA(tol=0.85),
-            FunctionTransformer(copy)
-        ),
-        ExtraTreesClassifier(n_estimators=nb,
-                             bootstrap=False, criterion="gini", max_features=0.1,
-                             min_samples_leaf=1, min_samples_split=2)
-    )
+        player_pipeline = make_pipeline(
+            make_union(
+                FastICA(tol=0.85),
+                FunctionTransformer(copy)
+            ),
+            ExtraTreesClassifier(n_estimators=nb, max_depth=depth,
+                                 bootstrap=False, criterion="gini", max_features=0.1,
+                                 min_samples_leaf=1, min_samples_split=2)
+        )
 
-    player_pipeline.fit(X_train, y_train)
-    logging.debug('Fit ok')
+        player_pipeline.fit(X_train, y_train)
+        logging.debug('Fit ok')
 
-    pred_pipeline = player_pipeline.predict(X_test)
-    pa_pipeline = PerformanceAnalyzer(y_true=y_test, y_pred=pred_pipeline)
-    acc_pipeline = pa_pipeline.compute_classification_accuracy()
+        pred_pipeline = player_pipeline.predict(X_test)
+        pa_pipeline = PerformanceAnalyzer(y_true=y_test, y_pred=pred_pipeline)
+        acc_pipeline = pa_pipeline.compute_classification_accuracy()
 
-    for compression in range(1, 10):
-        dump(player_pipeline, join(stg.MODELS_DIR, 'tmp_player_pipeline.joblib'),
-             compress=('lz4', compression))
-        logging.debug('Dump ok')
+        for compression in range(3, 4):
+            dump(player_pipeline, join(stg.MODELS_DIR, 'tmp_player_pipeline.joblib'),
+                 compress=('lz4', compression))
+            logging.debug('Dump ok')
 
-        load_start = time()
-        _ = load(join(stg.MODELS_DIR, 'tmp_player_pipeline.joblib'))
-        load_time = time() - load_start
+            load_start = time()
+            _ = load(join(stg.MODELS_DIR, 'tmp_player_pipeline.joblib'))
+            load_time = time() - load_start
 
-        df_nb = pd.DataFrame({'ntree': nb,
-                              'file_size_mo': getsize(join(stg.MODELS_DIR, 'tmp_player_pipeline.joblib')) / 1000000,
-                              'load_time': load_time,
-                              'accuracy_test_set': acc_pipeline,
-                              'compression': compression},
-                             index=[0])
+            df_nb = pd.DataFrame({'ntree': nb, 'max_depth': depth,
+                                  'file_size_mo': getsize(join(stg.MODELS_DIR, 'tmp_player_pipeline.joblib')) / 1000000,
+                                  'load_time': load_time,
+                                  'accuracy_test_set': acc_pipeline,
+                                  'compression': compression},
+                                 index=[0])
 
-        df_nb_trees_characteristics = pd.concat(objs=[df_nb_trees_characteristics, df_nb],
-                                                axis=0, ignore_index=True, sort=False)
-        df_nb_trees_characteristics.to_csv(join(stg.OUTPUTS_DIR, '2019-03-29_etc_tests_for_constraints.csv'))
-    logging.info('.. Done')
+            df_nb_trees_characteristics = pd.concat(objs=[df_nb_trees_characteristics, df_nb],
+                                                    axis=0, ignore_index=True, sort=False)
+            df_nb_trees_characteristics.to_csv(join(stg.OUTPUTS_DIR, '2019-03-30_etc_tests_for_constraints.csv'),
+                                               index=False)
+        logging.info('.. Done')
 
 logging.info('End of script {}'.format(basename(__file__)))
