@@ -2,12 +2,13 @@ from copy import copy
 from os.path import join, basename, splitext, getsize
 from sklearn.decomposition import FastICA
 from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.externals.joblib import dump
+from sklearn.externals.joblib import dump, load
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.pipeline import make_pipeline, make_union
 from sklearn.tree import DecisionTreeClassifier
-from tpot.builtins import StackingEstimator, ZeroCount
+from time import time
+from tpot.builtins import StackingEstimator
 from sklearn.preprocessing import FunctionTransformer
 from xgboost import XGBRegressor
 
@@ -45,23 +46,33 @@ if check == 'y':
     logging.info('Step 1 - Fit and save pipeline to predict players..')
     player_pipeline = make_pipeline(
         make_union(
-            FastICA(tol=0.8500000000000001),
+            FastICA(tol=0.85),
             FunctionTransformer(copy)
         ),
-        ExtraTreesClassifier(bootstrap=False, criterion="gini", max_features=0.1, min_samples_leaf=1, min_samples_split=2, n_estimators=100)
+        ExtraTreesClassifier(n_estimators=65, max_depth=19, bootstrap=False,
+                             criterion="gini", max_features=0.1,
+                             min_samples_leaf=1, min_samples_split=2)
     )
     player_pipeline.fit(X_player, y_player)
     logging.debug('Step 1 - Fit ok')
 
-    file_size, compress_nb = 0, 9
-    while (file_size > 50000000 or file_size == 0) and compress_nb <= 9:
-        logging.debug('Step 1 - Compression option {} | Model size: {}'.format(compress_nb, file_size / 1000000))
-        dump(player_pipeline, join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME), compress=compress_nb)
-        file_size = getsize(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
-        compress_nb += 1
+    # file_size, compress_nb = 0, 9
+    # while (file_size > 5e6 or file_size == 0) and compress_nb <= 9:
+    #     logging.debug('Step 1 - Compression option {} | Model size: {}'.format(compress_nb, file_size / 1e6))
+    #     dump(player_pipeline, join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME),
+    #          compress=('lz4', compress_nb))
+    #     file_size = getsize(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
+    #     compress_nb += 1
+    dump(player_pipeline, join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME),
+         compress=('lz4', 9))
+    file_size = getsize(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
+    logging.debug('Step 1 - Final compression: model size {}'.format(file_size / 1e6))
 
-    logging.debug('Final compression: compression option {} | Model size: {}'.format(compress_nb - 1,
-                                                                                     file_size / 1000000))
+    load_start = time()
+    _ = load(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
+    load_time = time() - load_start
+    logging.debug('Step 1 - Load time: {}'.format(load_time))
+
     logging.info('Step 1 - .. Done')
 
     logging.info('Step 1 - Done')
@@ -95,7 +106,15 @@ if check == 'y':
     next_team_pipeline.fit(X_team, y_team)
     logging.debug('Step 2 - Fit ok')
     dump(next_team_pipeline, join(stg.MODELS_DIR, stg.NEXT_TEAM_MODEL_NAME),
-         compress=1)
+         compress=('lz4', 3))
+
+    file_size = getsize(join(stg.MODELS_DIR, stg.NEXT_TEAM_MODEL_NAME))
+    logging.debug('Step 2 - Final compression: model size {}'.format(file_size / 1e6))
+
+    load_start = time()
+    _ = load(join(stg.MODELS_DIR, stg.NEXT_TEAM_MODEL_NAME))
+    load_time = time() - load_start
+    logging.debug('Step 2 - Load time: {}'.format(load_time))
     logging.info('Step 2 - .. Done')
 
     logging.info('Step 2 - Done')
@@ -137,8 +156,20 @@ if check == 'y':
     yproj_pipeline.fit(X_ycoords, y_ycoords)
     logging.debug('Step 3 - Fit ok')
 
-    dump(xproj_pipeline, join(stg.MODELS_DIR, stg.X_PROJ_MODEL_NAME), compress=0)
-    dump(yproj_pipeline, join(stg.MODELS_DIR, stg.Y_PROJ_MODEL_NAME), compress=0)
+    dump(xproj_pipeline, join(stg.MODELS_DIR, stg.X_PROJ_MODEL_NAME), compress=('lz4', 3))
+    dump(yproj_pipeline, join(stg.MODELS_DIR, stg.Y_PROJ_MODEL_NAME), compress=('lz4', 3))
+
+    file_size_xproj = getsize(join(stg.MODELS_DIR, stg.X_PROJ_MODEL_NAME))
+    file_size_yproj = getsize(join(stg.MODELS_DIR, stg.Y_PROJ_MODEL_NAME))
+    logging.debug('Step 3 - Final compression: X_proj model size {} | Y_proj model size {}'
+                  .format(file_size_xproj / 1e6, file_size_yproj / 1e6))
+
+    load_start = time()
+    _ = load(join(stg.MODELS_DIR, stg.X_PROJ_MODEL_NAME))
+    _ = load(join(stg.MODELS_DIR, stg.Y_PROJ_MODEL_NAME))
+    load_time = time() - load_start
+    logging.debug('Step 3 - Load time both (x, y): {}'.format(load_time))
+
     logging.info('Step 3 - .. Done')
     logging.info('Step 3 - Done')
     logging.info('--------------------------------')
