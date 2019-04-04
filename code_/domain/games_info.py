@@ -370,6 +370,7 @@ class StatsGameAnalyzer():
     def _count_number_by_player_and_col(self, df, column):
         df_number = df.groupby(stg.PLAYER_COL)\
                       .agg({column: 'sum'})\
+                      .astype(int)\
                       .rename(columns={column: 'nb_{}'.format(column)})
         return df_number
 
