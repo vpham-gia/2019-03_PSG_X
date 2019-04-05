@@ -26,7 +26,7 @@ def Result(xml_filename='assignment/cleaned_test_set.xml'):
     p1.join()
     p2.join()
 
-    with open('./res_psgx_vinh_phamgia.csv', mode='w') as result_file:
+    with open('./res_psgx.csv', mode='w') as result_file:
         prediction_writer = csv.writer(result_file, delimiter=',',
                                        quoting=csv.QUOTE_MINIMAL)
         prediction_writer.writerow([int(predicted_player.value),

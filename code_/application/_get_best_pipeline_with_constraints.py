@@ -18,7 +18,7 @@ import settings as stg
 
 if __name__ == '__main__':
     stg.enable_logging(log_filename='{}.log'.format(splitext(basename(__file__))[0]),
-                       logging_level=logging.DEBUG)
+                       logging_level=logging.INFO)
 
 logging.info('Load data ..')
 sfha = SeasonFirstHalfAggregator(saved_filename=stg.FILENAME_STATS_AGGREGATED)
@@ -31,19 +31,19 @@ logging.info('.. Done')
 df_nb_trees_characteristics = pd.DataFrame(columns=['ntree', 'file_size_mo', 'load_time', 'accuracy_test_set', 'compression'])
 for nb in range(50, 101, 5):
     for depth in range(15, 21, 1):
-        logging.info('Pipeline ntree {} ..'.format(depth))
+        logging.info('Pipeline - ntree {}, depth {} ..'.format(nb, depth))
 
         X_train, y_train = train[stg.PLAYER_FEATURES], train[stg.PLAYER_TARGET]
         X_test, y_test = test[stg.PLAYER_FEATURES], test[stg.PLAYER_TARGET]
 
-        logging.debug('Impute missing values with median ..')
+        logging.debug('.. Impute missing values with median ..')
         X_test.fillna(X_train.median(), inplace=True)
         X_train.fillna(X_train.median(), inplace=True)
-        logging.debug('.. Done')
+        logging.debug('.. .. Done')
 
         player_pipeline = make_pipeline(
             make_union(
-                FastICA(tol=0.85),
+                FastICA(tol=0.4),
                 FunctionTransformer(copy)
             ),
             ExtraTreesClassifier(n_estimators=nb, max_depth=depth,
@@ -52,16 +52,16 @@ for nb in range(50, 101, 5):
         )
 
         player_pipeline.fit(X_train, y_train)
-        logging.debug('Fit ok')
+        logging.debug('.. Fit ok')
 
         pred_pipeline = player_pipeline.predict(X_test)
         pa_pipeline = PerformanceAnalyzer(y_true=y_test, y_pred=pred_pipeline)
         acc_pipeline = pa_pipeline.compute_classification_accuracy()
 
-        for compression in range(3, 4):
+        for compression in range(9, 10):
             dump(player_pipeline, join(stg.MODELS_DIR, 'tmp_player_pipeline.joblib'),
                  compress=('lz4', compression))
-            logging.debug('Dump ok')
+            logging.debug('.. Dump ok')
 
             load_start = time()
             _ = load(join(stg.MODELS_DIR, 'tmp_player_pipeline.joblib'))
@@ -76,7 +76,7 @@ for nb in range(50, 101, 5):
 
             df_nb_trees_characteristics = pd.concat(objs=[df_nb_trees_characteristics, df_nb],
                                                     axis=0, ignore_index=True, sort=False)
-            df_nb_trees_characteristics.to_csv(join(stg.OUTPUTS_DIR, '2019-03-30_etc_tests_for_constraints.csv'),
+            df_nb_trees_characteristics.to_csv(join(stg.OUTPUTS_DIR, '2019-04-05_etc_tests_for_constraints_fastica04.csv'),
                                                index=False)
         logging.info('.. Done')
 
