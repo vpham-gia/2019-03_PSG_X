@@ -39,3 +39,13 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install pipenv
 pipenv install -r requirements.txt
+-----------------------
+# Install LightGBM
+brew install libomp
+
+git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
+export CXX=g++-8 CC=gcc-8
+mkdir build ; cd build
+cmake ..
+make -j4
+pipenv install --no-binary :all: lightgbm

@@ -4,6 +4,9 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+lightgbm = "*"
+tensorflow = "*"
+keras = "*"
 
 [packages]
 ipdb = "==0.11"

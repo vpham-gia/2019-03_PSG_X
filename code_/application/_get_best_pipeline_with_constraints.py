@@ -29,8 +29,8 @@ train, test = train_test_split(df, test_size=0.3, random_state=42)
 logging.info('.. Done')
 
 df_nb_trees_characteristics = pd.DataFrame(columns=['ntree', 'file_size_mo', 'load_time', 'accuracy_test_set', 'compression'])
-for nb in range(50, 101, 5):
-    for depth in range(15, 21, 1):
+for nb in range(60, 151, 5):
+    for depth in range(15, 25, 1):
         logging.info('Pipeline - ntree {}, depth {} ..'.format(nb, depth))
 
         X_train, y_train = train[stg.PLAYER_FEATURES], train[stg.PLAYER_TARGET]
@@ -41,15 +41,18 @@ for nb in range(50, 101, 5):
         X_train.fillna(X_train.median(), inplace=True)
         logging.debug('.. .. Done')
 
-        player_pipeline = make_pipeline(
-            make_union(
-                FastICA(tol=0.4),
-                FunctionTransformer(copy)
-            ),
-            ExtraTreesClassifier(n_estimators=nb, max_depth=depth,
-                                 bootstrap=False, criterion="gini", max_features=0.1,
-                                 min_samples_leaf=1, min_samples_split=2)
-        )
+        # player_pipeline = make_pipeline(
+        #     make_union(
+        #         FastICA(tol=0.4),
+        #         FunctionTransformer(copy)
+        #     ),
+        #     ExtraTreesClassifier(n_estimators=nb, max_depth=depth,
+        #                          bootstrap=False, criterion="gini", max_features=0.1,
+        #                          min_samples_leaf=1, min_samples_split=2)
+        # )
+        player_pipeline = ExtraTreesClassifier(n_estimators=nb, max_depth=depth,
+                                               bootstrap=False, criterion="gini", max_features=0.1,
+                                               min_samples_leaf=1, min_samples_split=2)
 
         player_pipeline.fit(X_train, y_train)
         logging.debug('.. Fit ok')
@@ -68,7 +71,7 @@ for nb in range(50, 101, 5):
             load_time = time() - load_start
 
             df_nb = pd.DataFrame({'ntree': nb, 'max_depth': depth,
-                                  'file_size_mo': getsize(join(stg.MODELS_DIR, 'tmp_player_pipeline.joblib')) / 1000000,
+                                  'file_size_mo': getsize(join(stg.MODELS_DIR, 'tmp_player_pipeline.joblib')) / 1e6,
                                   'load_time': load_time,
                                   'accuracy_test_set': acc_pipeline,
                                   'compression': compression},
@@ -76,7 +79,7 @@ for nb in range(50, 101, 5):
 
             df_nb_trees_characteristics = pd.concat(objs=[df_nb_trees_characteristics, df_nb],
                                                     axis=0, ignore_index=True, sort=False)
-            df_nb_trees_characteristics.to_csv(join(stg.OUTPUTS_DIR, '2019-04-05_etc_tests_for_constraints_fastica04.csv'),
+            df_nb_trees_characteristics.to_csv(join(stg.OUTPUTS_DIR, '2019-04-05_etc_alone_tests_for_constraints.csv'),
                                                index=False)
         logging.info('.. Done')
 
