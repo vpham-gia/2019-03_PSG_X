@@ -41,18 +41,15 @@ for nb in range(60, 151, 5):
         X_train.fillna(X_train.median(), inplace=True)
         logging.debug('.. .. Done')
 
-        # player_pipeline = make_pipeline(
-        #     make_union(
-        #         FastICA(tol=0.4),
-        #         FunctionTransformer(copy)
-        #     ),
-        #     ExtraTreesClassifier(n_estimators=nb, max_depth=depth,
-        #                          bootstrap=False, criterion="gini", max_features=0.1,
-        #                          min_samples_leaf=1, min_samples_split=2)
-        # )
-        player_pipeline = ExtraTreesClassifier(n_estimators=nb, max_depth=depth,
-                                               bootstrap=False, criterion="gini", max_features=0.1,
-                                               min_samples_leaf=1, min_samples_split=2)
+        player_pipeline = make_pipeline(
+            make_union(
+                FastICA(tol=0.85),
+                FunctionTransformer(copy)
+            ),
+            ExtraTreesClassifier(n_estimators=nb, max_depth=depth,
+                                 bootstrap=False, criterion="gini", max_features=0.1,
+                                 min_samples_leaf=1, min_samples_split=2)
+        )
 
         player_pipeline.fit(X_train, y_train)
         logging.debug('.. Fit ok')
