@@ -25,55 +25,101 @@ python /path_to_script/script.py
 ```
 
 ### Used packages
+Packages used to produce such code include:
+- development packages (ipdb, ipython, jedi, ipython_genutils)
+- numpy
+- pandas
+- lxml
+- sklearn
+- xgboost
+- tpot (with dependencies: deap, update, tqdm, stopit)
+- lz4
+
+Other models (LightGBM, Neural Networks) have been tried as well but provide worse results.
 
 ### Code architecture
-#### Global project (could be found on git repo)
-The code of the project uses the Domain Driven Design architecture (DDD), which is one of the main references for projects to be industrialized and easily adaptable. Domain Driven Design includes 4 layers (infrastructure, domain, application and user interface).
-
-Each layer relies on the previous ones and cannot use higher layers.
-Every layer is actually a folder with multiple python scripts and classes that interact with each other.
-
-Structure
-
-    ├─ matrix/
-    │  ├─ application/
-    │  │  └─ gather_all_schemas.py            # Script to collect all schemas from db
-    │  ├─ domain/
-    │  │  └─ geopandas_convertor.py           # Script to convert geometric elements to dataframe
-    │  ├─ infrastructure/
-    │  │  └─ postgre_connector.py             # Script to connect to PostgreSQL db
-    │  └─ interface/
-    │     ├─ docs/                            # Documentation to manage dash components
-    │     ├─ pages/                           # Pages for every available tab - each page includes front-end part with elements to display and callbacks to manage interactions between those elements
-    │     │  ├─ communes.py
-    │     │  ├─ graphiques.py
-    │     │  ├─ home.py
-    │     │  ├─ map_nro.py
-    │     │  ├─ map.py
-    │     │  ├─ reports_queries.yaml          # SQL queries used in reports.py to get the data from db
-    │     │  ├─ reports.py                    # Displays reports buttons to download main KPI - this tab uses SQL queries in reports_queries.yaml
-    │     │  └─ scenarios.py
-    │     ├─ partials/
-    │     │  ├─ header.py                     # DO NOT EDIT - Header
-    │     │  └─ menu.py                       # Side menu to add or remove tab
-    │     ├─ static/                          # DO NOT EDIT - Static elements including images, JS scripts and CSS stylesheets
-    │     ├─ app_spa.py                       # DO NOT EDIT - Example of single-page application
-    │     ├─ app.py                           # DO NOT EDIT - Main application
-    │     ├─ index.py                         # Main python file
-    │     ├─ README.md
-    │     ├─ router.py                        # Routing to pages
-    │     └─ static.py                        # DO NOT EDIT
-    ├─ settings/                              # Settings for matrix project
-    │  ├─ .env                                # Contains secret environment variables such as DATABASE_PASSWORD and MAPBOX_TOKEN
-    │  ├─ .env_template                       # .env template to be duplicated to create .env file
-    │  └─ base.py                             # Public variables to be used through all project
-    ├─ tutorials/                             # Basic documentation about Git
-    ├─ gcp_init.sh                            # INIT - Bash command lines to initialize project
-    ├─ README.md
-    └─ requirements.txt                       # INIT - Contains python packages to be installed
 #### Submission
+Submitted files include mandatory files, extracts of files to manage data, saved models.
 
-### Methodology
+The global project could be found in the below section.
+
+Detailed structure is as follow
+
+    ├─ install_psgx.py    # Script to set up environment
+    ├─ main_psgx.py       # Script to make predictions and write csv file
+    ├─ readme.txt         # Instructions and details about the code
+    ├─ ...
+    ├─ code_/
+    └─ settings.py
+
+#### Global project (could be found on git repo)
+The code of the project uses the Domain Driven Design architecture (DDD), which is one of the main references for projects to be industrialized and easily adaptable. Domain Driven Design includes 4 layers (infrastructure, domain, application and user interface).  
+N.B: this project does not require a user interface.
+
+Every layer corresponds to a folder with multiple python scripts and classes that interact with each other.
+
+Structure (only relevant files are listed below)
+
+    ├─ code_/
+    │  ├─ exploration_models/               # Scripts to try models (LightGBM, Neural Networks)
+    │  │  └─ ...
+    │  ├─ application/
+    │  │  ├─ get_best_pipeline(...).py      # Run player pipeline with different hyperparameters
+    │  │  ├─ 0_main_train_all.py            # Train all pipelines on whole datasets for 3 problems
+    │  │  ├─ 1_player_prediction.py         # Model and performance for player prediction
+    │  │  ├─ 2_next_team_prediction.py      # Model and performance for next team prediction
+    │  │  └─ 3_coordinates_predictions.py   # Model and performance for next coordinates prediction
+    │  ├─ domain/
+    │  │  ├─ data_processing.py             # Classes for Feature Engineering (transformers) and quality check
+    │  │  ├─ games_info.py                  # Classes to extract key infos from games
+    │  │  ├─ performance_analyzer.py        # Class to analyze algorithm performance
+    │  │  └─ predictors.py                  # Class to manage different types of algorithms
+    │  └─ infrastructure/
+    │     ├─ game.py                        # Class to clean game data in XML file
+    │     └─ players.py                     # Class to read players file and filter on them
+    ├─ data/
+    │  ├─ French-Ligue-One(...) /           # Folder with XML files of all games of first half of 2016-2017
+    │  └─ Noms des joueurs et IDs(...).xml  # XML file with information about players
+    ├─ logs/                                # Folder gathering all log files
+    │  └─ ...
+    ├─ models/                              # Folder with saved models
+    │  └─ ...
+    ├─ outputs/
+    │  ├─ console_logs/                     # Console logs during nohup executions
+    │  │  └─ ...
+    │  ├─ data/                             # Data saved
+    │  │  └─ ...
+    │  ├─ tpot_pipelines/                   # Output of TPOT executions
+    │  │  └─ ...
+    │  └─ ...
+    ├─ submission/                          # See above Submission section for further details
+    │  └─ ...
+    ├─ ...
+    ├─ Pipfile                              # Pipfile to set up environment with pipenv
+    ├─ Pipfile.lock                       
+    ├─ README.md
+    ├─ settings_tpot.py                     # Configuration dictionaries for TPOT algorithm
+    └─ settings.py                          # All settings needed in code
+
+
+
+
+### Methodology and models
+An iterative methodology has been used through the project.
+Iterations have been made both on features and on model complexity.
+
+#### Features
+Problem 1 - Player prediction  
+  1. Count of specific events (e.g. number of passes) by player and for corresponding team
+  2. Count success rate for passes
+  3. Number of goalkeeper events, number of shots
+  4. Number of free kicks and corners taken
+
+Problems 2 & 3 - Next team prediction & Coordinates prediction
+  1. Iteration 1 - previous event information (previous event type, previous team, previous x coordinate)  
+    - Event type is converted to float using team change rate for each event
+    - X coordinate is converted to fit home team scale
+
 #### Problem 1 - Player prediction
 #### Problem 2 - Next team prediction
 #### Problem 1 - Next coordinates prediction

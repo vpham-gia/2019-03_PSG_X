@@ -30,7 +30,7 @@ logging.info('.. Done')
 
 df_nb_trees_characteristics = pd.DataFrame(columns=['ntree', 'file_size_mo', 'load_time', 'accuracy_test_set', 'compression'])
 for nb in range(60, 151, 5):
-    for depth in range(15, 25, 1):
+    for depth in range(18, 25, 1):
         logging.info('Pipeline - ntree {}, depth {} ..'.format(nb, depth))
 
         X_train, y_train = train[stg.PLAYER_FEATURES], train[stg.PLAYER_TARGET]
@@ -76,7 +76,7 @@ for nb in range(60, 151, 5):
 
             df_nb_trees_characteristics = pd.concat(objs=[df_nb_trees_characteristics, df_nb],
                                                     axis=0, ignore_index=True, sort=False)
-            df_nb_trees_characteristics.to_csv(join(stg.OUTPUTS_DIR, '2019-04-05_etc_alone_tests_for_constraints.csv'),
+            df_nb_trees_characteristics.to_csv(join(stg.OUTPUTS_DIR, '2019-04-08_tests2_constraints_more_depth.csv'),
                                                index=False)
         logging.info('.. Done')
 

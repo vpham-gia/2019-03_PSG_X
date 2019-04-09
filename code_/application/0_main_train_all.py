@@ -49,20 +49,13 @@ if check == 'y':
             FastICA(tol=0.85),
             FunctionTransformer(copy)
         ),
-        ExtraTreesClassifier(n_estimators=65, max_depth=19, bootstrap=False,
+        ExtraTreesClassifier(n_estimators=70, max_depth=19, bootstrap=False,
                              criterion="gini", max_features=0.1,
                              min_samples_leaf=1, min_samples_split=2)
     )
     player_pipeline.fit(X_player, y_player)
     logging.debug('Step 1 - Fit ok')
 
-    # file_size, compress_nb = 0, 9
-    # while (file_size > 5e6 or file_size == 0) and compress_nb <= 9:
-    #     logging.debug('Step 1 - Compression option {} | Model size: {}'.format(compress_nb, file_size / 1e6))
-    #     dump(player_pipeline, join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME),
-    #          compress=('lz4', compress_nb))
-    #     file_size = getsize(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
-    #     compress_nb += 1
     dump(player_pipeline, join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME),
          compress=('lz4', 9))
     file_size = getsize(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
@@ -74,7 +67,7 @@ if check == 'y':
     logging.debug('Step 1 - Load time: {}'.format(load_time))
 
     logging.info('Step 1 - .. Done')
-
+    import sys; sys.exit()
     logging.info('Step 1 - Done')
     logging.info('--------------------------------')
     logging.info('Step 2 - Next team prediction ..')
