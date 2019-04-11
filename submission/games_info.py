@@ -1,6 +1,5 @@
-from os.path import basename, join, splitext
+from os.path import basename, splitext
 import logging
-import os
 import pandas as pd
 
 from game import Game

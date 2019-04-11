@@ -143,6 +143,6 @@ if __name__ == '__main__':
     #
     start = time()
     #
-    Result(xml_filename='instructions/cleaned_test_set.xml')
+    Result(xml_filename='cleaned_test_set.xml')
     #
     print('Time elapsed: {}'.format(time() - start))
