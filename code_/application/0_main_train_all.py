@@ -13,10 +13,15 @@ from sklearn.preprocessing import FunctionTransformer
 from xgboost import XGBRegressor
 
 import logging
+import os
+import sys
+
 import settings as stg
 
 from code_.domain.data_processing import CategoricalProjectorOnTeamChange, CategoricalProjectorOnAvgDistance as CatProjAvg
 from code_.domain.games_info import SeasonFirstHalfAggregator
+
+sys.path.append(os.getcwd())
 
 if __name__ == '__main__':
     stg.enable_logging(log_filename='{}.log'.format(splitext(basename(__file__))[0]),
@@ -38,8 +43,8 @@ if check == 'y':
     X_player, y_player = df[stg.PLAYER_FEATURES], df[stg.PLAYER_TARGET]
 
     logging.info('Step 1 - Impute missing values with median ..')
-    dump(X_player.median().to_dict(),
-         join(stg.MODELS_DIR, stg.PLAYER_FEATURES_MEDIAN_FILENAME))
+    dump(X_player.median().to_dict(), join(stg.MODELS_DIR, stg.PLAYER_FEATURES_MEDIAN_FILENAME))
+    dump(X_player.median().to_dict(), join(stg.SUBMISSION_DIR, stg.PLAYER_FEATURES_MEDIAN_FILENAME))
     X_player.fillna(X_player.median(), inplace=True)
     logging.info('Step 1 - .. Done')
 
@@ -56,8 +61,8 @@ if check == 'y':
     player_pipeline.fit(X_player, y_player)
     logging.debug('Step 1 - Fit ok')
 
-    dump(player_pipeline, join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME),
-         compress=('lz4', 9))
+    dump(player_pipeline, join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME), compress=('lz4', 9))
+    dump(player_pipeline, join(stg.SUBMISSION_DIR, stg.PLAYER_MODEL_NAME), compress=('lz4', 9))
     file_size = getsize(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
     logging.debug('Step 1 - Final compression: model size {}'.format(file_size / 1e6))
 
@@ -67,7 +72,7 @@ if check == 'y':
     logging.debug('Step 1 - Load time: {}'.format(load_time))
 
     logging.info('Step 1 - .. Done')
-    import sys; sys.exit()
+
     logging.info('Step 1 - Done')
     logging.info('--------------------------------')
     logging.info('Step 2 - Next team prediction ..')
@@ -80,6 +85,7 @@ if check == 'y':
 
     logging.info('Step 2 - Feature engineering ..')
     X_team, y_team = df_next_events[stg.NEXT_TEAM_FEATURES], df_next_events[stg.NEXT_TEAM_TARGET]
+    next_team_feat_eng_dict = dict()
 
     for lag in stg.NEXT_EVENT_LAGS:
         cat_proj = CategoricalProjectorOnTeamChange(cat_column_name='{}_lag{}'.format(stg.EVENT_TYPE_COL, lag),
@@ -87,6 +93,11 @@ if check == 'y':
         cat_proj.fit_transform(X_team, y_team)
         dump(cat_proj,
              join(stg.MODELS_DIR, stg.NEXT_TEAM_CAT_PROJ_NAME.format(lag=lag)))
+
+        feat_eng_lag = {'dict': cat_proj.projection_dict, 'mean': cat_proj.mean}
+        next_team_feat_eng_dict['lag{}'.format(lag)] = feat_eng_lag
+
+    dump(next_team_feat_eng_dict, join(stg.SUBMISSION_DIR, stg.NEXT_TEAM_FEAT_ENG_DICT))
     logging.info('Step 2 - .. Done')
 
     logging.info('Step 2 - Fit and save pipeline to predict next team..')
@@ -98,8 +109,8 @@ if check == 'y':
     )
     next_team_pipeline.fit(X_team, y_team)
     logging.debug('Step 2 - Fit ok')
-    dump(next_team_pipeline, join(stg.MODELS_DIR, stg.NEXT_TEAM_MODEL_NAME),
-         compress=('lz4', 3))
+    dump(next_team_pipeline, join(stg.MODELS_DIR, stg.NEXT_TEAM_MODEL_NAME), compress=('lz4', 3))
+    dump(next_team_pipeline, join(stg.SUBMISSION_DIR, stg.NEXT_TEAM_MODEL_NAME), compress=('lz4', 3))
 
     file_size = getsize(join(stg.MODELS_DIR, stg.NEXT_TEAM_MODEL_NAME))
     logging.debug('Step 2 - Final compression: model size {}'.format(file_size / 1e6))
@@ -118,18 +129,29 @@ if check == 'y':
     X_xcoords, y_xcoords = df_next_events[stg.X_PROJ_FEATURES], df_next_events[stg.X_PROJ_TARGET]
     X_ycoords, y_ycoords = df_next_events[stg.Y_PROJ_FEATURES], df_next_events[stg.Y_PROJ_TARGET]
 
+    xcoords_feat_eng_dict, ycoords_feat_eng_dict = dict(), dict()
+
     for lag in stg.NEXT_EVENT_LAGS:
         cat_proj_xcoords = CatProjAvg(cat_column_name='{}_lag{}'.format(stg.EVENT_TYPE_COL, lag),
                                       columns_to_build_avg_distance=[stg.X_PROJ_TARGET,
                                                                      '{}_lag{}'.format(stg.X_PROJ_TARGET, lag)])
         cat_proj_xcoords.fit_transform(X_xcoords, y_xcoords)
         dump(cat_proj_xcoords, join(stg.MODELS_DIR, stg.X_PROJ_CAT_PROJ_NAME.format(lag=lag)))
+        xcoords_feat_eng_lag = {'dict': cat_proj_xcoords.projection_dict,
+                                'mean': cat_proj_xcoords.mean}
+        xcoords_feat_eng_dict['lag{}'.format(lag)] = xcoords_feat_eng_lag
 
         cat_proj_ycoords = CatProjAvg(cat_column_name='{}_lag{}'.format(stg.EVENT_TYPE_COL, lag),
                                       columns_to_build_avg_distance=[stg.Y_PROJ_TARGET,
                                                                      '{}_lag{}'.format(stg.Y_PROJ_TARGET, lag)])
         cat_proj_ycoords.fit_transform(X_ycoords, y_ycoords)
         dump(cat_proj_ycoords, join(stg.MODELS_DIR, stg.Y_PROJ_CAT_PROJ_NAME.format(lag=lag)))
+        ycoords_feat_eng_lag = {'dict': cat_proj_ycoords.projection_dict,
+                                'mean': cat_proj_ycoords.mean}
+        ycoords_feat_eng_dict['lag{}'.format(lag)] = ycoords_feat_eng_lag
+
+    dump(xcoords_feat_eng_dict, join(stg.SUBMISSION_DIR, stg.X_PROJ_FEAT_ENG_DICT))
+    dump(ycoords_feat_eng_dict, join(stg.SUBMISSION_DIR, stg.Y_PROJ_FEAT_ENG_DICT))
     logging.info('Step 3 - .. Done')
 
     logging.info('Step 3 - Fit and save pipeline to predict projection of X..')
@@ -150,7 +172,9 @@ if check == 'y':
     logging.debug('Step 3 - Fit ok')
 
     dump(xproj_pipeline, join(stg.MODELS_DIR, stg.X_PROJ_MODEL_NAME), compress=('lz4', 3))
+    dump(xproj_pipeline, join(stg.SUBMISSION_DIR, stg.X_PROJ_MODEL_NAME), compress=('lz4', 3))
     dump(yproj_pipeline, join(stg.MODELS_DIR, stg.Y_PROJ_MODEL_NAME), compress=('lz4', 3))
+    dump(yproj_pipeline, join(stg.SUBMISSION_DIR, stg.Y_PROJ_MODEL_NAME), compress=('lz4', 3))
 
     file_size_xproj = getsize(join(stg.MODELS_DIR, stg.X_PROJ_MODEL_NAME))
     file_size_yproj = getsize(join(stg.MODELS_DIR, stg.Y_PROJ_MODEL_NAME))
