@@ -6,7 +6,7 @@ from time import time
 import csv
 import pandas as pd
 
-from code_.domain.games_info import StatsGameAnalyzer, NextEventInGame
+from games_info import StatsGameAnalyzer, NextEventInGame
 
 import settings as stg
 
@@ -14,13 +14,13 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
-def Result(xml_filename='assignment/cleaned_test_set.xml'):
+def Result(xml_filename='instructions/cleaned_test_set.xml'):
     """Compute result for test set."""
     predicted_player = Value('i', 12)
     predicted_next_event = Array('d', [0, 50, 50])
 
-    p1 = Process(target=predict_player, args=(predicted_player, 'assignment/cleaned_test_set.xml'))
-    p2 = Process(target=predict_next_team_and_coords, args=(predicted_next_event, 'assignment/cleaned_test_set.xml'))
+    p1 = Process(target=predict_player, args=(predicted_player, 'instructions/cleaned_test_set.xml'))
+    p2 = Process(target=predict_next_team_and_coords, args=(predicted_next_event, 'instructions/cleaned_test_set.xml'))
     p1.start()
     p2.start()
     p1.join()
@@ -36,7 +36,7 @@ def Result(xml_filename='assignment/cleaned_test_set.xml'):
                                     ])
 
 
-def predict_player(player_id, xml_filename='assignment/cleaned_test_set.xml'):
+def predict_player(player_id, xml_filename='instructions/cleaned_test_set.xml'):
     """Predict player.
 
     Parameters
@@ -56,13 +56,13 @@ def predict_player(player_id, xml_filename='assignment/cleaned_test_set.xml'):
     all_feats = pd.DataFrame(columns=stg.PLAYER_FEATURES)
     player_all_stats = pd.concat([all_feats, player_stats], axis=0, ignore_index=True, sort=False)
 
-    median_train_set = load(join(stg.MODELS_DIR, stg.PLAYER_FEATURES_MEDIAN_FILENAME))
+    median_train_set = load(stg.PLAYER_FEATURES_MEDIAN_FILENAME)
     X_test = player_all_stats.drop(labels=stg.PLAYER_COL, axis=1)\
                              .fillna({col: 0 for col in player_all_stats.columns if col.endswith('_nb')})\
                              .fillna(median_train_set)
     print('Pb 1 - After feature engineering: {}'.format(time() - start))
 
-    player_model = load(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
+    player_model = load(stg.PLAYER_MODEL_NAME)
     print('Pb 1 - After model load: {}'.format(time() - start))
 
     player_pred = player_model.predict(X_test)
@@ -71,7 +71,7 @@ def predict_player(player_id, xml_filename='assignment/cleaned_test_set.xml'):
     player_id.value = player_pred[0]
 
 
-def predict_next_team_and_coords(next_event_array, xml_filename='assignment/cleaned_test_set.xml'):
+def predict_next_team_and_coords(next_event_array, xml_filename='instructions/cleaned_test_set.xml'):
     """Predict next event characteristics.
 
     Parameters
@@ -91,33 +91,40 @@ def predict_next_team_and_coords(next_event_array, xml_filename='assignment/clea
     X_xcoords = df_events[stg.X_PROJ_FEATURES].tail(1)
     X_ycoords = df_events[stg.Y_PROJ_FEATURES].tail(1)
 
-    for lag in stg.NEXT_EVENT_LAGS:
-        X_next_event['{}_lag{}'.format(stg.EVENT_TYPE_COL, lag)] = X_next_event['{}_lag{}'.format(stg.EVENT_TYPE_COL, lag)].apply(int)
+    next_team_feat_eng_dict = load(stg.NEXT_TEAM_FEAT_ENG_DICT)
+    xcoords_feat_eng_dict = load(stg.X_PROJ_FEAT_ENG_DICT)
+    ycoords_feat_eng_dict = load(stg.Y_PROJ_FEAT_ENG_DICT)
 
-        cat_proj_team = load(join(stg.MODELS_DIR, stg.NEXT_TEAM_CAT_PROJ_NAME.format(lag=lag)))
-        cat_proj_team.transform(X_next_event)
+    for lag in stg.NEXT_EVENT_LAGS:
+        LAG_COLUMN = '{}_lag{}'.format(stg.EVENT_TYPE_COL, lag)
+        LAG_FIRST_KEY = 'lag{}'.format(lag)
+
+        X_next_event[LAG_COLUMN] = X_next_event[LAG_COLUMN].apply(int)\
+                                                           .map(next_team_feat_eng_dict[LAG_FIRST_KEY]['dict'])\
+                                                           .fillna(value=next_team_feat_eng_dict[LAG_FIRST_KEY]['mean'])
 
     print('Pb 2 - After feature engineering: {}'.format(time() - start))
 
-    next_team_model = load(join(stg.MODELS_DIR, stg.NEXT_TEAM_MODEL_NAME))
+    next_team_model = load(stg.NEXT_TEAM_MODEL_NAME)
     next_team_pred = next_team_model.predict(X_next_event)[0]
     print('Pb 2 - After model load and prediction: {}'.format(time() - start))
 
     for lag in stg.NEXT_EVENT_LAGS:
-        X_xcoords['{}_lag{}'.format(stg.EVENT_TYPE_COL, lag)] = X_xcoords['{}_lag{}'.format(stg.EVENT_TYPE_COL, lag)].apply(int)
+        LAG_COLUMN = '{}_lag{}'.format(stg.EVENT_TYPE_COL, lag)
+        LAG_FIRST_KEY = 'lag{}'.format(lag)
 
-        cat_proj_xcoords = load(join(stg.MODELS_DIR, stg.X_PROJ_CAT_PROJ_NAME.format(lag=lag)))
-        cat_proj_xcoords.transform(X_xcoords)
+        X_xcoords[LAG_COLUMN] = X_xcoords[LAG_COLUMN].apply(int)\
+                                                     .map(xcoords_feat_eng_dict[LAG_FIRST_KEY]['dict'])\
+                                                     .fillna(value=xcoords_feat_eng_dict[LAG_FIRST_KEY]['mean'])
 
-        X_ycoords['{}_lag{}'.format(stg.EVENT_TYPE_COL, lag)] = X_ycoords['{}_lag{}'.format(stg.EVENT_TYPE_COL, lag)].apply(int)
-
-        cat_proj_ycoords = load(join(stg.MODELS_DIR, stg.Y_PROJ_CAT_PROJ_NAME.format(lag=lag)))
-        cat_proj_ycoords.transform(X_ycoords)
+        X_ycoords[LAG_COLUMN] = X_ycoords[LAG_COLUMN].apply(int)\
+                                                     .map(ycoords_feat_eng_dict[LAG_FIRST_KEY]['dict'])\
+                                                     .fillna(value=ycoords_feat_eng_dict[LAG_FIRST_KEY]['mean'])
 
     print('Pb 3 - After feature engineering: {}'.format(time() - start))
 
-    xcoords_model = load(join(stg.MODELS_DIR, stg.X_PROJ_MODEL_NAME))
-    ycoords_model = load(join(stg.MODELS_DIR, stg.Y_PROJ_MODEL_NAME))
+    xcoords_model = load(stg.X_PROJ_MODEL_NAME)
+    ycoords_model = load(stg.Y_PROJ_MODEL_NAME)
 
     xcoords_along_team1 = xcoords_model.predict(X_xcoords)[0]
     ycoords_along_team1 = ycoords_model.predict(X_ycoords)[0]
@@ -132,22 +139,10 @@ def predict_next_team_and_coords(next_event_array, xml_filename='assignment/clea
 
 
 if __name__ == '__main__':
-    # player = predict_player(xml_filename='assignment/cleaned_test_set.xml')
-    # next_team, y, x = predict_next_team_and_coords(xml_filename='assignment/cleaned_test_set.xml')
+    # player = predict_player(xml_filename='instructions/cleaned_test_set.xml')
     #
     start = time()
     #
-    # player = Value('i', 12)
-    # next_event = Array('i', [0, 50, 50])
+    Result(xml_filename='instructions/cleaned_test_set.xml')
     #
-    # p1 = Process(target=predict_player, args=(player, 'assignment/cleaned_test_set.xml'))
-    # p2 = Process(target=predict_next_team_and_coords, args=(next_event, 'assignment/cleaned_test_set.xml'))
-    # p1.start()
-    # p2.start()
-    # p1.join()
-    # p2.join()
-    #
-
-    Result(xml_filename='assignment/cleaned_test_set.xml')
-
     print('Time elapsed: {}'.format(time() - start))
