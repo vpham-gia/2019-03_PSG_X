@@ -1,11 +1,12 @@
 from multiprocessing import Process, Value, Array
+from psutil import virtual_memory
 from sklearn.externals.joblib import load
-from time import time
 
 import csv
 import os
 import pandas as pd
 import sys
+import time
 
 from games_info import StatsGameAnalyzer, NextEventInGame
 
@@ -50,7 +51,7 @@ def predict_player(player_id, xml_filename='instructions/cleaned_test_set.xml'):
         Path to access test XML filename
 
     """
-    start = time()
+    start = time.time()
     sga = StatsGameAnalyzer(filename=xml_filename)
     player_stats = sga.build_stats_for_test_set(df_15_min=sga.game,
                                                 list_events_number=stg.EVENTS_COMPUTE_NUMBER,
@@ -63,13 +64,18 @@ def predict_player(player_id, xml_filename='instructions/cleaned_test_set.xml'):
     X_test = player_all_stats.drop(labels=stg.PLAYER_COL, axis=1)\
                              .fillna({col: 0 for col in player_all_stats.columns if col.endswith('_nb')})\
                              .fillna(median_train_set)
-    print('Pb 1 - After feature engineering: {}'.format(time() - start))
+    print('Pb 1 - After feature engineering: {}'.format(time.time() - start))
 
-    player_model = load(stg.PLAYER_MODEL_NAME)
-    print('Pb 1 - After model load: {}'.format(time() - start))
+    ram_go = virtual_memory().total / 1e9
+    if ram_go >= 5:
+        player_model = load(stg.PLAYER_MODEL_NAME)
+    else:
+        print('.. RAM memory lower than 5 Go - Light model loaded')
+        player_model = load(stg.PLAYER_MODEL_LIGHT_NAME)
+    print('Pb 1 - After model load: {}'.format(time.time() - start))
 
     player_pred = player_model.predict(X_test)
-    print('Pb 1 - After prediction {}'.format(time() - start))
+    print('Pb 1 - After prediction {}'.format(time.time() - start))
 
     player_id.value = player_pred[0]
 
@@ -85,7 +91,7 @@ def predict_next_team_and_coords(next_event_array, xml_filename='instructions/cl
         Path to access test XML filename
 
     """
-    start = time()
+    start = time.time()
     neig = NextEventInGame(filename=xml_filename)
     df_events = neig.build_next_event_dataset(columns_to_lag=stg.NEXT_EVENT_COLS_TO_LAG,
                                               lags_to_add=stg.NEXT_EVENT_LAGS)
@@ -106,11 +112,11 @@ def predict_next_team_and_coords(next_event_array, xml_filename='instructions/cl
                                                            .map(next_team_feat_eng_dict[LAG_FIRST_KEY]['dict'])\
                                                            .fillna(value=next_team_feat_eng_dict[LAG_FIRST_KEY]['mean'])
 
-    print('Pb 2 - After feature engineering: {}'.format(time() - start))
+    print('Pb 2 - After feature engineering: {}'.format(time.time() - start))
 
     next_team_model = load(stg.NEXT_TEAM_MODEL_NAME)
     next_team_pred = next_team_model.predict(X_next_event)[0]
-    print('Pb 2 - After model load and prediction: {}'.format(time() - start))
+    print('Pb 2 - After model load and prediction: {}'.format(time.time() - start))
 
     for lag in stg.NEXT_EVENT_LAGS:
         LAG_COLUMN = '{}_lag{}'.format(stg.EVENT_TYPE_COL, lag)
@@ -124,7 +130,7 @@ def predict_next_team_and_coords(next_event_array, xml_filename='instructions/cl
                                                      .map(ycoords_feat_eng_dict[LAG_FIRST_KEY]['dict'])\
                                                      .fillna(value=ycoords_feat_eng_dict[LAG_FIRST_KEY]['mean'])
 
-    print('Pb 3 - After feature engineering: {}'.format(time() - start))
+    print('Pb 3 - After feature engineering: {}'.format(time.time() - start))
 
     xcoords_model = load(stg.X_PROJ_MODEL_NAME)
     ycoords_model = load(stg.Y_PROJ_MODEL_NAME)
@@ -134,7 +140,7 @@ def predict_next_team_and_coords(next_event_array, xml_filename='instructions/cl
 
     xcoord_pred = next_team_pred * xcoords_along_team1 + (1 - next_team_pred) * (100 - xcoords_along_team1)
     ycoord_pred = next_team_pred * ycoords_along_team1 + (1 - next_team_pred) * (100 - ycoords_along_team1)
-    print('Pb 3 - After model load and prediction: {}'.format(time() - start))
+    print('Pb 3 - After model load and prediction: {}'.format(time.time() - start))
 
     next_event_array[0] = next_team_pred
     next_event_array[1] = ycoord_pred
@@ -142,7 +148,7 @@ def predict_next_team_and_coords(next_event_array, xml_filename='instructions/cl
 
 
 if __name__ == '__main__':
-    # start = time()
+    # start = time.time()
     # predicted_player = Value('i', 12)
     # predicted_next_event = Array('d', [0, 50, 50])
     #
@@ -160,8 +166,8 @@ if __name__ == '__main__':
     #                                 predicted_next_event[1],
     #                                 predicted_next_event[2]
     #                                 ])
-    # print('Time elapsed: {}'.format(time() - start))
+    # print('Time elapsed: {}'.format(time.time() - start))
 
-    start = time()
+    start = time.time()
     Result(xml_filename='cleaned_test_set.xml')
-    print('Time elapsed: {}'.format(time() - start))
+    print('Time elapsed: {}'.format(time.time() - start))

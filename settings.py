@@ -134,6 +134,7 @@ PLAYER_FEATURES = ['team_id']\
 PLAYER_FEATURES_MEDIAN_FILENAME = 'player_model_missing_values.joblib'
 
 PLAYER_MODEL_NAME = 'player_model.joblib'
+PLAYER_MODEL_LIGHT_NAME = 'player_model_light.joblib'
 PLAYER_TPOT_FILENAME = 'tpot_player.py'
 # ---------------
 BOOL_TPOT_PLAYER = False

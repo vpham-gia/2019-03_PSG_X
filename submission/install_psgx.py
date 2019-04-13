@@ -1,10 +1,30 @@
 import os
 
-os.system('python3.5 -m pip install --upgrade pip')
-os.system('sudo python3.5 -m pip install --upgrade pip')
+print('Installing packages..')
+print('\n')
+os.system('pip3 install --user -r requirements.txt')
+print('\n')
+print('.. Done')
 
-os.system('pip3 install --user pipenv')
-os.system('echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc')
-
-os.system('$HOME/.local/bin/pipenv install')
-os.system('$HOME/.local/bin/pipenv shell')
+# print('--------------------------------')
+# print('Installing pipenv..')
+# print('\n')
+# os.system('pip3 install --user pipenv')
+# os.system('echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc')
+# # os.system('source ~/.bashrc')
+# print('\n')
+# print('.. Done')
+#
+# print('--------------------------------')
+# print('Setting up python environment with pipenv..')
+# print('\n')
+# os.system('$HOME/.local/bin/pipenv install')
+# print('\n')
+# print('.. Done')
+#
+# print('--------------------------------')
+# print('Running pipenv shell - script could be run using python main_psgx.py')
+# print('Otherwise, exit pipenv shell and run ~/.local/bin/pipenv run python main_psgx.py')
+# print('\n')
+# print('\n')
+# os.system('$HOME/.local/bin/pipenv shell')

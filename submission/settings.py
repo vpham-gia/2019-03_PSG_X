@@ -88,6 +88,7 @@ PLAYER_FEATURES = ['team_id']\
 PLAYER_FEATURES_MEDIAN_FILENAME = 'player_model_missing_values.joblib'
 
 PLAYER_MODEL_NAME = 'player_model.joblib'
+PLAYER_MODEL_LIGHT_NAME = 'player_model_light.joblib'
 
 # Model 2 - Next team prediction
 NEXT_EVENT_COLS_TO_LAG = [PERIOD_COL, EVENT_TYPE_COL, TEAM_COL,

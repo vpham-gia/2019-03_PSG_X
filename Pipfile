@@ -24,6 +24,7 @@ tqdm = "*"
 stopit = "*"
 tpot = "*"
 lz4 = "*"
+psutil = "*"
 
 [requires]
 python_version = "3.5"
