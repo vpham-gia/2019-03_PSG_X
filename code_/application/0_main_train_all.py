@@ -13,15 +13,12 @@ from sklearn.preprocessing import FunctionTransformer
 from xgboost import XGBRegressor
 
 import logging
-import os
-import sys
 
 import settings as stg
 
 from code_.domain.data_processing import CategoricalProjectorOnTeamChange, CategoricalProjectorOnAvgDistance as CatProjAvg
 from code_.domain.games_info import SeasonFirstHalfAggregator
 
-sys.path.append(os.getcwd())
 
 if __name__ == '__main__':
     stg.enable_logging(log_filename='{}.log'.format(splitext(basename(__file__))[0]),

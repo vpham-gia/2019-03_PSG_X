@@ -1,10 +1,11 @@
 from multiprocessing import Process, Value, Array
-from os.path import join
 from sklearn.externals.joblib import load
 from time import time
 
 import csv
+import os
 import pandas as pd
+import sys
 
 from games_info import StatsGameAnalyzer, NextEventInGame
 
@@ -13,10 +14,12 @@ import settings as stg
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
+sys.path.append(os.getcwd())
+
 
 def Result(xml_filename='instructions/cleaned_test_set.xml'):
     """Compute result for test set."""
-    predicted_player = Value('i', 12)
+    predicted_player = Value('d', 12)
     predicted_next_event = Array('d', [0, 50, 50])
 
     p1 = Process(target=predict_player, args=(predicted_player, 'instructions/cleaned_test_set.xml'))
@@ -139,10 +142,26 @@ def predict_next_team_and_coords(next_event_array, xml_filename='instructions/cl
 
 
 if __name__ == '__main__':
-    # player = predict_player(xml_filename='instructions/cleaned_test_set.xml')
+    # start = time()
+    # predicted_player = Value('i', 12)
+    # predicted_next_event = Array('d', [0, 50, 50])
     #
+    # predict_player(player_id=predicted_player,
+    #                xml_filename='instructions/cleaned_test_set.xml')
+    #
+    # predict_next_team_and_coords(next_event_array=predicted_next_event,
+    #                              xml_filename='instructions/cleaned_test_set.xml')
+    #
+    # with open('./res_psgx.csv', mode='w') as result_file:
+    #     prediction_writer = csv.writer(result_file, delimiter=',',
+    #                                    quoting=csv.QUOTE_MINIMAL)
+    #     prediction_writer.writerow([int(predicted_player.value),
+    #                                 int(predicted_next_event[0]),
+    #                                 predicted_next_event[1],
+    #                                 predicted_next_event[2]
+    #                                 ])
+    # print('Time elapsed: {}'.format(time() - start))
+
     start = time()
-    #
     Result(xml_filename='cleaned_test_set.xml')
-    #
     print('Time elapsed: {}'.format(time() - start))
