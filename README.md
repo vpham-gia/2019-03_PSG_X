@@ -1,7 +1,7 @@
 ## PSG x X - Vinh Pham-Gia
 
 ### Submission for the challenge
-All information regarding submission setup, architecture, used packages, methodology and algorithms are further detailed in [the submission folder](submission/README.md).
+All information regarding submission setup, architecture, used packages, methodology and algorithms are further detailed in the [submission folder](submission/README.md).
 
 ### Global setup instructions and run project
 This project has been developed under Mac OS X 10.13.6 and Python 3.5.6.  
@@ -74,3 +74,25 @@ Structure (only relevant files are listed below)
     ├─ README.md
     ├─ settings_tpot.py                     # Configuration dictionaries for TPOT algorithm
     └─ settings.py                          # All settings needed in code
+
+### Methodology
+An iterative methodology has been used to perform required predictions.
+Iterations have been made to add features and to complexify models.
+
+#### Feature engineering
+More details about Feature Engineering could be found in the [submission folder](submission/README.md).
+
+#### Model & pipelines
+Modeling starts from basic models and iterations tend to complexify models in order to increase performance.  
+For both 3 problems, similar iterations have been made:
+  1. Baseline model - dumb model (e.g. predict most frequent player, predict last team, predict last coordinates)
+  2. Basic model - Random Forest with 500 trees and 15 max_depth
+  3. Random search of hyperparameters for Random Forest
+  4. XGBoost and random search of hyperparameters
+  5. TPOT to consider more complex pipelines
+
+Final models come from TPOT run during several days on Google Cloud Platform. Best models selected by TPOT may have been adjusted to comply with challenge requirements (files lower than 50 Mo). These adjustments have incurred lower performance.
+
+In order to predict player ID, the best model needs a bit more than 4 Go in RAM. That is why a light model is also available, if the test computer does not satisfy this requirement.
+
+Other models (LightGBM, Neural Networks) have been tried as well but provide worse results.
