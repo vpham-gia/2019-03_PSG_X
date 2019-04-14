@@ -38,6 +38,7 @@ if check == 'y':
     logging.info('Step 1 - .. Done')
 
     X_player, y_player = df[stg.PLAYER_FEATURES], df[stg.PLAYER_TARGET]
+    import sys; sys.exit()
 
     logging.info('Step 1 - Impute missing values with median ..')
     dump(X_player.median().to_dict(), join(stg.MODELS_DIR, stg.PLAYER_FEATURES_MEDIAN_FILENAME))
@@ -71,7 +72,6 @@ if check == 'y':
     dump(player_pipeline, join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME), compress=('lz4', 9))
     dump(player_pipeline, join(stg.SUBMISSION_DIR, stg.PLAYER_MODEL_NAME), compress=('lz4', 9))
     dump(player_pipeline_light, join(stg.SUBMISSION_DIR, stg.PLAYER_MODEL_LIGHT_NAME), compress=('lz4', 9))
-    import sys; sys.exit()
     file_size = getsize(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
     logging.debug('Step 1 - Final compression: model size {}'.format(file_size / 1e6))
 

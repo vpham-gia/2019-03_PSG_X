@@ -20,7 +20,7 @@ sys.path.append(os.getcwd())
 
 def Result(xml_filename='instructions/cleaned_test_set.xml'):
     """Compute result for test set."""
-    predicted_player = Value('d', 12)
+    predicted_player = Value('i', 59957)
     predicted_next_event = Array('d', [0, 50, 50])
 
     p1 = Process(target=predict_player, args=(predicted_player, 'instructions/cleaned_test_set.xml'))
@@ -53,7 +53,7 @@ def predict_player(player_id, xml_filename='instructions/cleaned_test_set.xml'):
     """
     start = time.time()
     sga = StatsGameAnalyzer(filename=xml_filename)
-    player_stats = sga.build_stats_for_test_set(df_15_min=sga.game,
+    player_stats = sga.build_stats_for_test_set(df_15_min=sga.game.head(-10),
                                                 list_events_number=stg.EVENTS_COMPUTE_NUMBER,
                                                 list_events_with_success_rate=stg.EVENTS_COMPUTE_SUCCESS_RATE)
 
@@ -148,26 +148,6 @@ def predict_next_team_and_coords(next_event_array, xml_filename='instructions/cl
 
 
 if __name__ == '__main__':
-    # start = time.time()
-    # predicted_player = Value('i', 12)
-    # predicted_next_event = Array('d', [0, 50, 50])
-    #
-    # predict_player(player_id=predicted_player,
-    #                xml_filename='instructions/cleaned_test_set.xml')
-    #
-    # predict_next_team_and_coords(next_event_array=predicted_next_event,
-    #                              xml_filename='instructions/cleaned_test_set.xml')
-    #
-    # with open('./res_psgx.csv', mode='w') as result_file:
-    #     prediction_writer = csv.writer(result_file, delimiter=',',
-    #                                    quoting=csv.QUOTE_MINIMAL)
-    #     prediction_writer.writerow([int(predicted_player.value),
-    #                                 int(predicted_next_event[0]),
-    #                                 predicted_next_event[1],
-    #                                 predicted_next_event[2]
-    #                                 ])
-    # print('Time elapsed: {}'.format(time.time() - start))
-
     start = time.time()
     Result(xml_filename='cleaned_test_set.xml')
     print('Time elapsed: {}'.format(time.time() - start))
