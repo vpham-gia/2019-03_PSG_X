@@ -10,7 +10,7 @@ However, `Pipfile` and `Pipfile.lock` files are provided in the folder if organi
 
 As requested by the challenge, `install_psgx.py` allows organizers to install required packages.
 
-Code could be therefore run using the following command lines (python 3.5 is supposed to be already installed):
+Code could be run using the following command lines (assuming python 3.5 is already installed):
 ```
 python3 install_psgx.py
 python3 main_psgx.py
@@ -72,19 +72,20 @@ Iterations to add more features include:
 Problem 2 - Next team prediction  
 Iterations to add more features include:
   1. Previous event information (previous event type, previous team, previous X coordinate)  
-    - Event type is mapped to average percentage of team change computed by event type
+    - Event type is mapped to average percentage of team change computed by event type  
     - X coordinate is converted to be consistent with home team scale
   2. Similar features are computed for previous 2 and 3 events.
 
-Problem 3 - Next coordinates prediction
+Problem 3 - Next coordinates prediction  
 Iterations to add more features include:
   1. Previous event information (previous event type, previous team, previous X or Y coordinate)  
-    - Event type is mapped to average traveled distance computed by event type
+    - Event type is mapped to average traveled distance computed by event type  
     - X and Y coordinates are converted to be consistent with home team scale
   2. Similar features are computed for previous 2 and 3 events.
 
 #### Model & pipelines
-Models used start from basic models and iterations tend to complexify models in order to increase performance. For both 3 problems, similar iterations have been made:
+Models used start from basic models and iterations tend to complexify models in order to increase performance.  
+For both 3 problems, similar iterations have been made:
   1. Baseline model - dumb model (e.g. predict most frequent player, predict last team, predict last coordinates)
   2. Basic model - Random Forest with 500 trees and 15 max_depth
   3. Random search of hyperparameters for Random Forest

@@ -7,7 +7,7 @@ All information regarding submission setup, architecture, used packages, methodo
 This project has been developed under Mac OS X 10.13.6 and Python 3.5.6.  
 `Pipenv` package has been used to set up the project.
 
-Therefore, one could set up the project with the following command line:
+Therefore, project setup could be performed with the following command lines:
 - Install pipenv package using pip:
 ```
 pip3 install --user pipenv

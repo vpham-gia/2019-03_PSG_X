@@ -11,7 +11,7 @@ However, `Pipfile` and `Pipfile.lock` files are provided in the folder if organi
 
 As requested by the challenge, `install_psgx.py` allows organizers to install required packages.
 
-Code could be therefore run using the following command lines (python 3.5 is supposed to be already installed):
+Code could be run using the following command lines (assuming python 3.5 is already installed):
 ```
 python3 install_psgx.py
 python3 main_psgx.py
@@ -85,7 +85,8 @@ Iterations to add more features include:
   2. Similar features are computed for previous 2 and 3 events.
 
 #### Model & pipelines
-Models used start from basic models and iterations tend to complexify models in order to increase performance. For both 3 problems, similar iterations have been made:
+Models used start from basic models and iterations tend to complexify models in order to increase performance.
+For both 3 problems, similar iterations have been made:
   1. Baseline model - dumb model (e.g. predict most frequent player, predict last team, predict last coordinates)
   2. Basic model - Random Forest with 500 trees and 15 max_depth
   3. Random search of hyperparameters for Random Forest
