@@ -68,6 +68,7 @@ Iterations to add more features include:
   2. Count success rate for passes
   3. Number of goalkeeper events, number of shots
   4. Number of free kicks and corners taken
+  5. Position repartition in percent
 
 Problem 2 - Next team prediction  
 Iterations to add more features include:
