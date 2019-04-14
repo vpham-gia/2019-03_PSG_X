@@ -38,7 +38,6 @@ if check == 'y':
     logging.info('Step 1 - .. Done')
 
     X_player, y_player = df[stg.PLAYER_FEATURES], df[stg.PLAYER_TARGET]
-    import sys; sys.exit()
 
     logging.info('Step 1 - Impute missing values with median ..')
     dump(X_player.median().to_dict(), join(stg.MODELS_DIR, stg.PLAYER_FEATURES_MEDIAN_FILENAME))
