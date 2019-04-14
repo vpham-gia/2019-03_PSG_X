@@ -4,3 +4,5 @@ data/*
 logs/*
 models/*.pkl
 test.py
+.DS_Store
+.python-version
