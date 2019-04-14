@@ -82,7 +82,8 @@ CORNER_COL = 'corner'
 
 QUALIFIER_COL = 'qualifier_id'
 QUALIFIER_MAP = {
-    'ALL_PLAYERS': '30'
+    'ALL_PLAYERS': '30',
+    'ZONE': '56'
 }
 
 # Players info from OPTA
@@ -114,8 +115,8 @@ FILENAME_NEXT_EVENT = 'first_half_next_event.csv'
 GAME_ID_COL = 'game'
 GAME_TIME_COL = 'game_time_in_sec'
 
-COLS_TO_KEEP = [GAME_ID_COL, EVENT_TYPE_COL, PERIOD_COL, GAME_TIME_COL,
-                PLAYER_COL, TEAM_COL, OUTCOME_COL, KEYPASS_COL, ASSIST_COL,
+COLS_TO_KEEP = [GAME_ID_COL, EVENT_TYPE_COL, '{}_{}'.format(QUALIFIER_COL, QUALIFIER_MAP['ZONE']),
+                PERIOD_COL, GAME_TIME_COL, PLAYER_COL, TEAM_COL, OUTCOME_COL, KEYPASS_COL, ASSIST_COL,
                 X_COL, Y_COL]
 
 # Model 1 - Players prediction
@@ -124,6 +125,7 @@ EVENTS_COMPUTE_NUMBER = ['3', '4', '7', '8', '10', '14', '16', '17', '18', '19',
 EVENTS_COMPUTE_SUCCESS_RATE = ['1']
 PLAYER_FEATURES = ['team_id']\
     + ['nb_assist', 'nb_keypass', 'nb_gk_events', 'nb_shots', 'nb_free_kick', 'nb_corner']\
+    + ['Back', 'Center', 'Left', 'Right']\
     + ['p_{}_nb'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
     + ['p_{}_success_rate'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
     + ['p_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\

@@ -134,13 +134,30 @@ class StatsGameAnalyzer():
                                  for col in df_team_stats.columns]
 
         df_player_info = self._build_dataset_from_bool_columns(df_with_events=df_15_min)
+        df_player_position = self._get_player_position(df_with_events=df_15_min)
 
         df_stats = df_players.merge(right=df_player_info, on=stg.PLAYER_COL, how='left')\
+                             .merge(right=df_player_position, on=stg.PLAYER_COL, how='left')\
                              .merge(right=df_player_stats, on=stg.PLAYER_COL, how='left')\
                              .merge(right=df_team_stats, on=stg.TEAM_COL, how='left')
         df_stats.fillna({col: 0 for col in df_stats.columns if col.endswith('_nb')},
                         inplace=True)
         return df_stats
+
+    def _get_player_position(self, df_with_events):
+        QUALIFIER_COLNAME = '{}_{}'.format(stg.QUALIFIER_COL, stg.QUALIFIER_MAP['ZONE'])
+
+        player_pct_positions = df_with_events.query('{} != "no_position"'.format(QUALIFIER_COLNAME))\
+                                             .groupby(by=[stg.PLAYER_COL, QUALIFIER_COLNAME])\
+                                             .agg({QUALIFIER_COLNAME: 'count'}) \
+                                             .groupby(level=0).apply(lambda x: 100 * x / float(x.sum())) \
+                                             .rename(columns={QUALIFIER_COLNAME: 'nb'}) \
+                                             .reset_index() \
+                                             .pivot(index=stg.PLAYER_COL, columns=QUALIFIER_COLNAME, values='nb')\
+                                             .fillna(0)\
+                                             .reset_index()
+
+        return player_pct_positions
 
     def _build_dataset_from_bool_columns(self, df_with_events):
         players = pd.DataFrame({stg.PLAYER_COL: list()})
@@ -261,7 +278,8 @@ class StatsGameAnalyzer():
     def _fillna_game_data_and_convert_types(self, **kwargs):
         game_data = Game(**kwargs).clean_game_data()\
                                   .fillna(value={stg.KEYPASS_COL: '0',
-                                                 stg.ASSIST_COL: '0'})\
+                                                 stg.ASSIST_COL: '0',
+                                                 '{}_{}'.format(stg.QUALIFIER_COL, stg.QUALIFIER_MAP['ZONE']): 'no_position'})\
                                   .assign(**{stg.KEYPASS_COL: lambda x: x[stg.KEYPASS_COL].apply(int),
                                              stg.ASSIST_COL: lambda x: x[stg.ASSIST_COL].apply(int)})
 

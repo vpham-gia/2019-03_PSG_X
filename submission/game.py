@@ -92,19 +92,21 @@ class Game():
 
         for event in tree.xpath(stg.XML_PATH_TO_EVENTS):
             df_event = pd.DataFrame(dict(event.attrib), index=[0])
-            # df_qualifiers = self._get_qualifiers_for_event(event_xml_element=event)
-            # with_qualifiers = pd.merge(left=df_event, right=df_qualifiers,
-            #                            left_index=True, right_index=True, how='left')
+            df_qualifiers = self._get_qualifiers_for_event(event_xml_element=event)
+            with_qualifiers = pd.merge(left=df_event, right=df_qualifiers,
+                                       left_index=True, right_index=True, how='left')
 
-            df_events = pd.concat([df_events, df_event],
+            df_events = pd.concat([df_events, with_qualifiers],
                                   axis=0, ignore_index=True, sort=False)
 
         return df_events
 
     def _get_qualifiers_for_event(self, event_xml_element):
-        qualifiers = event_xml_element.findall(stg.XML_QUALIFIER_TAG)
+        # qualifiers = event_xml_element.findall(stg.XML_QUALIFIER_TAG)
         # To filter on qualifier 56
-        # qualifiers = event_xml_element.findall('{}/[@{}="56"]'.format(stg.XML_QUALIFIER_TAG, stg.QUALIFIER_COL))
+        qualifiers = event_xml_element.findall('{}/[@{}="{}"]'.format(stg.XML_QUALIFIER_TAG,
+                                                                      stg.QUALIFIER_COL,
+                                                                      stg.QUALIFIER_MAP['ZONE']))
 
         df_qualifiers = pd.DataFrame({
             stg.QUALIFIER_COL: list(map(lambda x: x.get(stg.QUALIFIER_COL), qualifiers)),
