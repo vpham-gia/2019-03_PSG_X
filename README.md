@@ -1,8 +1,7 @@
 ## PSG x X - Vinh Pham-Gia
 
 ### Submission for the challenge
-All information regarding submission setup, architecture, used packages, methodology
-and algorithms are further detailed in [the submission folder](submission/README.md).
+All information regarding submission setup, architecture, used packages, methodology and algorithms are further detailed in [the submission folder](submission/README.md).
 
 ### Global setup instructions and run project
 This project has been developed under Mac OS X 10.13.6 and Python 3.5.6.  
@@ -75,26 +74,3 @@ Structure (only relevant files are listed below)
     ├─ README.md
     ├─ settings_tpot.py                     # Configuration dictionaries for TPOT algorithm
     └─ settings.py                          # All settings needed in code
-
-
-### Methodology and models
-An iterative methodology has been used through the project.
-Iterations have been made both on features and on model complexity.
-
-#### Features
-Problem 1 - Player prediction  
-  1. Count of specific events (e.g. number of passes) by player and for corresponding team
-  2. Count success rate for passes
-  3. Number of goalkeeper events, number of shots
-  4. Number of free kicks and corners taken
-
-Problems 2 & 3 - Next team prediction & Coordinates prediction
-  1. Iteration 1 - previous event information (previous event type, previous team, previous x coordinate)  
-    - Event type is converted to float using team change rate for each event
-    - X coordinate is converted to fit home team scale
-
-#### Problem 1 - Player prediction
-#### Problem 2 - Next team prediction
-#### Problem 1 - Next coordinates prediction
-
-TO BE UPDATED
