@@ -55,22 +55,22 @@ if check == 'y':
                              criterion="gini", max_features=0.1,
                              min_samples_leaf=1, min_samples_split=2)
     )
-    # player_pipeline_light = make_pipeline(
-    #     make_union(
-    #         FastICA(tol=0.85),
-    #         FunctionTransformer(copy)
-    #     ),
-    #     ExtraTreesClassifier(n_estimators=70, max_depth=18, bootstrap=False,
-    #                          criterion="gini", max_features=0.1,
-    #                          min_samples_leaf=1, min_samples_split=2)
-    # )
+    player_pipeline_light = make_pipeline(
+        make_union(
+            FastICA(tol=0.85),
+            FunctionTransformer(copy)
+        ),
+        ExtraTreesClassifier(n_estimators=75, max_depth=17, bootstrap=False,
+                             criterion="gini", max_features=0.1,
+                             min_samples_leaf=1, min_samples_split=2)
+    )
     player_pipeline.fit(X_player, y_player)
-    # player_pipeline_light.fit(X_player, y_player)
+    player_pipeline_light.fit(X_player, y_player)
     logging.debug('Step 1 - Fit ok')
 
     dump(player_pipeline, join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME), compress=('lz4', 9))
     dump(player_pipeline, join(stg.SUBMISSION_DIR, stg.PLAYER_MODEL_NAME), compress=('lz4', 9))
-    # dump(player_pipeline_light, join(stg.SUBMISSION_DIR, stg.PLAYER_MODEL_LIGHT_NAME), compress=('lz4', 9))
+    dump(player_pipeline_light, join(stg.SUBMISSION_DIR, stg.PLAYER_MODEL_LIGHT_NAME), compress=('lz4', 9))
     file_size = getsize(join(stg.MODELS_DIR, stg.PLAYER_MODEL_NAME))
     logging.debug('Step 1 - Final compression: model size {}'.format(file_size / 1e6))
 
