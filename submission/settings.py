@@ -92,10 +92,10 @@ PLAYER_FEATURES = ['team_id']\
     + ['t_{}_success_rate'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
     + ['t_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\
 
-PLAYER_FEATURES_MEDIAN_FILENAME = 'player_model_missing_values.joblib'
+PLAYER_FEATURES_MEDIAN_FILENAME = 'player_model_missing_values.h5'
 
-PLAYER_MODEL_NAME = 'player_model.joblib'
-PLAYER_MODEL_LIGHT_NAME = 'player_model_light.joblib'
+PLAYER_MODEL_NAME = 'player_model.h5'
+PLAYER_MODEL_LIGHT_NAME = 'player_model_light.h5'
 
 # Model 2 - Next team prediction
 NEXT_EVENT_COLS_TO_LAG = [PERIOD_COL, EVENT_TYPE_COL, TEAM_COL,
@@ -107,8 +107,8 @@ NEXT_TEAM_FEATURES = ['{}_lag{}'.format(col, lag)
                       for lag in NEXT_EVENT_LAGS
                       for col in NEXT_TEAM_COLS_TO_LAG_FOR_FEATS]
 
-NEXT_TEAM_FEAT_ENG_DICT = 'next_team_feature_engineering_dict.joblib'
-NEXT_TEAM_MODEL_NAME = 'next_team_model.joblib'
+NEXT_TEAM_FEAT_ENG_DICT = 'next_team_feature_engineering_dict.h5'
+NEXT_TEAM_MODEL_NAME = 'next_team_model.h5'
 
 # Model 3 - Coordinates prediction
 X_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, X_PROJECTED_COL]
@@ -116,13 +116,13 @@ X_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in X_PROJ_COLS_TO_LAG_FOR_FEATS]
 
-X_PROJ_FEAT_ENG_DICT = 'coords_x_feature_engineering_dict.joblib'
-X_PROJ_MODEL_NAME = 'coords_x_proj_model.joblib'
+X_PROJ_FEAT_ENG_DICT = 'coords_x_feature_engineering_dict.h5'
+X_PROJ_MODEL_NAME = 'coords_x_proj_model.h5'
 
 Y_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, Y_PROJECTED_COL]
 Y_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in Y_PROJ_COLS_TO_LAG_FOR_FEATS]
 
-Y_PROJ_FEAT_ENG_DICT = 'coords_y_feature_engineering_dict.joblib'
-Y_PROJ_MODEL_NAME = 'coords_y_proj_model.joblib'
+Y_PROJ_FEAT_ENG_DICT = 'coords_y_feature_engineering_dict.h5'
+Y_PROJ_MODEL_NAME = 'coords_y_proj_model.h5'

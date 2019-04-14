@@ -39,23 +39,24 @@ N.B: Files to manage games data will be released on my GitHub page at the end of
 
 Detailed structure is as follow
 
-    ├─ install_psgx.py                     # Script to set up environment
-    ├─ main_psgx.py                        # Script to make predictions and write csv file
-    ├─ readme.txt                          # Instructions and details about the code
-    ├─ coords_x_feat (...).joblib          # Dictionary for feature engineering - project event types using average traveled X distance
-    ├─ coords_x_proj_model.joblib          # Pipeline to predict next X coordinate
-    ├─ coords_y_feat (...).joblib          # Dictionary for feature engineering - project event types using average traveled Y distance
-    ├─ coords_y_proj_model.joblib          # Pipeline to predict next Y coordinate
-    ├─ game.py                             # Class to clean game data provided in XML file
-    ├─ games_info.py                       # Classes to extract key infos from games and build relevant datasets
-    ├─ next_team_feat (...).joblib         # Dictionary for feature engineering - project event types using average team change
-    ├─ next_team_model.joblib              # Pipeline to predict next team
-    ├─ player_model_light.joblib           # Light pipeline to predict player ID (if computer RAM < 5 Go)
-    ├─ player_model_missing_values.joblib  # Dictionary to impute missing values for player ID prediction
-    ├─ player_model.joblib                 # Pipeline to predict player ID (if computer RAM >= 5 Go)
-    ├─ README.md                           # Documentation of submission folder (markdown format, similar to readme.txt)
-    ├─ requirements.txt                    # List of packages used in the project
-    └─ settings.py                         # Settings used in python code (variables names, paths, characteristics of XML files, ...)
+    ├─ install_psgx.py                 # Script to install packages
+    ├─ main_psgx.py                    # Script to make predictions and write csv file
+    ├─ readme.txt                      # Instructions and details about the code
+    ├─ coords_x_feat (...).h5          # Dictionary for feature engineering - project event types using average traveled X distance
+    ├─ coords_x_proj_model.h5          # Pipeline to predict next X coordinate
+    ├─ coords_y_feat (...).h5          # Dictionary for feature engineering - project event types using average traveled Y distance
+    ├─ coords_y_proj_model.h5          # Pipeline to predict next Y coordinate
+    ├─ game.py                         # Class to clean game data provided in XML file
+    ├─ games_info.py                   # Classes to extract key infos from games and build relevant datasets
+    ├─ next_team_feat (...).h5         # Dictionary for feature engineering - project event types using average team change
+    ├─ next_team_model.h5              # Pipeline to predict next team
+    ├─ Pipfile.lock                    # Pipfile created by `pipenv` package
+    ├─ player_model_light.h5           # Light pipeline to predict player ID (if computer RAM < 5 Go)
+    ├─ player_model_missing_values.h5  # Dictionary to impute missing values for player ID prediction
+    ├─ player_model.h5                 # Pipeline to predict player ID (if computer RAM >= 5 Go)
+    ├─ README.md                       # Documentation of submission folder (markdown format, similar to readme.txt)
+    ├─ requirements.txt                # List of packages used in the project
+    └─ settings.py                     # Settings used in python code (variables names, paths, characteristics of XML files, ...)
 
 ### Methodology
 An iterative methodology has been used to perform required predictions.

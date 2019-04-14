@@ -133,10 +133,10 @@ PLAYER_FEATURES = ['team_id']\
     + ['t_{}_success_rate'.format(el) for el in EVENTS_COMPUTE_SUCCESS_RATE]\
     + ['t_{}_nb'.format(el) for el in EVENTS_COMPUTE_NUMBER]\
 
-PLAYER_FEATURES_MEDIAN_FILENAME = 'player_model_missing_values.joblib'
+PLAYER_FEATURES_MEDIAN_FILENAME = 'player_model_missing_values.h5'
 
-PLAYER_MODEL_NAME = 'player_model.joblib'
-PLAYER_MODEL_LIGHT_NAME = 'player_model_light.joblib'
+PLAYER_MODEL_NAME = 'player_model.h5'
+PLAYER_MODEL_LIGHT_NAME = 'player_model_light.h5'
 PLAYER_TPOT_FILENAME = 'tpot_player.py'
 # ---------------
 BOOL_TPOT_PLAYER = False
@@ -216,9 +216,9 @@ NEXT_TEAM_FEATURES = ['{}_lag{}'.format(col, lag)
                       for lag in NEXT_EVENT_LAGS
                       for col in NEXT_TEAM_COLS_TO_LAG_FOR_FEATS]
 
-NEXT_TEAM_CAT_PROJ_NAME = 'next_team_cat_proj_lag{lag}.joblib'
-NEXT_TEAM_FEAT_ENG_DICT = 'next_team_feature_engineering_dict.joblib'
-NEXT_TEAM_MODEL_NAME = 'next_team_model.joblib'
+NEXT_TEAM_CAT_PROJ_NAME = 'next_team_cat_proj_lag{lag}.h5'
+NEXT_TEAM_FEAT_ENG_DICT = 'next_team_feature_engineering_dict.h5'
+NEXT_TEAM_MODEL_NAME = 'next_team_model.h5'
 NEXT_TEAM_TPOT_FILENAME = 'tpot_next_team.py'
 # ---------------
 BOOL_TPOT_NEXT_TEAM = True
@@ -276,9 +276,9 @@ X_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, X_PROJECTED_COL]
 X_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in X_PROJ_COLS_TO_LAG_FOR_FEATS]
-X_PROJ_CAT_PROJ_NAME = 'coords_x_cat_proj_lag{lag}.joblib'
-X_PROJ_FEAT_ENG_DICT = 'coords_x_feature_engineering_dict.joblib'
-X_PROJ_MODEL_NAME = 'coords_x_proj_model.joblib'
+X_PROJ_CAT_PROJ_NAME = 'coords_x_cat_proj_lag{lag}.h5'
+X_PROJ_FEAT_ENG_DICT = 'coords_x_feature_engineering_dict.h5'
+X_PROJ_MODEL_NAME = 'coords_x_proj_model.h5'
 X_PROJ_TPOT_FILENAME = 'tpot_coords_x.py'
 
 Y_PROJ_TARGET = Y_PROJECTED_COL
@@ -286,9 +286,9 @@ Y_PROJ_COLS_TO_LAG_FOR_FEATS = [EVENT_TYPE_COL, TEAM_COL, Y_PROJECTED_COL]
 Y_PROJ_FEATURES = ['{}_lag{}'.format(col, lag)
                    for lag in NEXT_EVENT_LAGS
                    for col in Y_PROJ_COLS_TO_LAG_FOR_FEATS]
-Y_PROJ_CAT_PROJ_NAME = 'coords_y_cat_proj_lag{lag}.joblib'
-Y_PROJ_FEAT_ENG_DICT = 'coords_y_feature_engineering_dict.joblib'
-Y_PROJ_MODEL_NAME = 'coords_y_proj_model.joblib'
+Y_PROJ_CAT_PROJ_NAME = 'coords_y_cat_proj_lag{lag}.h5'
+Y_PROJ_FEAT_ENG_DICT = 'coords_y_feature_engineering_dict.h5'
+Y_PROJ_MODEL_NAME = 'coords_y_proj_model.h5'
 Y_PROJ_TPOT_FILENAME = 'tpot_coords_y.py'
 
 # ---------------

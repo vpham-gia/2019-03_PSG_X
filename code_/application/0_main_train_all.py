@@ -82,7 +82,6 @@ if check == 'y':
     logging.info('Step 1 - .. Done')
 
     logging.info('Step 1 - Done')
-    import sys; sys.exit()
     logging.info('--------------------------------')
     logging.info('Step 2 - Next team prediction ..')
 
