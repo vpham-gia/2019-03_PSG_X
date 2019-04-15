@@ -94,7 +94,7 @@ PLAYER_FEATURES = ['team_id']\
 
 PLAYER_FEATURES_MEDIAN_FILENAME = 'player_model_missing_values.h5'
 
-PLAYER_MODEL_NAME = 'player_model.h5'
+PLAYER_MODEL_NAME = 'player_model.joblib'
 PLAYER_MODEL_LIGHT_NAME = 'player_model_light.h5'
 
 # Model 2 - Next team prediction

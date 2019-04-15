@@ -16,3 +16,23 @@
 [2019-04-14 22:40:55][main_psgx] INFO - Pb 1 - After model load: 6.231353998184204
 [2019-04-14 22:40:55][main_psgx] INFO - Pb 1 - After prediction 6.265979051589966
 [2019-04-14 22:40:55][main_psgx] INFO - Time elapsed: 6.483240127563477
+
+
+
+[2019-04-15 15:25:10][main_psgx] INFO - Pb 2 - After feature engineering: 1.192620038986206
+[2019-04-15 15:25:10][main_psgx] INFO - Pb 1 - After feature engineering: 1.3732318878173828
+[2019-04-15 15:25:11][main_psgx] INFO - Pb 2 - After model load and prediction: 2.6466920375823975
+[2019-04-15 15:25:11][main_psgx] INFO - Pb 3 - After feature engineering: 2.7877161502838135
+[2019-04-15 15:25:12][main_psgx] INFO - Pb 3 - After model load and prediction: 2.946716070175171
+[2019-04-15 15:25:16][main_psgx] INFO - Pb 1 - After model load: 7.092679023742676
+[2019-04-15 15:25:16][main_psgx] INFO - Pb 1 - After prediction 7.10646390914917
+[2019-04-15 15:25:16][main_psgx] INFO - Time elapsed: 7.398352146148682
+
+[2019-04-15 15:26:09][main_psgx] INFO - Pb 2 - After feature engineering: 1.369114875793457
+[2019-04-15 15:26:09][main_psgx] INFO - Pb 1 - After feature engineering: 1.498175859451294
+[2019-04-15 15:26:10][main_psgx] INFO - Pb 2 - After model load and prediction: 2.3896729946136475
+[2019-04-15 15:26:10][main_psgx] INFO - Pb 3 - After feature engineering: 2.4732470512390137
+[2019-04-15 15:26:10][main_psgx] INFO - Pb 3 - After model load and prediction: 2.53133487701416
+[2019-04-15 15:26:15][main_psgx] INFO - Pb 1 - After model load: 7.864349842071533
+[2019-04-15 15:26:15][main_psgx] INFO - Pb 1 - After prediction 7.89699387550354
+[2019-04-15 15:26:16][main_psgx] INFO - Time elapsed: 8.13279390335083

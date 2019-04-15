@@ -41,7 +41,7 @@ player_pipeline = make_pipeline(
         FastICA(tol=0.85),
         FunctionTransformer(copy)
     ),
-    ExtraTreesClassifier(n_estimators=75, max_depth=17, bootstrap=False,
+    ExtraTreesClassifier(n_estimators=75, max_depth=18, bootstrap=False,
                          criterion="gini", max_features=0.1,
                          min_samples_leaf=1, min_samples_split=2)
 )
