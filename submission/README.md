@@ -75,6 +75,8 @@ Pre-processing has been performed to keep eligible players (players having playe
 - Compute time spent on pitch for all players (considering extra-time and substitutions) during first half of season
 - Exclude transfered players and loaned players during winter
 
+N.B: pre-processing scripts are not in the submission folder - they are not mandatory to predict player ID.
+
 Iterations to add more features include:
   1. Count of specific events (e.g. number of passes) by player and for corresponding team
   2. Count success rate for passes
