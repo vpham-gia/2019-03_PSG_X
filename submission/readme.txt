@@ -96,7 +96,7 @@ Iterations to add more features include:
     - Event type is mapped to average traveled distance computed by event type
     - X and Y coordinates are converted to be consistent with home team scale
   2. Similar features are computed for previous 2 and 3 events.
-  -------------------------------------
+-------------------------------------
 
 #### Model & pipelines
 Modeling starts from basic models and iterations tend to complexify models in order to increase performance.
